@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Kenny.DbEngine.Core.VirtualAddressSpace
 {
-    public class FileBasedPersistence : IPersistanceSource, IDisposable
+    public class FileDataPersistence : IPersistData, IDisposable
     {
         private PageIndex pageIndex;
         private MemoryMappedFile fileMapping;
@@ -17,7 +17,7 @@ namespace Kenny.DbEngine.Core.VirtualAddressSpace
         private string dbFileName;
         private IViewManager viewManager;
 
-        public FileBasedPersistence()
+        public FileDataPersistence()
         {
             dbFileName = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
             pageIndex = new PageIndex(File.Open(string.Format(indexFileFormat, dbFileName), FileMode.OpenOrCreate, FileAccess.ReadWrite));

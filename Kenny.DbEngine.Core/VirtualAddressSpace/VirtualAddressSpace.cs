@@ -8,11 +8,11 @@ namespace Kenny.DbEngine.Core.VirtualAddressSpace
 {
     public abstract class VirtualAddressSpace
     {
-        private IPersistanceSource persistence;
+        private IPersistData persistence;
 
         public VirtualAddressSpace()
         {
-            persistence = new FileBasedPersistence();
+            persistence = new FileDataPersistence();
         }
 
         public long Length()

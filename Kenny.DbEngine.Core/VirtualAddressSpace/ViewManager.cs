@@ -9,25 +9,26 @@ namespace Kenny.DbEngine.Core.VirtualAddressSpace
     public class ViewManager : IViewManager
     {
         private MemoryMappedFile fileMapping;
-
+        private MemoryMappedViewAccessor view;
 
         public ViewManager(MemoryMappedFile fileMapping)
         {
             this.fileMapping = fileMapping;
+            view = fileMapping.CreateViewAccessor();
         }
 
         public void ReadVirtualPage(ref byte[] dataBuffer, long bufferIndex, long storageOffset, long numBytesToRead)
         {
             //n.b. the intellisense description of parameters is incorrect. 
             //see http://msdn.microsoft.com/es-es/library/dd267761.aspx for correct description
-            //int result = view.ReadArray<byte>(storageOffset, dataBuffer, (int)bufferIndex, (int)numBytesToRead);
+            int result = view.ReadArray<byte>(storageOffset, dataBuffer, (int)bufferIndex, (int)numBytesToRead);
         }
 
         public void WriteVirtualPage(ref byte[] dataBuffer, long bufferIndex, long storageOffset, long numBytesToWrite)
         {
             //n.b. the intellisense description of parameters is incorrect. 
             //see http://msdn.microsoft.com/es-es/library/dd267754.aspx for correct description
-            //view.WriteArray<byte>(storageOffset, dataBuffer, (int)bufferIndex, (int)numBytesToWrite);
+            view.WriteArray<byte>(storageOffset, dataBuffer, (int)bufferIndex, (int)numBytesToWrite);
         }
 
         public void Flush()
@@ -37,7 +38,7 @@ namespace Kenny.DbEngine.Core.VirtualAddressSpace
 
         public void Dispose()
         {
-
+            view.Dispose();
         }
     }
 }

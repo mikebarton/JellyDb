@@ -11,12 +11,12 @@ using System.Diagnostics;
 namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
 {
     [TestClass]
-    public class FileBasedPersistenceTest
+    public class FileDataPersistenceTest
     {
-        FileBasedPersistence target;
+        FileDataPersistence target;
         private string fileLoc;
 
-        public FileBasedPersistenceTest()
+        public FileDataPersistenceTest()
         {
             fileLoc = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
         }
@@ -41,7 +41,7 @@ namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_CreateFilePersistence()
         {
-            using (target = new FileBasedPersistence())
+            using (target = new FileDataPersistence())
             {
                 
             }
@@ -50,7 +50,7 @@ namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetContiguousData()
         {            
-            using (target = new FileBasedPersistence())
+            using (target = new FileDataPersistence())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 byte[] data = CreateTestByteArray(8, 1024);
@@ -66,7 +66,7 @@ namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetScatteredData()
         {
-            using (target = new FileBasedPersistence())
+            using (target = new FileDataPersistence())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -99,7 +99,7 @@ namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata()
         {
-            using (target = new FileBasedPersistence())
+            using (target = new FileDataPersistence())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -118,7 +118,7 @@ namespace Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace
         {
             Stopwatch sw = new Stopwatch();
             byte[] data = CreateTestByteArray((1024 * 1024), 100);
-            using (target = new FileBasedPersistence())
+            using (target = new FileDataPersistence())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 sw.Start();

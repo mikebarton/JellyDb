@@ -6,7 +6,7 @@ using Kenny.DbEngine.Core.Configuration;
 
 namespace Kenny.DbEngine.Core.VirtualAddressSpace
 {
-    public  interface IPersistanceSource
+    public  interface IPersistData
     {
         byte[] GetData(Guid addressSpaceId, long offset, long numBytes);
         void SetData(Guid addressSpaceId, long offset, long startIndex, long numBytes, byte[] dataArray);

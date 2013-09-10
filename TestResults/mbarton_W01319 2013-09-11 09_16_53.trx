@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="c0673709-5ae8-4750-9e20-14056464755c" name="mbarton@W01319 2013-09-11 09:16:53" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="5bec64bf-a315-495c-b035-80505b50f7d5">
+    <Deployment runDeploymentRoot="mbarton_W01319 2013-09-11 09_16_53">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Rhino.Mocks.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\bin\Debug\Kenny.DbEngine.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-11T09:16:53.7186460+10:00" queuing="2013-09-11T09:16:55.3177375+10:00" start="2013-09-11T09:16:55.4807468+10:00" finish="2013-09-11T09:17:31.3667994+10:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="1" executed="1" error="0" failed="1" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="FileBasedPersistence_CreateFilePersistence" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="225680d3-3a0f-7f06-ee1a-59784201cb83">
+      <Execution id="09d618e8-bb14-4bac-88a5-a0a3f5bf012c" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_CreateFilePersistence" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="225680d3-3a0f-7f06-ee1a-59784201cb83" executionId="09d618e8-bb14-4bac-88a5-a0a3f5bf012c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="09d618e8-bb14-4bac-88a5-a0a3f5bf012c" testId="225680d3-3a0f-7f06-ee1a-59784201cb83" testName="FileBasedPersistence_CreateFilePersistence" computerName="W01319" duration="00:00:34.4502849" startTime="2013-09-11T09:16:55.6567569+10:00" endTime="2013-09-11T09:17:31.3057959+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="09d618e8-bb14-4bac-88a5-a0a3f5bf012c">
+      <Output>
+        <ErrorInfo>
+          <Message>TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -96,11 +96,11 @@
     <Compile Include="Sql\Dml\SubtractionOperator.cs" />
     <Compile Include="Sql\Dml\Term.cs" />
     <Compile Include="Sql\Dml\ValueTerm.cs" />
-    <Compile Include="VirtualAddressSpace\FileBasedPersistence.cs" />
+    <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
-    <Compile Include="VirtualAddressSpace\IPersistanceSource.cs" />
+    <Compile Include="VirtualAddressSpace\IPersistData.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
     <Compile Include="VirtualAddressSpace\ViewContainer.cs" />
     <Compile Include="VirtualAddressSpace\ViewManager.cs" />

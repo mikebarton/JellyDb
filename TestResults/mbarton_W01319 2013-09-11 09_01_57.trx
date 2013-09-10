@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="e006fe26-f8e8-406b-852b-cfe0262b281d" name="mbarton@W01319 2013-09-11 09:01:57" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="b5efbc7c-31cc-41b0-8fda-37d3be742fa2">
+    <Deployment userDeploymentRoot="C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults" useDefaultDeploymentRoot="false" runDeploymentRoot="mbarton_W01319 2013-09-11 09_01_57">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Rhino.Mocks.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\bin\Debug\Kenny.DbEngine.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-11T09:01:57.5853901+10:00" queuing="2013-09-11T09:01:57.7083972+10:00" start="2013-09-11T09:01:57.7143975+10:00" finish="2013-09-11T09:01:58.3694350+10:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="6" executed="6" error="0" failed="6" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetConfigurationSection" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="7c6fd982-741c-25f1-0717-02dff2f9a048">
+      <Execution id="3d139edd-89c4-479f-b72b-381c7ee3d9bf" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetConfigurationSection" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetScatteredData" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="60908062-6452-d125-fe18-ff95ec4cdd44">
+      <Execution id="5e600019-1403-489b-863c-2a4a16f9e3bf" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetScatteredData" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="bb0af259-8772-114f-7ba4-993c68cfbc60">
+      <Execution id="56cd52f6-d047-442c-8dbf-25029403c059" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" />
+    </UnitTest>
+    <UnitTest name="CreateBigFileTest" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="a5e4b6a9-8a72-d442-9dc9-92cc31b491ee">
+      <Execution id="085d12f7-4d2e-406a-bb23-082d68322e01" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateBigFileTest" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetContiguousData" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f24b8079-7a7b-486d-9b45-80f98756b05d">
+      <Execution id="dc2f8dac-085f-4fb8-a8b1-6ad1761fc48e" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetContiguousData" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_CreateFilePersistence" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="225680d3-3a0f-7f06-ee1a-59784201cb83">
+      <Execution id="d7920dc6-e546-4b29-93d2-1e1357ffdd9f" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_CreateFilePersistence" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="60908062-6452-d125-fe18-ff95ec4cdd44" executionId="5e600019-1403-489b-863c-2a4a16f9e3bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f24b8079-7a7b-486d-9b45-80f98756b05d" executionId="dc2f8dac-085f-4fb8-a8b1-6ad1761fc48e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bb0af259-8772-114f-7ba4-993c68cfbc60" executionId="56cd52f6-d047-442c-8dbf-25029403c059" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="225680d3-3a0f-7f06-ee1a-59784201cb83" executionId="d7920dc6-e546-4b29-93d2-1e1357ffdd9f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a5e4b6a9-8a72-d442-9dc9-92cc31b491ee" executionId="085d12f7-4d2e-406a-bb23-082d68322e01" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7c6fd982-741c-25f1-0717-02dff2f9a048" executionId="3d139edd-89c4-479f-b72b-381c7ee3d9bf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="5e600019-1403-489b-863c-2a4a16f9e3bf" testId="60908062-6452-d125-fe18-ff95ec4cdd44" testName="FileBasedPersistence_SaveAndGetScatteredData" computerName="W01319" duration="00:00:00.0307359" startTime="2013-09-11T09:01:57.7163976+10:00" endTime="2013-09-11T09:01:57.9334100+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5e600019-1403-489b-863c-2a4a16f9e3bf">
+      <Output>
+        <ErrorInfo>
+          <Message>TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dc2f8dac-085f-4fb8-a8b1-6ad1761fc48e" testId="f24b8079-7a7b-486d-9b45-80f98756b05d" testName="FileBasedPersistence_SaveAndGetContiguousData" computerName="W01319" duration="00:00:00.0060061" startTime="2013-09-11T09:01:57.9344101+10:00" endTime="2013-09-11T09:01:57.9424105+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dc2f8dac-085f-4fb8-a8b1-6ad1761fc48e">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersistence_SaveAndGetContiguousData threw exception: 
+System.IO.IOException: The process cannot access the file 'c:\Temp\DbEngine.db' because it is being used by another process.
+TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileSystemRights rights, FileShare share, Int32 bufferSize, FileOptions options)
+   at System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(String path, FileMode mode, String mapName, Int64 capacity, MemoryMappedFileAccess access)
+   at System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(String path, FileMode mode, String mapName, Int64 capacity)
+   at Kenny.DbEngine.Core.VirtualAddressSpace.FileDataPersistence..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\VirtualAddressSpace\FileDataPersistence.cs:line 32
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersistence_SaveAndGetContiguousData() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 53
+
+TestCleanup Stack Trace
+    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="56cd52f6-d047-442c-8dbf-25029403c059" testId="bb0af259-8772-114f-7ba4-993c68cfbc60" testName="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" computerName="W01319" duration="00:00:00.0024476" startTime="2013-09-11T09:01:57.9444107+10:00" endTime="2013-09-11T09:01:57.9494109+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="56cd52f6-d047-442c-8dbf-25029403c059">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata threw exception: 
+System.IO.IOException: The process cannot access the file 'c:\Temp\DbEngine.db.pages' because it is being used by another process.
+TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at Kenny.DbEngine.Core.VirtualAddressSpace.FileDataPersistence..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\VirtualAddressSpace\FileDataPersistence.cs:line 23
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 102
+
+TestCleanup Stack Trace
+    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d7920dc6-e546-4b29-93d2-1e1357ffdd9f" testId="225680d3-3a0f-7f06-ee1a-59784201cb83" testName="FileBasedPersistence_CreateFilePersistence" computerName="W01319" duration="00:00:00.0020337" startTime="2013-09-11T09:01:57.9494109+10:00" endTime="2013-09-11T09:01:57.9534112+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d7920dc6-e546-4b29-93d2-1e1357ffdd9f">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersistence_CreateFilePersistence threw exception: 
+System.IO.IOException: The process cannot access the file 'c:\Temp\DbEngine.db.pages' because it is being used by another process.
+TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at Kenny.DbEngine.Core.VirtualAddressSpace.FileDataPersistence..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\VirtualAddressSpace\FileDataPersistence.cs:line 23
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.FileBasedPersistence_CreateFilePersistence() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 44
+
+TestCleanup Stack Trace
+    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="085d12f7-4d2e-406a-bb23-082d68322e01" testId="a5e4b6a9-8a72-d442-9dc9-92cc31b491ee" testName="CreateBigFileTest" computerName="W01319" duration="00:00:00.3960149" startTime="2013-09-11T09:01:57.9544112+10:00" endTime="2013-09-11T09:01:58.3524340+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="085d12f7-4d2e-406a-bb23-082d68322e01">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.CreateBigFileTest threw exception: 
+System.IO.IOException: The process cannot access the file 'c:\Temp\DbEngine.db.pages' because it is being used by another process.
+TestCleanup method Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup threw exception. System.UnauthorizedAccessException: System.UnauthorizedAccessException: Access to the path 'c:\Temp\DbEngine.db' is denied..</Message>
+          <StackTrace>    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at Kenny.DbEngine.Core.VirtualAddressSpace.FileDataPersistence..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\VirtualAddressSpace\FileDataPersistence.cs:line 23
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.CreateBigFileTest() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 121
+
+TestCleanup Stack Trace
+    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.Delete(String path)
+   at Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileBasedPersistenceTest.TestCleanup() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Integration\VirtualAddressSpace\FileBasedPersistenceTest.cs:line 36
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3d139edd-89c4-479f-b72b-381c7ee3d9bf" testId="7c6fd982-741c-25f1-0717-02dff2f9a048" testName="GetConfigurationSection" computerName="W01319" duration="00:00:00.0020690" startTime="2013-09-11T09:01:58.3534341+10:00" endTime="2013-09-11T09:01:58.3574343+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d139edd-89c4-479f-b72b-381c7ee3d9bf">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;2048&gt;. Actual:&lt;524288&gt;. </Message>
+          <StackTrace>   at Kenny.DbEngine.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest.GetConfigurationSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core.Test\Unit\Configuration\VirtualFileSystemConfigurationTest.cs:line 19
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

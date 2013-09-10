@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="f7d45379-4419-405b-9351-05e0a164fdcc" name="mbarton@W01319 2013-09-11 09:57:14" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="31d01671-b432-402d-ad19-42bb8f3f6e2f">
+    <Deployment runDeploymentRoot="mbarton_W01319 2013-09-11 09_57_14">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Rhino.Mocks.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Kenny.DbEngine.Core\bin\Debug\Kenny.DbEngine.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-11T09:57:14.3420978+10:00" queuing="2013-09-11T09:57:14.6641162+10:00" start="2013-09-11T09:57:14.6711166+10:00" finish="2013-09-11T09:58:37.9568802+10:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="27" executed="27" passed="27" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ProcessColumnNameTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="21ca34bf-5da9-18dc-0712-e433d60aa621">
+      <Execution id="8ce95e91-aaa0-4142-abdb-5171460cc629" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessColumnNameTerms" />
+    </UnitTest>
+    <UnitTest name="CreateEmptyIndex" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="a10bb2cd-574a-436c-87b9-0ab1686a8c01">
+      <Execution id="db7ac058-a299-43c5-a891-dd032a934de8" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateEmptyIndex" />
+    </UnitTest>
+    <UnitTest name="PageIndex_AddEntryToEmptyPageIndex" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="bdb382b0-f425-3516-43ce-eb0d649ffb1d">
+      <Execution id="f97cab9f-0811-4fbb-9566-e315ca45221b" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_AddEntryToEmptyPageIndex" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_CreateFilePersistence" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="93a5aeed-f6b1-93fe-07eb-2ef7153afdbb">
+      <Execution id="eb20081a-7211-4e4f-a021-eef0ea7ba1bb" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_CreateFilePersistence" />
+    </UnitTest>
+    <UnitTest name="PageIndex_CreatePageIndexWithEntries" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="08bafab3-fda9-39da-c05d-ad8da4059cad">
+      <Execution id="cc541882-0d42-4bd6-8254-517f664ddf82" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_CreatePageIndexWithEntries" />
+    </UnitTest>
+    <UnitTest name="ProcessExpressionTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="fae5e2d2-ed07-622f-bada-5a5c830d1e52">
+      <Execution id="3b1ddd83-1702-4b4c-b6db-2f893c277edc" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessExpressionTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessByteArrayTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="a385ebfd-3e56-5db8-780c-b4a39e36ab7c">
+      <Execution id="4f3b4660-e49d-4c01-bce5-166c09f383ee" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessByteArrayTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessNullTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="715013c5-f6e3-751c-6e20-23a09b3d91f8">
+      <Execution id="9f9a5c6d-8113-4a9d-a54a-2f48638bc9a3" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessNullTerms" />
+    </UnitTest>
+    <UnitTest name="PageIndex_UpdateEntryInPageIndex" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="12b3eacc-184a-66b3-7f4f-faa64ca3b7fd">
+      <Execution id="92309370-0ff0-4f8f-bb02-307475488877" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_UpdateEntryInPageIndex" />
+    </UnitTest>
+    <UnitTest name="PageSummary_CreateFromStreamEmpty" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="6c64504c-115d-de79-65ca-3d3b6cce1d7f">
+      <Execution id="55efdb9e-ab8e-491f-9460-1cc8a05c6187" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageSummaryTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageSummary_CreateFromStreamEmpty" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetContiguousData" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f8a849db-92ef-8941-6bb6-b6b8ad3cf510">
+      <Execution id="1cda1162-246d-42c7-b8cf-ddaf31a2616a" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetContiguousData" />
+    </UnitTest>
+    <UnitTest name="PageIndex_OpenExistingPageIndex" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="46303218-6d5f-2fcf-0e28-6682fecc152b">
+      <Execution id="324b3ce8-195f-4962-82eb-06e9d37a7ba4" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_OpenExistingPageIndex" />
+    </UnitTest>
+    <UnitTest name="ProcessDateTimeTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="c38908dd-851d-3746-f6a8-9363670158e1">
+      <Execution id="3dbd8d84-c376-4ca7-a82f-bc394862fd25" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessDateTimeTerms" />
+    </UnitTest>
+    <UnitTest name="CreateBigFileTest" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="0c517e9d-a665-0c58-811c-445d4db8b66a">
+      <Execution id="c0da1db5-b18c-4e0c-b044-af1fda4349b5" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateBigFileTest" />
+    </UnitTest>
+    <UnitTest name="GetConfigurationSection" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="ce3d2fea-8dd4-4e47-7649-33de8d426b39">
+      <Execution id="6b092ef6-4e63-4ac2-9a37-dfc857a2e2f5" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Configuration.DbEngineConfigurationSectionTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetConfigurationSection" />
+    </UnitTest>
+    <UnitTest name="ProcessValueTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="0301d618-d9cd-ef66-16af-23249f7ab58f">
+      <Execution id="35bd6f46-f9e7-43e1-a571-19860b2c5def" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessValueTerms" />
+    </UnitTest>
+    <UnitTest name="PageIndex_AddEntryToPageIndexWithEntries" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="3e160a96-5ea1-20e7-d628-bced2c91679f">
+      <Execution id="398c2957-5769-4967-bdb5-bff65316947b" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_AddEntryToPageIndexWithEntries" />
+    </UnitTest>
+    <UnitTest name="PageIndex_CreateEmptyPageIndex" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="2dc9ac02-d384-a255-5745-fc5b6b32922e">
+      <Execution id="079dad8e-058c-4ea1-bb24-863ded3561f7" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_CreateEmptyPageIndex" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetScatteredData" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="c9b3fe0f-dd2a-59f9-b6ad-e26423e94d6e">
+      <Execution id="1a65e9e3-62f2-4a67-be70-8252163ee0da" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetScatteredData" />
+    </UnitTest>
+    <UnitTest name="GetConfigurationSection" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="7c6fd982-741c-25f1-0717-02dff2f9a048">
+      <Execution id="8bb0bd6b-ff2d-47a5-950a-29b4000007d2" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetConfigurationSection" />
+    </UnitTest>
+    <UnitTest name="ProcessIntTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="9e1f7b7f-9a9d-1de6-78cd-c874ff4bee6c">
+      <Execution id="93a88133-a4bb-4c3d-b5f9-7f8ede32aace" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessIntTerms" />
+    </UnitTest>
+    <UnitTest name="PageIndex_MoveSummaryFromEmptyToUsed" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="afcd9427-9fd6-56f7-9d21-8898c73e67d4">
+      <Execution id="5d11c16d-c8d9-48b7-8933-c55daa161480" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_MoveSummaryFromEmptyToUsed" />
+    </UnitTest>
+    <UnitTest name="PageIndex_MoveSummaryFromEmptyToNew" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="85edd128-399e-6909-5e40-142d506322d6">
+      <Execution id="90a81ca0-9eba-4c3f-bc63-6cc3044de1c4" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_MoveSummaryFromEmptyToNew" />
+    </UnitTest>
+    <UnitTest name="ProcessStringTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="2d19ec51-6ecc-7b4e-8913-30e57872ac45">
+      <Execution id="2c100bd2-770d-429c-a706-d9b1c69572ae" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessStringTerms" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="971ac7a9-5e5a-2b25-9cff-70b7997254b1">
+      <Execution id="52aefbbb-6db5-411c-9a3b-fc35f6f58237" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" />
+    </UnitTest>
+    <UnitTest name="PageSummary_SerializeAndDeSerialize" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="8a378442-5b83-93fb-2c2a-cf9022a4f719">
+      <Execution id="bdb6c0f7-9f5d-4b83-9160-06c4c0f871ec" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.VirtualAddressSpace.PageSummaryTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageSummary_SerializeAndDeSerialize" />
+    </UnitTest>
+    <UnitTest name="ProcessBooleanTerms" storage="c:\users\mbarton\documents\github\jellydb\kenny.dbengine.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f0784d3e-d072-f7b4-b605-f4392b7fbbb2">
+      <Execution id="bbc31879-3201-40fd-846a-109c85730467" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/Kenny.DbEngine.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="Kenny.DbEngine.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessBooleanTerms" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0301d618-d9cd-ef66-16af-23249f7ab58f" executionId="35bd6f46-f9e7-43e1-a571-19860b2c5def" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="08bafab3-fda9-39da-c05d-ad8da4059cad" executionId="cc541882-0d42-4bd6-8254-517f664ddf82" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0c517e9d-a665-0c58-811c-445d4db8b66a" executionId="c0da1db5-b18c-4e0c-b044-af1fda4349b5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="12b3eacc-184a-66b3-7f4f-faa64ca3b7fd" executionId="92309370-0ff0-4f8f-bb02-307475488877" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="21ca34bf-5da9-18dc-0712-e433d60aa621" executionId="8ce95e91-aaa0-4142-abdb-5171460cc629" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d19ec51-6ecc-7b4e-8913-30e57872ac45" executionId="2c100bd2-770d-429c-a706-d9b1c69572ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2dc9ac02-d384-a255-5745-fc5b6b32922e" executionId="079dad8e-058c-4ea1-bb24-863ded3561f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3e160a96-5ea1-20e7-d628-bced2c91679f" executionId="398c2957-5769-4967-bdb5-bff65316947b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="46303218-6d5f-2fcf-0e28-6682fecc152b" executionId="324b3ce8-195f-4962-82eb-06e9d37a7ba4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6c64504c-115d-de79-65ca-3d3b6cce1d7f" executionId="55efdb9e-ab8e-491f-9460-1cc8a05c6187" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="715013c5-f6e3-751c-6e20-23a09b3d91f8" executionId="9f9a5c6d-8113-4a9d-a54a-2f48638bc9a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7c6fd982-741c-25f1-0717-02dff2f9a048" executionId="8bb0bd6b-ff2d-47a5-950a-29b4000007d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="85edd128-399e-6909-5e40-142d506322d6" executionId="90a81ca0-9eba-4c3f-bc63-6cc3044de1c4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8a378442-5b83-93fb-2c2a-cf9022a4f719" executionId="bdb6c0f7-9f5d-4b83-9160-06c4c0f871ec" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="93a5aeed-f6b1-93fe-07eb-2ef7153afdbb" executionId="eb20081a-7211-4e4f-a021-eef0ea7ba1bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="971ac7a9-5e5a-2b25-9cff-70b7997254b1" executionId="52aefbbb-6db5-411c-9a3b-fc35f6f58237" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9e1f7b7f-9a9d-1de6-78cd-c874ff4bee6c" executionId="93a88133-a4bb-4c3d-b5f9-7f8ede32aace" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a10bb2cd-574a-436c-87b9-0ab1686a8c01" executionId="db7ac058-a299-43c5-a891-dd032a934de8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a385ebfd-3e56-5db8-780c-b4a39e36ab7c" executionId="4f3b4660-e49d-4c01-bce5-166c09f383ee" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="afcd9427-9fd6-56f7-9d21-8898c73e67d4" executionId="5d11c16d-c8d9-48b7-8933-c55daa161480" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bdb382b0-f425-3516-43ce-eb0d649ffb1d" executionId="f97cab9f-0811-4fbb-9566-e315ca45221b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c38908dd-851d-3746-f6a8-9363670158e1" executionId="3dbd8d84-c376-4ca7-a82f-bc394862fd25" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c9b3fe0f-dd2a-59f9-b6ad-e26423e94d6e" executionId="1a65e9e3-62f2-4a67-be70-8252163ee0da" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce3d2fea-8dd4-4e47-7649-33de8d426b39" executionId="6b092ef6-4e63-4ac2-9a37-dfc857a2e2f5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f0784d3e-d072-f7b4-b605-f4392b7fbbb2" executionId="bbc31879-3201-40fd-846a-109c85730467" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f8a849db-92ef-8941-6bb6-b6b8ad3cf510" executionId="1cda1162-246d-42c7-b8cf-ddaf31a2616a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fae5e2d2-ed07-622f-bada-5a5c830d1e52" executionId="3b1ddd83-1702-4b4c-b6db-2f893c277edc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="35bd6f46-f9e7-43e1-a571-19860b2c5def" testId="0301d618-d9cd-ef66-16af-23249f7ab58f" testName="ProcessValueTerms" computerName="W01319" duration="00:00:00.0094523" startTime="2013-09-11T09:57:14.6721166+10:00" endTime="2013-09-11T09:57:14.8721281+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35bd6f46-f9e7-43e1-a571-19860b2c5def">
+    </UnitTestResult>
+    <UnitTestResult executionId="cc541882-0d42-4bd6-8254-517f664ddf82" testId="08bafab3-fda9-39da-c05d-ad8da4059cad" testName="PageIndex_CreatePageIndexWithEntries" computerName="W01319" duration="00:00:00.0043588" startTime="2013-09-11T09:57:14.8731281+10:00" endTime="2013-09-11T09:57:14.8801285+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cc541882-0d42-4bd6-8254-517f664ddf82">
+    </UnitTestResult>
+    <UnitTestResult executionId="c0da1db5-b18c-4e0c-b044-af1fda4349b5" testId="0c517e9d-a665-0c58-811c-445d4db8b66a" testName="CreateBigFileTest" computerName="W01319" duration="00:01:22.9608154" startTime="2013-09-11T09:57:14.8821286+10:00" endTime="2013-09-11T09:58:37.8458739+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c0da1db5-b18c-4e0c-b044-af1fda4349b5">
+    </UnitTestResult>
+    <UnitTestResult executionId="92309370-0ff0-4f8f-bb02-307475488877" testId="12b3eacc-184a-66b3-7f4f-faa64ca3b7fd" testName="PageIndex_UpdateEntryInPageIndex" computerName="W01319" duration="00:00:00.0016934" startTime="2013-09-11T09:58:37.8468740+10:00" endTime="2013-09-11T09:58:37.8508742+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="92309370-0ff0-4f8f-bb02-307475488877">
+    </UnitTestResult>
+    <UnitTestResult executionId="8ce95e91-aaa0-4142-abdb-5171460cc629" testId="21ca34bf-5da9-18dc-0712-e433d60aa621" testName="ProcessColumnNameTerms" computerName="W01319" duration="00:00:00.0032993" startTime="2013-09-11T09:58:37.8528743+10:00" endTime="2013-09-11T09:58:37.8588746+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8ce95e91-aaa0-4142-abdb-5171460cc629">
+    </UnitTestResult>
+    <UnitTestResult executionId="2c100bd2-770d-429c-a706-d9b1c69572ae" testId="2d19ec51-6ecc-7b4e-8913-30e57872ac45" testName="ProcessStringTerms" computerName="W01319" duration="00:00:00.0001199" startTime="2013-09-11T09:58:37.8598747+10:00" endTime="2013-09-11T09:58:37.8628749+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2c100bd2-770d-429c-a706-d9b1c69572ae">
+    </UnitTestResult>
+    <UnitTestResult executionId="079dad8e-058c-4ea1-bb24-863ded3561f7" testId="2dc9ac02-d384-a255-5745-fc5b6b32922e" testName="PageIndex_CreateEmptyPageIndex" computerName="W01319" duration="00:00:00.0001437" startTime="2013-09-11T09:58:37.8638749+10:00" endTime="2013-09-11T09:58:37.8668751+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="079dad8e-058c-4ea1-bb24-863ded3561f7">
+    </UnitTestResult>
+    <UnitTestResult executionId="398c2957-5769-4967-bdb5-bff65316947b" testId="3e160a96-5ea1-20e7-d628-bced2c91679f" testName="PageIndex_AddEntryToPageIndexWithEntries" computerName="W01319" duration="00:00:00.0005912" startTime="2013-09-11T09:58:37.8678752+10:00" endTime="2013-09-11T09:58:37.8708753+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="398c2957-5769-4967-bdb5-bff65316947b">
+    </UnitTestResult>
+    <UnitTestResult executionId="324b3ce8-195f-4962-82eb-06e9d37a7ba4" testId="46303218-6d5f-2fcf-0e28-6682fecc152b" testName="PageIndex_OpenExistingPageIndex" computerName="W01319" duration="00:00:00.0016786" startTime="2013-09-11T09:58:37.8708753+10:00" endTime="2013-09-11T09:58:37.8748756+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="324b3ce8-195f-4962-82eb-06e9d37a7ba4">
+    </UnitTestResult>
+    <UnitTestResult executionId="55efdb9e-ab8e-491f-9460-1cc8a05c6187" testId="6c64504c-115d-de79-65ca-3d3b6cce1d7f" testName="PageSummary_CreateFromStreamEmpty" computerName="W01319" duration="00:00:00.0007730" startTime="2013-09-11T09:58:37.8758756+10:00" endTime="2013-09-11T09:58:37.8788758+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="55efdb9e-ab8e-491f-9460-1cc8a05c6187">
+    </UnitTestResult>
+    <UnitTestResult executionId="9f9a5c6d-8113-4a9d-a54a-2f48638bc9a3" testId="715013c5-f6e3-751c-6e20-23a09b3d91f8" testName="ProcessNullTerms" computerName="W01319" duration="00:00:00.0000734" startTime="2013-09-11T09:58:37.8798758+10:00" endTime="2013-09-11T09:58:37.8808759+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f9a5c6d-8113-4a9d-a54a-2f48638bc9a3">
+    </UnitTestResult>
+    <UnitTestResult executionId="8bb0bd6b-ff2d-47a5-950a-29b4000007d2" testId="7c6fd982-741c-25f1-0717-02dff2f9a048" testName="GetConfigurationSection" computerName="W01319" duration="00:00:00.0002341" startTime="2013-09-11T09:58:37.8818760+10:00" endTime="2013-09-11T09:58:37.8838761+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8bb0bd6b-ff2d-47a5-950a-29b4000007d2">
+    </UnitTestResult>
+    <UnitTestResult executionId="90a81ca0-9eba-4c3f-bc63-6cc3044de1c4" testId="85edd128-399e-6909-5e40-142d506322d6" testName="PageIndex_MoveSummaryFromEmptyToNew" computerName="W01319" duration="00:00:00.0008879" startTime="2013-09-11T09:58:37.8848761+10:00" endTime="2013-09-11T09:58:37.8878763+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90a81ca0-9eba-4c3f-bc63-6cc3044de1c4">
+    </UnitTestResult>
+    <UnitTestResult executionId="bdb6c0f7-9f5d-4b83-9160-06c4c0f871ec" testId="8a378442-5b83-93fb-2c2a-cf9022a4f719" testName="PageSummary_SerializeAndDeSerialize" computerName="W01319" duration="00:00:00.0004244" startTime="2013-09-11T09:58:37.8888764+10:00" endTime="2013-09-11T09:58:37.8908765+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bdb6c0f7-9f5d-4b83-9160-06c4c0f871ec">
+    </UnitTestResult>
+    <UnitTestResult executionId="eb20081a-7211-4e4f-a021-eef0ea7ba1bb" testId="93a5aeed-f6b1-93fe-07eb-2ef7153afdbb" testName="FileBasedPersistence_CreateFilePersistence" computerName="W01319" duration="00:00:00.0016802" startTime="2013-09-11T09:58:37.8918765+10:00" endTime="2013-09-11T09:58:37.8948767+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eb20081a-7211-4e4f-a021-eef0ea7ba1bb">
+    </UnitTestResult>
+    <UnitTestResult executionId="52aefbbb-6db5-411c-9a3b-fc35f6f58237" testId="971ac7a9-5e5a-2b25-9cff-70b7997254b1" testName="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" computerName="W01319" duration="00:00:00.0057231" startTime="2013-09-11T09:58:37.8958768+10:00" endTime="2013-09-11T09:58:37.9028772+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="52aefbbb-6db5-411c-9a3b-fc35f6f58237">
+    </UnitTestResult>
+    <UnitTestResult executionId="93a88133-a4bb-4c3d-b5f9-7f8ede32aace" testId="9e1f7b7f-9a9d-1de6-78cd-c874ff4bee6c" testName="ProcessIntTerms" computerName="W01319" duration="00:00:00.0000750" startTime="2013-09-11T09:58:37.9038772+10:00" endTime="2013-09-11T09:58:37.9058773+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="93a88133-a4bb-4c3d-b5f9-7f8ede32aace">
+    </UnitTestResult>
+    <UnitTestResult executionId="db7ac058-a299-43c5-a891-dd032a934de8" testId="a10bb2cd-574a-436c-87b9-0ab1686a8c01" testName="CreateEmptyIndex" computerName="W01319" duration="00:00:00.0005908" startTime="2013-09-11T09:58:37.9068774+10:00" endTime="2013-09-11T09:58:37.9088775+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db7ac058-a299-43c5-a891-dd032a934de8">
+    </UnitTestResult>
+    <UnitTestResult executionId="4f3b4660-e49d-4c01-bce5-166c09f383ee" testId="a385ebfd-3e56-5db8-780c-b4a39e36ab7c" testName="ProcessByteArrayTerms" computerName="W01319" duration="00:00:00.0000718" startTime="2013-09-11T09:58:37.9098776+10:00" endTime="2013-09-11T09:58:37.9118777+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4f3b4660-e49d-4c01-bce5-166c09f383ee">
+    </UnitTestResult>
+    <UnitTestResult executionId="5d11c16d-c8d9-48b7-8933-c55daa161480" testId="afcd9427-9fd6-56f7-9d21-8898c73e67d4" testName="PageIndex_MoveSummaryFromEmptyToUsed" computerName="W01319" duration="00:00:00.0005187" startTime="2013-09-11T09:58:37.9128777+10:00" endTime="2013-09-11T09:58:37.9148778+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5d11c16d-c8d9-48b7-8933-c55daa161480">
+    </UnitTestResult>
+    <UnitTestResult executionId="f97cab9f-0811-4fbb-9566-e315ca45221b" testId="bdb382b0-f425-3516-43ce-eb0d649ffb1d" testName="PageIndex_AddEntryToEmptyPageIndex" computerName="W01319" duration="00:00:00.0005944" startTime="2013-09-11T09:58:37.9158779+10:00" endTime="2013-09-11T09:58:37.9178780+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f97cab9f-0811-4fbb-9566-e315ca45221b">
+    </UnitTestResult>
+    <UnitTestResult executionId="3dbd8d84-c376-4ca7-a82f-bc394862fd25" testId="c38908dd-851d-3746-f6a8-9363670158e1" testName="ProcessDateTimeTerms" computerName="W01319" duration="00:00:00.0000696" startTime="2013-09-11T09:58:37.9188781+10:00" endTime="2013-09-11T09:58:37.9198781+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3dbd8d84-c376-4ca7-a82f-bc394862fd25">
+    </UnitTestResult>
+    <UnitTestResult executionId="1a65e9e3-62f2-4a67-be70-8252163ee0da" testId="c9b3fe0f-dd2a-59f9-b6ad-e26423e94d6e" testName="FileBasedPersistence_SaveAndGetScatteredData" computerName="W01319" duration="00:00:00.0046392" startTime="2013-09-11T09:58:37.9208782+10:00" endTime="2013-09-11T09:58:37.9268785+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a65e9e3-62f2-4a67-be70-8252163ee0da">
+    </UnitTestResult>
+    <UnitTestResult executionId="6b092ef6-4e63-4ac2-9a37-dfc857a2e2f5" testId="ce3d2fea-8dd4-4e47-7649-33de8d426b39" testName="GetConfigurationSection" computerName="W01319" duration="00:00:00.0001267" startTime="2013-09-11T09:58:37.9278786+10:00" endTime="2013-09-11T09:58:37.9298787+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6b092ef6-4e63-4ac2-9a37-dfc857a2e2f5">
+    </UnitTestResult>
+    <UnitTestResult executionId="bbc31879-3201-40fd-846a-109c85730467" testId="f0784d3e-d072-f7b4-b605-f4392b7fbbb2" testName="ProcessBooleanTerms" computerName="W01319" duration="00:00:00.0000702" startTime="2013-09-11T09:58:37.9308788+10:00" endTime="2013-09-11T09:58:37.9328789+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbc31879-3201-40fd-846a-109c85730467">
+    </UnitTestResult>
+    <UnitTestResult executionId="1cda1162-246d-42c7-b8cf-ddaf31a2616a" testId="f8a849db-92ef-8941-6bb6-b6b8ad3cf510" testName="FileBasedPersistence_SaveAndGetContiguousData" computerName="W01319" duration="00:00:00.0040351" startTime="2013-09-11T09:58:37.9328789+10:00" endTime="2013-09-11T09:58:37.9388792+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1cda1162-246d-42c7-b8cf-ddaf31a2616a">
+    </UnitTestResult>
+    <UnitTestResult executionId="3b1ddd83-1702-4b4c-b6db-2f893c277edc" testId="fae5e2d2-ed07-622f-bada-5a5c830d1e52" testName="ProcessExpressionTerms" computerName="W01319" duration="00:00:00.0000750" startTime="2013-09-11T09:58:37.9398793+10:00" endTime="2013-09-11T09:58:37.9418794+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3b1ddd83-1702-4b4c-b6db-2f893c277edc">
+    </UnitTestResult>
+  </Results>
+</TestRun>
