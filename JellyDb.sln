@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenny.DbEngine.Core", "Kenny.DbEngine.Core\Kenny.DbEngine.Core.csproj", "{AA81ED50-222D-4637-BA83-BE5BCD867106}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenny.DbEngine.Core.Test", "Kenny.DbEngine.Core.Test\Kenny.DbEngine.Core.Test.csproj", "{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA81ED50-222D-4637-BA83-BE5BCD867106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA81ED50-222D-4637-BA83-BE5BCD867106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA81ED50-222D-4637-BA83-BE5BCD867106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA81ED50-222D-4637-BA83-BE5BCD867106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

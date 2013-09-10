@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ColumnNameTerm" Collapsed="true">
+    <Position X="13.25" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Sql\Dml\ColumnNameTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.DateTimeValueTerm" Collapsed="true">
+    <Position X="14.5" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\DateTimeValueTerm.cs</FileName>
+      <NewMemberFileName>Sql\Dml\DateTimeValueExpression.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.IntValueTerm" Collapsed="true">
+    <Position X="16.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\IntValueTerm.cs</FileName>
+      <NewMemberFileName>Sql\Dml\IntValueExpression.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.Select">
+    <Position X="15.25" Y="1.5" Width="1.5" />
+    <AssociationLine Name="SelectExpression" Type="Kenny.DbEngine.Core.Sql.Dml.SelectExpression" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.25" Y="2.375" />
+        <Point X="13.5" Y="2.375" />
+        <Point X="13.5" Y="2.25" />
+        <Point X="12.562" Y="2.25" />
+        <Point X="12.562" Y="2.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ABAAAAABAAAAAAAAAIAIAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\Select.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Quantifier" />
+      <Field Name="SelectExpression" />
+      <Field Name="FromExpression" />
+      <Field Name="WhereExpression" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.SelectAllFromTableExpression">
+    <Position X="10.5" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\SelectAllFromTableExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.SelectExpression">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\SelectExpression.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="selectedColumns" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.SelectSome">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\SelectSome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.StringValueTerm" Collapsed="true">
+    <Position X="12.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\StringValueTerm.cs</FileName>
+      <NewMemberFileName>Sql\Dml\StringValueExpression.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ValueTerm&lt;T&gt;">
+    <Position X="15.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\ValueTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.FromExpression">
+    <Position X="19" Y="1.75" Width="1.5" />
+    <AssociationLine Name="joins" Type="Kenny.DbEngine.Core.Sql.Dml.Join">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.765" Y="0.479" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\FromExpression.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="joins" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.FromTableExpression">
+    <Position X="20.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAQAA=</HashCode>
+      <FileName>Sql\Dml\FromTableExpression.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.FromSelectExpression">
+    <Position X="17.75" Y="4.25" Width="1.75" />
+    <AssociationLine Name="SelectStatement" Type="Kenny.DbEngine.Core.Sql.Dml.Select" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="18.151" Y="4.25" />
+        <Point X="18.151" Y="2.419" />
+        <Point X="16.75" Y="2.419" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Sql\Dml\FromSelectExpression.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="SelectStatement" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.SelectTermExpression">
+    <Position X="13" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\SelectTermExpression.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Term" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.Term">
+    <Position X="15.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\Term.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.NullTerm" Collapsed="true">
+    <Position X="17.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\NullTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ByteArrayTerm" Collapsed="true">
+    <Position X="18.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\ByteArrayTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.BooleanTerm" Collapsed="true">
+    <Position X="10.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\BooleanTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.Join">
+    <Position X="22.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\Join.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="onExpression" />
+      <Field Name="joinDestination" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.Expression">
+    <Position X="22.25" Y="6" Width="1.5" />
+    <AssociationLine Name="leftOperand" Type="Kenny.DbEngine.Core.Sql.Dml.Term">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-2.787" Y="1.262" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="rightOperand" Type="Kenny.DbEngine.Core.Sql.Dml.Term">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-3.552" Y="0.37" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAgAAAAAAAAAAACAIAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\Expression.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="leftOperand" />
+      <Field Name="rightOperand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.Operator">
+    <Position X="25.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ArithmeticOperator">
+    <Position X="20.25" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEAAAAAg=</HashCode>
+      <FileName>Sql\Dml\ArithmeticOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.LogicalOperator">
+    <Position X="20.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\LogicalOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ComparisonOperator">
+    <Position X="27.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\ComparisonOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ExpressionTerm">
+    <Position X="19.75" Y="9.25" Width="1.5" />
+    <AssociationLine Name="expression" Type="Kenny.DbEngine.Core.Sql.Dml.Expression">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.766" Y="-1.707" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\ExpressionTerm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="expression" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.AndOperator" Collapsed="true">
+    <Position X="18.75" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\AndOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.OrOperator" Collapsed="true">
+    <Position X="23.25" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\OrOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.NotOperator" Collapsed="true">
+    <Position X="21" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\NotOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.AdditionOperator" Collapsed="true">
+    <Position X="16" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\AdditionOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.DivisionOperator" Collapsed="true">
+    <Position X="20.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\DivisionOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.ModuloOperator" Collapsed="true">
+    <Position X="25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\ModuloOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.MultiplicationOperator" Collapsed="true">
+    <Position X="18.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\MultiplicationOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.SubtractionOperator" Collapsed="true">
+    <Position X="22.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\SubtractionOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.GreaterThanOperator" Collapsed="true">
+    <Position X="26" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\GreaterThanOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.GreaterThanOrEqualToOperator" Collapsed="true">
+    <Position X="30.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\GreaterThanOrEqualToOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.LessThanOperator" Collapsed="true">
+    <Position X="35" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\LessThanOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.LessThanOrEqualToOperator">
+    <Position X="28.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\LessThanOrEqualToOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.EqualToOperator" Collapsed="true">
+    <Position X="32.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\EqualToOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Core.Sql.Dml.NotEqualToOperator" Collapsed="true">
+    <Position X="37.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\NotEqualToOperator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kenny.DbEngine.Sql.Dml.FloatValueTerm" Collapsed="true">
+    <Position X="8.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Sql\Dml\FloatValueTerm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Kenny.DbEngine.Core.Sql.Dml.SetQuantifier">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAIAAAAEAAAA=</HashCode>
+      <FileName>Sql\Dml\SetQuantifierEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
