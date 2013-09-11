@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="34819340-1c93-47f4-bba3-15f686f5fd4d" name="mbarton@W01319 2013-09-11 14:15:32" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="d990c5ac-74cc-4dd9-9b55-7cbde4b81cd4">
+    <Deployment runDeploymentRoot="mbarton_W01319 2013-09-11 14_15_32">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\bin\Debug\Kenny.DbEngine.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\RhinoMock\Rhino.Mocks.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-11T14:15:32.0865180+10:00" queuing="2013-09-11T14:15:32.9085650+10:00" start="2013-09-11T14:15:32.9505675+10:00" finish="2013-09-11T14:15:33.3355895+10:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="27" executed="27" passed="21" error="0" failed="6" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="ProcessDateTimeTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="9c2badf9-9fee-734f-77b3-61a9b619bf09">
+      <Execution id="db0490c3-be7f-4e3b-928a-19ccd954e62c" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessDateTimeTerms" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="ce8670ce-0545-ed2a-9157-63e5ede7959b">
+      <Execution id="da0f9b21-e483-4dc5-a225-16f238df6821" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" />
+    </UnitTest>
+    <UnitTest name="PageIndex_UpdateEntryInPageIndex" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="80fe3e76-d3e7-e13f-b6a0-53b8a32c2690">
+      <Execution id="2a499538-3e7b-4596-b4c1-786e61d32282" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_UpdateEntryInPageIndex" />
+    </UnitTest>
+    <UnitTest name="ProcessValueTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="e31b973c-26ff-3e19-c529-ed18b8a8dc70">
+      <Execution id="7e2b7a6d-51eb-47bb-bf39-fbffe69ced7f" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessValueTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessNullTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="4af02169-5d25-369f-90b8-cb639bd2ea5c">
+      <Execution id="2a6c2e64-929c-46c4-ba34-1e57214194cf" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessNullTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessColumnNameTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="0ed84d92-76a5-8a83-5653-5189bcef2f9d">
+      <Execution id="4ba721c4-d248-4bf4-ab34-4ec5fc21e2ed" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessColumnNameTerms" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetContiguousData" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="4e525e81-d5fe-4a91-345c-03adffe73ad6">
+      <Execution id="5832b91b-8b30-4ab3-bf1a-41757a3fc114" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetContiguousData" />
+    </UnitTest>
+    <UnitTest name="GetConfigurationSection" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f7f12146-ccb1-1bbb-f0fe-3f5edcc40872">
+      <Execution id="d52f6f71-f63b-41b0-9ca9-655485df1d8d" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Configuration.DbEngineConfigurationSectionTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetConfigurationSection" />
+    </UnitTest>
+    <UnitTest name="PageIndex_MoveSummaryFromEmptyToNew" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="c4d13e3d-7b47-24ee-bcea-9d99206145a6">
+      <Execution id="d03f07eb-9b14-46ab-9dbf-205803b62b41" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_MoveSummaryFromEmptyToNew" />
+    </UnitTest>
+    <UnitTest name="PageIndex_AddEntryToEmptyPageIndex" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="c6f322d7-1ac1-424c-933e-628dda640841">
+      <Execution id="6965742c-1666-44eb-96d1-4e3df48f684e" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_AddEntryToEmptyPageIndex" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_CreateFilePersistence" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="36d3bedc-821d-1558-0271-a3dec70a1f0d">
+      <Execution id="a6d4e7aa-4df1-4e73-bfe5-6b5d1b36d8a3" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_CreateFilePersistence" />
+    </UnitTest>
+    <UnitTest name="PageIndex_MoveSummaryFromEmptyToUsed" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="3c744e02-8147-7f5a-87e3-f0565e59aec2">
+      <Execution id="d3918fa6-65a6-4a09-b292-36adabd635e8" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_MoveSummaryFromEmptyToUsed" />
+    </UnitTest>
+    <UnitTest name="CreateEmptyIndex" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="01595c7c-75a5-052a-4d0e-23e6d87a1bfa">
+      <Execution id="27de287a-0c0d-44a0-a889-960ef780e52c" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateEmptyIndex" />
+    </UnitTest>
+    <UnitTest name="CreateBigFileTest" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="ee92963a-4cd7-3523-3ab9-557d4bd1d1ce">
+      <Execution id="884959be-b8d4-4075-8474-168748684d9e" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateBigFileTest" />
+    </UnitTest>
+    <UnitTest name="FileBasedPersistence_SaveAndGetScatteredData" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="d2193536-44cc-38b0-7251-1737ab4f1354">
+      <Execution id="dc0b5e15-12be-4d51-9552-dd4494638979" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FileBasedPersistence_SaveAndGetScatteredData" />
+    </UnitTest>
+    <UnitTest name="PageSummary_SerializeAndDeSerialize" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="35451742-b1fb-ec1a-a211-144de06fa020">
+      <Execution id="d81d53fb-6c3d-480f-8301-4351d7cbee62" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageSummaryTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageSummary_SerializeAndDeSerialize" />
+    </UnitTest>
+    <UnitTest name="PageIndex_AddEntryToPageIndexWithEntries" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="7a90f03c-c1a0-927e-f7dd-aeac43b79b55">
+      <Execution id="7edd5ff5-974b-4814-aad5-6e95685d14fa" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_AddEntryToPageIndexWithEntries" />
+    </UnitTest>
+    <UnitTest name="ProcessByteArrayTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="640d9ee9-f020-cbb9-45e1-4dea8c7d9364">
+      <Execution id="b026aae2-a337-40f1-bb34-907505746b63" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessByteArrayTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessBooleanTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="0c598143-e006-db6b-38cf-c51b5392b9fa">
+      <Execution id="0c5c72f9-36db-42ef-954c-02a79e27ca42" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessBooleanTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessIntTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f7af0e09-08ea-8712-e7ed-bfedb0494f3e">
+      <Execution id="3d2f422b-4446-43e4-bcaa-eb666d4f87a3" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessIntTerms" />
+    </UnitTest>
+    <UnitTest name="ProcessExpressionTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="f9c51e64-83e0-b398-e779-03b28caebb05">
+      <Execution id="a41ba5c2-ead5-45a3-b9c8-b69cedf0279d" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessExpressionTerms" />
+    </UnitTest>
+    <UnitTest name="PageIndex_CreatePageIndexWithEntries" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="34ecb0a8-d6f3-6f77-1e58-a59b990634a9">
+      <Execution id="aad29468-70be-482c-a470-09e8f132487c" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_CreatePageIndexWithEntries" />
+    </UnitTest>
+    <UnitTest name="PageIndex_OpenExistingPageIndex" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="cbab38c6-01a0-ddde-0546-3370bcfdf018">
+      <Execution id="df56beb7-60be-4699-b312-241848fd01a8" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_OpenExistingPageIndex" />
+    </UnitTest>
+    <UnitTest name="PageSummary_CreateFromStreamEmpty" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="1a1897f1-7579-fa07-070c-f1473719c380">
+      <Execution id="a2c12780-1fa5-41ac-9956-c5aefe064ff5" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageSummaryTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageSummary_CreateFromStreamEmpty" />
+    </UnitTest>
+    <UnitTest name="PageIndex_CreateEmptyPageIndex" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="d8377df2-86d0-62cb-8f69-1e895b7b9796">
+      <Execution id="3d0c6d96-6c72-4d16-b875-88247fb82cb7" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.VirtualAddressSpace.PageIndexTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="PageIndex_CreateEmptyPageIndex" />
+    </UnitTest>
+    <UnitTest name="GetConfigurationSection" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="9cd3538a-4572-d308-9748-29bc128cdf2e">
+      <Execution id="c96bf6f8-dfc1-4669-a631-232bbb6071ef" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetConfigurationSection" />
+    </UnitTest>
+    <UnitTest name="ProcessStringTerms" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\kenny.dbengine.core.test.dll" id="1f8a623e-f067-5fab-8c99-9724c85d4a4b">
+      <Execution id="451ce7bd-9da6-4cc7-9366-a657ba468760" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/Kenny.DbEngine.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Sql.Dml.AdditionOperatorTest, Kenny.DbEngine.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ProcessStringTerms" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="01595c7c-75a5-052a-4d0e-23e6d87a1bfa" executionId="27de287a-0c0d-44a0-a889-960ef780e52c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0c598143-e006-db6b-38cf-c51b5392b9fa" executionId="0c5c72f9-36db-42ef-954c-02a79e27ca42" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0ed84d92-76a5-8a83-5653-5189bcef2f9d" executionId="4ba721c4-d248-4bf4-ab34-4ec5fc21e2ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1a1897f1-7579-fa07-070c-f1473719c380" executionId="a2c12780-1fa5-41ac-9956-c5aefe064ff5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1f8a623e-f067-5fab-8c99-9724c85d4a4b" executionId="451ce7bd-9da6-4cc7-9366-a657ba468760" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="34ecb0a8-d6f3-6f77-1e58-a59b990634a9" executionId="aad29468-70be-482c-a470-09e8f132487c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="35451742-b1fb-ec1a-a211-144de06fa020" executionId="d81d53fb-6c3d-480f-8301-4351d7cbee62" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="36d3bedc-821d-1558-0271-a3dec70a1f0d" executionId="a6d4e7aa-4df1-4e73-bfe5-6b5d1b36d8a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3c744e02-8147-7f5a-87e3-f0565e59aec2" executionId="d3918fa6-65a6-4a09-b292-36adabd635e8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4af02169-5d25-369f-90b8-cb639bd2ea5c" executionId="2a6c2e64-929c-46c4-ba34-1e57214194cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4e525e81-d5fe-4a91-345c-03adffe73ad6" executionId="5832b91b-8b30-4ab3-bf1a-41757a3fc114" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="640d9ee9-f020-cbb9-45e1-4dea8c7d9364" executionId="b026aae2-a337-40f1-bb34-907505746b63" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a90f03c-c1a0-927e-f7dd-aeac43b79b55" executionId="7edd5ff5-974b-4814-aad5-6e95685d14fa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="80fe3e76-d3e7-e13f-b6a0-53b8a32c2690" executionId="2a499538-3e7b-4596-b4c1-786e61d32282" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9c2badf9-9fee-734f-77b3-61a9b619bf09" executionId="db0490c3-be7f-4e3b-928a-19ccd954e62c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9cd3538a-4572-d308-9748-29bc128cdf2e" executionId="c96bf6f8-dfc1-4669-a631-232bbb6071ef" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c4d13e3d-7b47-24ee-bcea-9d99206145a6" executionId="d03f07eb-9b14-46ab-9dbf-205803b62b41" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c6f322d7-1ac1-424c-933e-628dda640841" executionId="6965742c-1666-44eb-96d1-4e3df48f684e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cbab38c6-01a0-ddde-0546-3370bcfdf018" executionId="df56beb7-60be-4699-b312-241848fd01a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce8670ce-0545-ed2a-9157-63e5ede7959b" executionId="da0f9b21-e483-4dc5-a225-16f238df6821" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d2193536-44cc-38b0-7251-1737ab4f1354" executionId="dc0b5e15-12be-4d51-9552-dd4494638979" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d8377df2-86d0-62cb-8f69-1e895b7b9796" executionId="3d0c6d96-6c72-4d16-b875-88247fb82cb7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e31b973c-26ff-3e19-c529-ed18b8a8dc70" executionId="7e2b7a6d-51eb-47bb-bf39-fbffe69ced7f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ee92963a-4cd7-3523-3ab9-557d4bd1d1ce" executionId="884959be-b8d4-4075-8474-168748684d9e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7af0e09-08ea-8712-e7ed-bfedb0494f3e" executionId="3d2f422b-4446-43e4-bcaa-eb666d4f87a3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7f12146-ccb1-1bbb-f0fe-3f5edcc40872" executionId="d52f6f71-f63b-41b0-9ca9-655485df1d8d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9c51e64-83e0-b398-e779-03b28caebb05" executionId="a41ba5c2-ead5-45a3-b9c8-b69cedf0279d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="27de287a-0c0d-44a0-a889-960ef780e52c" testId="01595c7c-75a5-052a-4d0e-23e6d87a1bfa" testName="CreateEmptyIndex" computerName="W01319" duration="00:00:00.0112295" startTime="2013-09-11T14:15:32.9615681+10:00" endTime="2013-09-11T14:15:33.1965815+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="27de287a-0c0d-44a0-a889-960ef780e52c">
+    </UnitTestResult>
+    <UnitTestResult executionId="0c5c72f9-36db-42ef-954c-02a79e27ca42" testId="0c598143-e006-db6b-38cf-c51b5392b9fa" testName="ProcessBooleanTerms" computerName="W01319" duration="00:00:00.0004176" startTime="2013-09-11T14:15:33.1975816+10:00" endTime="2013-09-11T14:15:33.1995817+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c5c72f9-36db-42ef-954c-02a79e27ca42">
+    </UnitTestResult>
+    <UnitTestResult executionId="4ba721c4-d248-4bf4-ab34-4ec5fc21e2ed" testId="0ed84d92-76a5-8a83-5653-5189bcef2f9d" testName="ProcessColumnNameTerms" computerName="W01319" duration="00:00:00.0038873" startTime="2013-09-11T14:15:33.2005818+10:00" endTime="2013-09-11T14:15:33.2065821+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4ba721c4-d248-4bf4-ab34-4ec5fc21e2ed">
+    </UnitTestResult>
+    <UnitTestResult executionId="a2c12780-1fa5-41ac-9956-c5aefe064ff5" testId="1a1897f1-7579-fa07-070c-f1473719c380" testName="PageSummary_CreateFromStreamEmpty" computerName="W01319" duration="00:00:00.0040634" startTime="2013-09-11T14:15:33.2075822+10:00" endTime="2013-09-11T14:15:33.2135825+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a2c12780-1fa5-41ac-9956-c5aefe064ff5">
+    </UnitTestResult>
+    <UnitTestResult executionId="451ce7bd-9da6-4cc7-9366-a657ba468760" testId="1f8a623e-f067-5fab-8c99-9724c85d4a4b" testName="ProcessStringTerms" computerName="W01319" duration="00:00:00.0000904" startTime="2013-09-11T14:15:33.2145826+10:00" endTime="2013-09-11T14:15:33.2165827+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="451ce7bd-9da6-4cc7-9366-a657ba468760">
+    </UnitTestResult>
+    <UnitTestResult executionId="aad29468-70be-482c-a470-09e8f132487c" testId="34ecb0a8-d6f3-6f77-1e58-a59b990634a9" testName="PageIndex_CreatePageIndexWithEntries" computerName="W01319" duration="00:00:00.0029669" startTime="2013-09-11T14:15:33.2175827+10:00" endTime="2013-09-11T14:15:33.2225830+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aad29468-70be-482c-a470-09e8f132487c">
+    </UnitTestResult>
+    <UnitTestResult executionId="d81d53fb-6c3d-480f-8301-4351d7cbee62" testId="35451742-b1fb-ec1a-a211-144de06fa020" testName="PageSummary_SerializeAndDeSerialize" computerName="W01319" duration="00:00:00.0003900" startTime="2013-09-11T14:15:33.2235831+10:00" endTime="2013-09-11T14:15:33.2255832+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d81d53fb-6c3d-480f-8301-4351d7cbee62">
+    </UnitTestResult>
+    <UnitTestResult executionId="a6d4e7aa-4df1-4e73-bfe5-6b5d1b36d8a3" testId="36d3bedc-821d-1558-0271-a3dec70a1f0d" testName="FileBasedPersistence_CreateFilePersistence" computerName="W01319" duration="00:00:00.0122951" startTime="2013-09-11T14:15:33.2265832+10:00" endTime="2013-09-11T14:15:33.2415841+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6d4e7aa-4df1-4e73-bfe5-6b5d1b36d8a3">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest. Error: System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: Attempting download of new URL file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out/JellyDb.Core.DLL.
+LOG: Attempting download of new URL file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out/JellyDb.Core/JellyDb.Core.DLL.
+LOG: Attempting download of new URL file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out/JellyDb.Core.EXE.
+LOG: Attempting download of new URL file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out/JellyDb.Core/JellyDb.Core.EXE.
+.</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Integration\VirtualAddressSpace\FileDataPersistenceTest.cs:line 21
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d3918fa6-65a6-4a09-b292-36adabd635e8" testId="3c744e02-8147-7f5a-87e3-f0565e59aec2" testName="PageIndex_MoveSummaryFromEmptyToUsed" computerName="W01319" duration="00:00:00.0013165" startTime="2013-09-11T14:15:33.2425842+10:00" endTime="2013-09-11T14:15:33.2455843+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d3918fa6-65a6-4a09-b292-36adabd635e8">
+    </UnitTestResult>
+    <UnitTestResult executionId="2a6c2e64-929c-46c4-ba34-1e57214194cf" testId="4af02169-5d25-369f-90b8-cb639bd2ea5c" testName="ProcessNullTerms" computerName="W01319" duration="00:00:00.0000872" startTime="2013-09-11T14:15:33.2465844+10:00" endTime="2013-09-11T14:15:33.2485845+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2a6c2e64-929c-46c4-ba34-1e57214194cf">
+    </UnitTestResult>
+    <UnitTestResult executionId="5832b91b-8b30-4ab3-bf1a-41757a3fc114" testId="4e525e81-d5fe-4a91-345c-03adffe73ad6" testName="FileBasedPersistence_SaveAndGetContiguousData" computerName="W01319" duration="00:00:00.0027735" startTime="2013-09-11T14:15:33.2495846+10:00" endTime="2013-09-11T14:15:33.2545848+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5832b91b-8b30-4ab3-bf1a-41757a3fc114">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest. Error: System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+.</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Integration\VirtualAddressSpace\FileDataPersistenceTest.cs:line 21
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b026aae2-a337-40f1-bb34-907505746b63" testId="640d9ee9-f020-cbb9-45e1-4dea8c7d9364" testName="ProcessByteArrayTerms" computerName="W01319" duration="00:00:00.0000949" startTime="2013-09-11T14:15:33.2555849+10:00" endTime="2013-09-11T14:15:33.2575850+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b026aae2-a337-40f1-bb34-907505746b63">
+    </UnitTestResult>
+    <UnitTestResult executionId="7edd5ff5-974b-4814-aad5-6e95685d14fa" testId="7a90f03c-c1a0-927e-f7dd-aeac43b79b55" testName="PageIndex_AddEntryToPageIndexWithEntries" computerName="W01319" duration="00:00:00.0006091" startTime="2013-09-11T14:15:33.2585851+10:00" endTime="2013-09-11T14:15:33.2605852+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7edd5ff5-974b-4814-aad5-6e95685d14fa">
+    </UnitTestResult>
+    <UnitTestResult executionId="2a499538-3e7b-4596-b4c1-786e61d32282" testId="80fe3e76-d3e7-e13f-b6a0-53b8a32c2690" testName="PageIndex_UpdateEntryInPageIndex" computerName="W01319" duration="00:00:00.0013306" startTime="2013-09-11T14:15:33.2615852+10:00" endTime="2013-09-11T14:15:33.2655855+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2a499538-3e7b-4596-b4c1-786e61d32282">
+    </UnitTestResult>
+    <UnitTestResult executionId="db0490c3-be7f-4e3b-928a-19ccd954e62c" testId="9c2badf9-9fee-734f-77b3-61a9b619bf09" testName="ProcessDateTimeTerms" computerName="W01319" duration="00:00:00.0000814" startTime="2013-09-11T14:15:33.2655855+10:00" endTime="2013-09-11T14:15:33.2675856+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db0490c3-be7f-4e3b-928a-19ccd954e62c">
+    </UnitTestResult>
+    <UnitTestResult executionId="c96bf6f8-dfc1-4669-a631-232bbb6071ef" testId="9cd3538a-4572-d308-9748-29bc128cdf2e" testName="GetConfigurationSection" computerName="W01319" duration="00:00:00.0108259" startTime="2013-09-11T14:15:33.2685856+10:00" endTime="2013-09-11T14:15:33.2815864+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c96bf6f8-dfc1-4669-a631-232bbb6071ef">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method JellyDb.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest.GetConfigurationSection threw exception: 
+System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Unit.Configuration.VirtualFileSystemConfigurationTest.GetConfigurationSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Unit\Configuration\VirtualFileSystemConfigurationTest.cs:line 17
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d03f07eb-9b14-46ab-9dbf-205803b62b41" testId="c4d13e3d-7b47-24ee-bcea-9d99206145a6" testName="PageIndex_MoveSummaryFromEmptyToNew" computerName="W01319" duration="00:00:00.0005953" startTime="2013-09-11T14:15:33.2825864+10:00" endTime="2013-09-11T14:15:33.2845866+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d03f07eb-9b14-46ab-9dbf-205803b62b41">
+    </UnitTestResult>
+    <UnitTestResult executionId="6965742c-1666-44eb-96d1-4e3df48f684e" testId="c6f322d7-1ac1-424c-933e-628dda640841" testName="PageIndex_AddEntryToEmptyPageIndex" computerName="W01319" duration="00:00:00.0006383" startTime="2013-09-11T14:15:33.2855866+10:00" endTime="2013-09-11T14:15:33.2875867+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6965742c-1666-44eb-96d1-4e3df48f684e">
+    </UnitTestResult>
+    <UnitTestResult executionId="df56beb7-60be-4699-b312-241848fd01a8" testId="cbab38c6-01a0-ddde-0546-3370bcfdf018" testName="PageIndex_OpenExistingPageIndex" computerName="W01319" duration="00:00:00.0016042" startTime="2013-09-11T14:15:33.2895868+10:00" endTime="2013-09-11T14:15:33.2925870+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="df56beb7-60be-4699-b312-241848fd01a8">
+    </UnitTestResult>
+    <UnitTestResult executionId="da0f9b21-e483-4dc5-a225-16f238df6821" testId="ce8670ce-0545-ed2a-9157-63e5ede7959b" testName="FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata" computerName="W01319" duration="00:00:00.0028498" startTime="2013-09-11T14:15:33.2935871+10:00" endTime="2013-09-11T14:15:33.2985874+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="da0f9b21-e483-4dc5-a225-16f238df6821">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest. Error: System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+.</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Integration\VirtualAddressSpace\FileDataPersistenceTest.cs:line 21
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dc0b5e15-12be-4d51-9552-dd4494638979" testId="d2193536-44cc-38b0-7251-1737ab4f1354" testName="FileBasedPersistence_SaveAndGetScatteredData" computerName="W01319" duration="00:00:00.0027520" startTime="2013-09-11T14:15:33.2995874+10:00" endTime="2013-09-11T14:15:33.3045877+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dc0b5e15-12be-4d51-9552-dd4494638979">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest. Error: System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+.</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Integration\VirtualAddressSpace\FileDataPersistenceTest.cs:line 21
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3d0c6d96-6c72-4d16-b875-88247fb82cb7" testId="d8377df2-86d0-62cb-8f69-1e895b7b9796" testName="PageIndex_CreateEmptyPageIndex" computerName="W01319" duration="00:00:00.0001623" startTime="2013-09-11T14:15:33.3045877+10:00" endTime="2013-09-11T14:15:33.3065878+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d0c6d96-6c72-4d16-b875-88247fb82cb7">
+    </UnitTestResult>
+    <UnitTestResult executionId="7e2b7a6d-51eb-47bb-bf39-fbffe69ced7f" testId="e31b973c-26ff-3e19-c529-ed18b8a8dc70" testName="ProcessValueTerms" computerName="W01319" duration="00:00:00.0000718" startTime="2013-09-11T14:15:33.3075879+10:00" endTime="2013-09-11T14:15:33.3095880+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7e2b7a6d-51eb-47bb-bf39-fbffe69ced7f">
+    </UnitTestResult>
+    <UnitTestResult executionId="884959be-b8d4-4075-8474-168748684d9e" testId="ee92963a-4cd7-3523-3ab9-557d4bd1d1ce" testName="CreateBigFileTest" computerName="W01319" duration="00:00:00.0027369" startTime="2013-09-11T14:15:33.3105880+10:00" endTime="2013-09-11T14:15:33.3155883+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="884959be-b8d4-4075-8474-168748684d9e">
+      <Output>
+        <Exception>Exception has been thrown by the target of an invocation.</Exception>
+        <ErrorInfo>
+          <Message>Unable to create instance of class JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest. Error: System.Configuration.ConfigurationErrorsException: An error occurred creating the configuration section handler for DbEngine/VirtualFileSystemConfig: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified. (C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config line 6) ---&gt; System.IO.FileNotFoundException: Could not load file or assembly 'JellyDb.Core' or one of its dependencies. The system cannot find the file specified.=== Pre-bind state information ===
+LOG: User = LEAP\mbarton
+LOG: DisplayName = JellyDb.Core
+ (Partial)
+WRN: Partial binding information was supplied for an assembly:
+WRN: Assembly Name: JellyDb.Core | Domain ID: 2
+WRN: A partial bind occurs when only part of the assembly display name is provided.
+WRN: This might result in the binder loading an incorrect assembly.
+WRN: It is recommended to provide a fully specified textual identity for the assembly,
+WRN: that consists of the simple name, version, culture, and public key token.
+WRN: See whitepaper http://go.microsoft.com/fwlink/?LinkId=109270 for more information and common solutions to this issue.
+LOG: Appbase = file:///C:/Users/mbarton/Documents/GitHub/JellyDb/TestResults/mbarton_W01319 2013-09-11 14_15_32/Out
+LOG: Initial PrivatePath = NULL
+Calling assembly : (Unknown).
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\mbarton\Documents\GitHub\JellyDb\TestResults\mbarton_W01319 2013-09-11 14_15_32\Out\Kenny.DbEngine.Core.Test.DLL.config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework\v4.0.30319\config\machine.config.
+LOG: Policy not being applied to reference at this time (private, custom, partial, or location-based assembly bind).
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+.</Message>
+          <StackTrace>    at System.Configuration.TypeUtil.GetTypeWithReflectionPermission(IInternalConfigHost host, String typeString, Boolean throwOnError)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.Init(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.RuntimeConfigurationFactory.InitWithRestrictedPermissions(RuntimeConfigurationRecord configRecord, FactoryRecord factoryRecord)
+   at System.Configuration.RuntimeConfigurationRecord.CreateSectionFactory(FactoryRecord factoryRecord)
+   at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+ --- End of inner exception stack trace ---
+    at System.Configuration.BaseConfigurationRecord.FindAndEnsureFactoryRecord(String configKey, Boolean&amp; isRootDeclaredHere)
+   at System.Configuration.BaseConfigurationRecord.GetSectionRecursive(String configKey, Boolean getLkg, Boolean checkPermission, Boolean getRuntimeObject, Boolean requestIsHere, Object&amp; result, Object&amp; resultRuntimeObject)
+   at System.Configuration.BaseConfigurationRecord.GetSection(String configKey)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at JellyDb.Core.Configuration.VirtualFileSystemConfigurationSection.get_ConfigSection() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\Configuration\VirtualFileSystemConfigurationSection.cs:line 24
+   at JellyDb.Core.Test.Integration.VirtualAddressSpace.FileDataPersistenceTest..ctor() in C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core.Test\Integration\VirtualAddressSpace\FileDataPersistenceTest.cs:line 21
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3d2f422b-4446-43e4-bcaa-eb666d4f87a3" testId="f7af0e09-08ea-8712-e7ed-bfedb0494f3e" testName="ProcessIntTerms" computerName="W01319" duration="00:00:00.0000834" startTime="2013-09-11T14:15:33.3155883+10:00" endTime="2013-09-11T14:15:33.3175884+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3d2f422b-4446-43e4-bcaa-eb666d4f87a3">
+    </UnitTestResult>
+    <UnitTestResult executionId="d52f6f71-f63b-41b0-9ca9-655485df1d8d" testId="f7f12146-ccb1-1bbb-f0fe-3f5edcc40872" testName="GetConfigurationSection" computerName="W01319" duration="00:00:00.0001215" startTime="2013-09-11T14:15:33.3185885+10:00" endTime="2013-09-11T14:15:33.3195886+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d52f6f71-f63b-41b0-9ca9-655485df1d8d">
+    </UnitTestResult>
+    <UnitTestResult executionId="a41ba5c2-ead5-45a3-b9c8-b69cedf0279d" testId="f9c51e64-83e0-b398-e779-03b28caebb05" testName="ProcessExpressionTerms" computerName="W01319" duration="00:00:00.0000712" startTime="2013-09-11T14:15:33.3205886+10:00" endTime="2013-09-11T14:15:33.3225887+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a41ba5c2-ead5-45a3-b9c8-b69cedf0279d">
+    </UnitTestResult>
+  </Results>
+</TestRun>

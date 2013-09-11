@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenny.DbEngine.Core", "Kenny.DbEngine.Core\Kenny.DbEngine.Core.csproj", "{AA81ED50-222D-4637-BA83-BE5BCD867106}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyDb.Core", "JellyDb.Core\JellyDb.Core.csproj", "{AA81ED50-222D-4637-BA83-BE5BCD867106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kenny.DbEngine.Core.Test", "Kenny.DbEngine.Core.Test\Kenny.DbEngine.Core.Test.csproj", "{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyDb.Core.Test", "JellyDb.Core.Test\JellyDb.Core.Test.csproj", "{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
