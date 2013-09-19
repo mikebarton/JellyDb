@@ -19,8 +19,8 @@ namespace JellyDb.Core.Storage
         public BPTreeNode Parent { get; set; }
         public long Key { get; set; }
         public long Data { get; set; }
-        public long MaxKey { get; set; }
-        public long MinKey { get; set; }
+        public long? MaxKey { get; set; }
+        public long? MinKey { get; set; }
 
 
         public void Insert(long key, long data)
@@ -42,30 +42,48 @@ namespace JellyDb.Core.Storage
             }
         }
 
-        private void SplitNode()
+        private void Insert(BPTreeNode node)
         {
-            throw new NotImplementedException();
+            _children.Add(node.Key, node);
+            if (IsFull) SplitNode();
         }
 
-        public void Insert(BPTreeNode node)
+        private void SplitNode()
         {
+            var splitIndex = (_branchingFactor - 1)/2;
+            var firstChild = _children.ElementAt(0);
+            var middleChild = _children.ElementAt(splitIndex);
+            var leftBranch = new BPTreeNode {Key = firstChild.Key, Data = firstChild.Value.Data, Parent = this.Parent, MinKey = firstChild.Key, MaxKey = _children.ElementAt(splitIndex - 1).Key};
+            var rightBranch = new BPTreeNode {Key = middleChild.Key, Data = middleChild.Value.Data, Parent = this.Parent, MinKey = middleChild.Key, MaxKey = _children.Last().Key};
             
+            for (int i = 1; i < splitIndex; i++)
+            {
+                var movingNode = _children.ElementAt(i).Value;
+                leftBranch.Insert(movingNode);
+            }
+            
+            for (int i = splitIndex; i < _children.Count; i++)
+            {
+                var movingNode = _children.ElementAt(i).Value;
+                rightBranch.Insert(movingNode);
+            }
+            
+            if (Parent == null) Parent = new BPTreeNode() {Key = middleChild.Key, Data = middleChild.Value.Data};
+            Parent.Insert(leftBranch);
+            Parent.Insert(rightBranch);
+
+            Parent = leftBranch.IsKeyInNodeRange(Key) ? leftBranch : rightBranch;
         }
 
         public bool IsKeyInNodeRange(long key)
         {
-            if (MaxKey == MinKey == null) return false;
+            if (MaxKey == MinKey && MinKey == null) return false;
             if (MaxKey == null && MinKey != null && MinKey < key) return true;
             if (MinKey == null && MaxKey != null && MaxKey > key) return true;
             if (MaxKey != null && MinKey != null && MinKey < key && MaxKey > key) return true;
             return false;
         }
-
-        public bool IsLeafNode
-        {
-            get { return _children.All(n => n.Value._children.Count == 0); }
-        } 
-
+        
         public bool IsFull
         {
             get { return _children.Count >= _branchingFactor; }
