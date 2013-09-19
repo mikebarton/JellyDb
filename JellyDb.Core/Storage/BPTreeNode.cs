@@ -25,16 +25,19 @@ namespace JellyDb.Core.Storage
 
         public void Insert(long key, long data)
         {
-            if (!IsLeafNode)
-            {
-                var prevNode = _children.First(n => 
-
-            }
-            if (IsLeafNode)
+            var selectedNode = _children.SingleOrDefault(n => n.Value.IsKeyInNodeRange(key));
+            if (!selectedNode.Equals(default(KeyValuePair<long, BPTreeNode>))) selectedNode.Value.Insert(key, data);
+            else
             {
                 if (_children.ContainsKey(key)) _children[key].Data = data;
-                else _children[key] = new BPTreeNode() { Parent = this, Key = key, Data = data };
-
+                else _children[key] = new BPTreeNode
+                {
+                    Data = data,
+                    Key = key,
+                    Parent = this
+                };
+                if (MinKey > key) MinKey = key;
+                if (MaxKey < key) MaxKey = key;
                 if (IsFull) SplitNode();
             }
         }
@@ -47,6 +50,15 @@ namespace JellyDb.Core.Storage
         public void Insert(BPTreeNode node)
         {
             
+        }
+
+        public bool IsKeyInNodeRange(long key)
+        {
+            if (MaxKey == MinKey == null) return false;
+            if (MaxKey == null && MinKey != null && MinKey < key) return true;
+            if (MinKey == null && MaxKey != null && MaxKey > key) return true;
+            if (MaxKey != null && MinKey != null && MinKey < key && MaxKey > key) return true;
+            return false;
         }
 
         public bool IsLeafNode

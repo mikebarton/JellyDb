@@ -2,3 +2,5 @@ JellyDb.Core.Test/bin
 JellyDb.Core.Test/obj
 JellyDb.Core/bin
 JellyDb.Core/obj
+*.suo
+JellyDb.Visualisations/obj/*
