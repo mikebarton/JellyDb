@@ -98,6 +98,7 @@
     <Compile Include="Sql\Dml\SubtractionOperator.cs" />
     <Compile Include="Sql\Dml\Term.cs" />
     <Compile Include="Sql\Dml\ValueTerm.cs" />
+    <Compile Include="Storage\BPTreeNode.cs" />
     <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />
@@ -112,6 +113,7 @@
   <ItemGroup>
     <None Include="Sql\Dml\SelectStatement.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
