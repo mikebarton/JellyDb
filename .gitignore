@@ -3,4 +3,5 @@ JellyDb.Core.Test/obj
 JellyDb.Core/bin
 JellyDb.Core/obj
 *.suo
-JellyDb.Visualisations/obj/*
+JellyDb.Visualisations/obj
+JellyDb.Visualisations/bin
