@@ -25,12 +25,12 @@ namespace JellyDb.Core.Storage
 
         public void Insert(long key, long data)
         {
-            var selectedNode = _children.SingleOrDefault(n => n.Value.IsKeyInNodeRange(key));
+            var selectedNode = Children.SingleOrDefault(n => n.Value.IsKeyInNodeRange(key));
             if (!selectedNode.Equals(default(KeyValuePair<long, BPTreeNode>))) selectedNode.Value.Insert(key, data);
             else
             {
-                if (_children.ContainsKey(key)) _children[key].Data = data;
-                else _children[key] = new BPTreeNode
+                if (Children.ContainsKey(key)) Children[key].Data = data;
+                else Children[key] = new BPTreeNode
                 {
                     Data = data,
                     Key = key,
@@ -44,27 +44,27 @@ namespace JellyDb.Core.Storage
 
         private void Insert(BPTreeNode node)
         {
-            _children.Add(node.Key, node);
+            Children.Add(node.Key, node);
             if (IsFull) SplitNode();
         }
 
         private void SplitNode()
         {
             var splitIndex = (_branchingFactor - 1)/2;
-            var firstChild = _children.ElementAt(0);
-            var middleChild = _children.ElementAt(splitIndex);
-            var leftBranch = new BPTreeNode {Key = firstChild.Key, Data = firstChild.Value.Data, Parent = this.Parent, MinKey = firstChild.Key, MaxKey = _children.ElementAt(splitIndex - 1).Key};
-            var rightBranch = new BPTreeNode {Key = middleChild.Key, Data = middleChild.Value.Data, Parent = this.Parent, MinKey = middleChild.Key, MaxKey = _children.Last().Key};
+            var firstChild = Children.ElementAt(0);
+            var middleChild = Children.ElementAt(splitIndex);
+            var leftBranch = new BPTreeNode {Key = firstChild.Key, Data = firstChild.Value.Data, Parent = this.Parent, MinKey = firstChild.Key, MaxKey = Children.ElementAt(splitIndex - 1).Key};
+            var rightBranch = new BPTreeNode {Key = middleChild.Key, Data = middleChild.Value.Data, Parent = this.Parent, MinKey = middleChild.Key, MaxKey = Children.Last().Key};
             
             for (int i = 1; i < splitIndex; i++)
             {
-                var movingNode = _children.ElementAt(i).Value;
+                var movingNode = Children.ElementAt(i).Value;
                 leftBranch.Insert(movingNode);
             }
             
-            for (int i = splitIndex; i < _children.Count; i++)
+            for (int i = splitIndex; i < Children.Count; i++)
             {
-                var movingNode = _children.ElementAt(i).Value;
+                var movingNode = Children.ElementAt(i).Value;
                 rightBranch.Insert(movingNode);
             }
             
@@ -86,7 +86,13 @@ namespace JellyDb.Core.Storage
         
         public bool IsFull
         {
-            get { return _children.Count >= _branchingFactor; }
+            get { return Children.Count >= _branchingFactor; }
+        }
+
+        public SortedList<long, BPTreeNode> Children
+        {
+            get { return _children; }
+            set { _children = value; }
         }
     }
 }

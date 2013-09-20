@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JellyDb.Visualisations.ViewModels;
 
 namespace JellyDb.Visualisations
 {
@@ -22,6 +23,7 @@ namespace JellyDb.Visualisations
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }
