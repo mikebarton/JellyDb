@@ -5,7 +5,7 @@
 
 
     <Style TargetType="{x:Type controls:MyTreeView}">
-        <Setter Property="ItemTemplate">
+        <!--<Setter Property="ItemTemplate">
             <Setter.Value>
                 <HierarchicalDataTemplate ItemsSource="{TemplateBinding Children}" DataType="controls:MyTreeViewItem">
                     <StackPanel>
@@ -14,7 +14,7 @@
                     </StackPanel>
                 </HierarchicalDataTemplate>
             </Setter.Value>
-        </Setter>
+        </Setter>-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:MyTreeView}">
@@ -32,7 +32,7 @@
             <Setter.Value>
                 <DataTemplate DataType="controls:MyTreeViewItem">
                     <Grid Height="40" Width="40">
-                        <Ellipse Stroke="Black" Width="{Binding Width}" Height="{Binding Height}" Fill="AntiqueWhite"/>
+                        <Ellipse Stroke="Black" Width="50" Height="50" Fill="AntiqueWhite"/>
                         <Label Content="{Binding Key}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </DataTemplate>
