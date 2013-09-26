@@ -2,28 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JellyDb.Visualisations.Controls;
+using JellyDb.Visualisations;
+using JellyDb.Visualisations.ViewModels;
 
 namespace JellyDb.Visualisations
 {
     public class DesignTime
     {
-        public static MyTreeViewItem Node
-        {
-            get
-            {
-                return new MyTreeViewItem()
-                    {
-                        Width = 10,
-                        Height = 10,
-                        Key = 10
-                    };
-            }
-        }
+        
 
-        public static MainWindow MainViewModel
+        public static MainWindowViewModel MainViewModel
         {
-            get { return new MainWindow(); }
+            get { return new MainWindowViewModel(); }
         }
     }
 }

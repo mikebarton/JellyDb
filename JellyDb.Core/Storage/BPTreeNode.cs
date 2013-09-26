@@ -22,23 +22,36 @@ namespace JellyDb.Core.Storage
         public long? MaxKey { get; set; }
         public long? MinKey { get; set; }
 
+        public string NodeName
+        {
+            get { return Key.ToString(); }
+        }
 
         public void Insert(long key, long data)
         {
-            var selectedNode = Children.SingleOrDefault(n => n.Value.IsKeyInNodeRange(key));
-            if (!selectedNode.Equals(default(KeyValuePair<long, BPTreeNode>))) selectedNode.Value.Insert(key, data);
-            else
+            if (IsLeafNode)
             {
-                if (Children.ContainsKey(key)) Children[key].Data = data;
-                else Children[key] = new BPTreeNode
+                if (!IsFull)
                 {
-                    Data = data,
-                    Key = key,
-                    Parent = this
-                };
+                    if (Children.ContainsKey(key)) Children[key].Data = data;
+                    else
+                        Children[key] = new BPTreeNode
+                            {
+                                Data = data,
+                                Key = key,
+                                Parent = this
+                            };
+                }
+                else SplitNode();
+
                 if (MinKey > key) MinKey = key;
                 if (MaxKey < key) MaxKey = key;
-                if (IsFull) SplitNode();
+            }
+            else
+            {
+                var selectedNode = Children.SingleOrDefault(n => n.Value.IsKeyInNodeRange(key));
+                if (!selectedNode.Equals(default(KeyValuePair<long, BPTreeNode>))) selectedNode.Value.Insert(key, data);
+                else throw new InvalidOperationException("this node is note a leaf. need to insert into child, but there is no range with range that fits key");
             }
         }
 
@@ -89,10 +102,20 @@ namespace JellyDb.Core.Storage
             get { return Children.Count >= _branchingFactor; }
         }
 
+        public List<BPTreeNode> DisplayChildren
+        {
+            get { return Children.Values.ToList(); }
+        }
+
         public SortedList<long, BPTreeNode> Children
         {
             get { return _children; }
             set { _children = value; }
+        }
+
+        public bool IsLeafNode 
+        {
+            get { return !_children.Any(c => c.Value._children.Count > 0); }
         }
     }
 }

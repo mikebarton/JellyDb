@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Visualisations\App.xaml
-2419903590
+22092193476
 
-102067331716
+10-237532030
 131755411705
-MainWindow.xaml;Themes\Generic.xaml;
+MainWindow.xaml;Resources\Styles\TreeGraphStyle.xaml;
 
 True
 

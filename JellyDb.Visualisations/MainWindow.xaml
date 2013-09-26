@@ -1,37 +1,55 @@
 ﻿<Window x:Class="JellyDb.Visualisations.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:JellyDb.Visualisations.Controls"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d" 
         xmlns:visualisations="clr-namespace:JellyDb.Visualisations"
-        Title="MainWindow" Height="350" Width="525" >
-        <d:DesignProperties.DataContext>
-            <Binding Path="MainViewModel">
-                <Binding.Source>
-                    <visualisations:DesignTime/>
-                </Binding.Source>
-            </Binding>
-        </d:DesignProperties.DataContext>
-    <Grid ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        xmlns:storage="clr-namespace:JellyDb.Core.Storage;assembly=JellyDb.Core"
+        Title="MainWindow" Height="600" Width="600" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--<XmlDataProvider x:Key="nodes" Source="Resources\Nodes.xml" XPath="Node"/>-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/TreeGraphStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <d:DesignProperties.DataContext>
+        <Binding Path="MainViewModel">
+            <Binding.Source>
+                <visualisations:DesignTime/>
+            </Binding.Source>
+        </Binding>
+    </d:DesignProperties.DataContext>
+    
+    <Grid>
         
-        <controls:MyTreeView ItemsSource="{Binding Node}"/>
-        
-        <!--<controls:MyTreeViewItem>
-            <controls:MyTreeViewItem Key="1" />
-            <controls:MyTreeViewItem Key="2"/>
-            <controls:MyTreeViewItem Key="3">
-                <controls:MyTreeViewItem Key="31"/>
-                <controls:MyTreeViewItem Key="32"/>
-                <controls:MyTreeViewItem Key="33">
-                    <controls:MyTreeViewItem Key="331"/>
-                    <controls:MyTreeViewItem Key="332"/>
-                    <controls:MyTreeViewItem Key="333"/>
-                    </controls:MyTreeViewItem>
-            </controls:MyTreeViewItem>
-            <controls:MyTreeViewItem Key="4"/>
-        </controls:MyTreeViewItem>-->
+        <TreeView ItemContainerStyle="{StaticResource GraphStyle}" ItemsSource="{Binding TreeNode.DisplayChildren}" >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="storage:BPTreeNode" ItemsSource="{Binding Path=DisplayChildren}">
+                    <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
+						BorderBrush="Blue" Width="Auto" Height="50" MinWidth="50">
+                        <TextBlock Text="{Binding Path=NodeName}" 
+							   HorizontalAlignment="Center" 
+							   VerticalAlignment="Center"/>
+                    </Border>
+                </HierarchicalDataTemplate>
+                <!--<HierarchicalDataTemplate DataType="Node" 
+									  ItemsSource="{Binding XPath=Children/Node}">
+
+                    <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
+						BorderBrush="Blue" Width="Auto" Height="50" MinWidth="50">
+                        <TextBlock Text="{Binding XPath=@Name}" 
+							   HorizontalAlignment="Center" 
+							   VerticalAlignment="Center"/>
+                    </Border>
+                </HierarchicalDataTemplate>-->
+            </TreeView.ItemTemplate>
+        </TreeView>
         
         
     </Grid>

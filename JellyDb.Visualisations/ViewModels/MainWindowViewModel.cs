@@ -18,17 +18,17 @@ namespace JellyDb.Visualisations.ViewModels
             node.Insert(4, 4);
             node.Insert(5, 5);
             node.Insert(6, 6);
-            _node = node;
+            TreeNode = node;
         }
 
         private BPTreeNode _node;
-        public BPTreeNode Node
+        public BPTreeNode TreeNode
         {
             get { return _node; }
             set 
             {
                 _node = value;
-                if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("Node"));
+                if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("TreeNode"));
             }
         }
 
