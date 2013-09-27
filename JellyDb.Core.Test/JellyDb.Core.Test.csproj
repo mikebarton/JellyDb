@@ -64,6 +64,7 @@
     <Compile Include="Unit\Configuration\VirtualFileSystemConfigurationTest.cs" />
     <Compile Include="Integration\VirtualAddressSpace\FileDataPersistenceTest.cs" />
     <Compile Include="Unit\Sql\Dml\AdditionOperatorTest.cs" />
+    <Compile Include="Unit\Storage\BPTreeNodeTest.cs" />
     <Compile Include="Unit\VirtualAddressSpace\PageIndexTest.cs" />
     <Compile Include="Unit\VirtualAddressSpace\PageSummaryTest.cs" />
   </ItemGroup>

@@ -99,6 +99,7 @@
     <Compile Include="Sql\Dml\Term.cs" />
     <Compile Include="Sql\Dml\ValueTerm.cs" />
     <Compile Include="Storage\BPTreeNode.cs" />
+    <Compile Include="Storage\NodeData.cs" />
     <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />

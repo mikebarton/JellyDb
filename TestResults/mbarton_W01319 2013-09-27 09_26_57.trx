@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="51b89566-3afa-46fb-80fc-bb94043efb46" name="mbarton@W01319 2013-09-27 09:26:57" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="e14c6821-c600-4f28-bbfd-15b60c30fc6b">
+    <Deployment runDeploymentRoot="mbarton_W01319 2013-09-27 09_26_57">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\RhinoMock\Rhino.Mocks.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\bin\Debug\JellyDb.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-27T09:26:57.5686043+10:00" queuing="2013-09-27T09:26:59.2376998+10:00" start="2013-09-27T09:26:59.4887141+10:00" finish="2013-09-27T09:27:03.1009207+10:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="7" executed="7" passed="7" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CreateNodeAndInsertTwoUnSeq" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="30ae6f73-9793-8d9c-9ac6-ccde7b152f8d">
+      <Execution id="94557c9b-32ec-4de7-97bd-bd858434468a" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertTwoUnSeq" />
+    </UnitTest>
+    <UnitTest name="CreateNodeAndInsertOneUnSeq" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="9d665f8e-fbba-f332-e9fd-91b1ba97e32d">
+      <Execution id="b4c496da-b6e1-44d1-95b0-1772a98ae529" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertOneUnSeq" />
+    </UnitTest>
+    <UnitTest name="CreateNodeAndInsertOneSeq" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="ad480e63-0564-c719-966f-fb5ef85845f6">
+      <Execution id="136237f1-57ee-4ad4-bf3d-9491fbc5fd72" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertOneSeq" />
+    </UnitTest>
+    <UnitTest name="CreateNodeAndInsertTwoUnordered" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="a4d23b54-199e-5dcb-df68-dc895ffc2612">
+      <Execution id="f0db3157-b0d5-49d7-a251-6df3431d7af5" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertTwoUnordered" />
+    </UnitTest>
+    <UnitTest name="CreateNodeAndInsertTwoSeq" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="d856cb1e-0ef3-0f43-9241-50f5d6a404fb">
+      <Execution id="10aec099-55c4-4105-95eb-c9b4b3b6c988" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertTwoSeq" />
+    </UnitTest>
+    <UnitTest name="CreateSingleNode" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="043c9141-02d0-ac99-6ebf-b1410711ae59">
+      <Execution id="1f3448b5-a98b-41e8-a92b-10548e21d657" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateSingleNode" />
+    </UnitTest>
+    <UnitTest name="CreateNodeAndInsertOneUnOrdered" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="5514e827-36e4-907f-eaf4-fa211281fc13">
+      <Execution id="7157b9f9-23e5-4bb8-b00c-9800b2fc68d6" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateNodeAndInsertOneUnOrdered" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="043c9141-02d0-ac99-6ebf-b1410711ae59" executionId="1f3448b5-a98b-41e8-a92b-10548e21d657" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="30ae6f73-9793-8d9c-9ac6-ccde7b152f8d" executionId="94557c9b-32ec-4de7-97bd-bd858434468a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5514e827-36e4-907f-eaf4-fa211281fc13" executionId="7157b9f9-23e5-4bb8-b00c-9800b2fc68d6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9d665f8e-fbba-f332-e9fd-91b1ba97e32d" executionId="b4c496da-b6e1-44d1-95b0-1772a98ae529" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a4d23b54-199e-5dcb-df68-dc895ffc2612" executionId="f0db3157-b0d5-49d7-a251-6df3431d7af5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ad480e63-0564-c719-966f-fb5ef85845f6" executionId="136237f1-57ee-4ad4-bf3d-9491fbc5fd72" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d856cb1e-0ef3-0f43-9241-50f5d6a404fb" executionId="10aec099-55c4-4105-95eb-c9b4b3b6c988" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="1f3448b5-a98b-41e8-a92b-10548e21d657" testId="043c9141-02d0-ac99-6ebf-b1410711ae59" testName="CreateSingleNode" computerName="W01319" duration="00:00:00.0095604" startTime="2013-09-27T09:26:59.6787250+10:00" endTime="2013-09-27T09:27:00.8157900+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1f3448b5-a98b-41e8-a92b-10548e21d657">
+    </UnitTestResult>
+    <UnitTestResult executionId="94557c9b-32ec-4de7-97bd-bd858434468a" testId="30ae6f73-9793-8d9c-9ac6-ccde7b152f8d" testName="CreateNodeAndInsertTwoUnSeq" computerName="W01319" duration="00:00:00.0073797" startTime="2013-09-27T09:27:00.8197903+10:00" endTime="2013-09-27T09:27:00.8307909+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="94557c9b-32ec-4de7-97bd-bd858434468a">
+    </UnitTestResult>
+    <UnitTestResult executionId="7157b9f9-23e5-4bb8-b00c-9800b2fc68d6" testId="5514e827-36e4-907f-eaf4-fa211281fc13" testName="CreateNodeAndInsertOneUnOrdered" computerName="W01319" duration="00:00:00.0003971" startTime="2013-09-27T09:27:00.8357912+10:00" endTime="2013-09-27T09:27:00.8407915+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7157b9f9-23e5-4bb8-b00c-9800b2fc68d6">
+    </UnitTestResult>
+    <UnitTestResult executionId="b4c496da-b6e1-44d1-95b0-1772a98ae529" testId="9d665f8e-fbba-f332-e9fd-91b1ba97e32d" testName="CreateNodeAndInsertOneUnSeq" computerName="W01319" duration="00:00:00.0003875" startTime="2013-09-27T09:27:00.8437916+10:00" endTime="2013-09-27T09:27:00.8477919+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b4c496da-b6e1-44d1-95b0-1772a98ae529">
+    </UnitTestResult>
+    <UnitTestResult executionId="f0db3157-b0d5-49d7-a251-6df3431d7af5" testId="a4d23b54-199e-5dcb-df68-dc895ffc2612" testName="CreateNodeAndInsertTwoUnordered" computerName="W01319" duration="00:00:00.0005616" startTime="2013-09-27T09:27:00.8517921+10:00" endTime="2013-09-27T09:27:00.8557923+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f0db3157-b0d5-49d7-a251-6df3431d7af5">
+    </UnitTestResult>
+    <UnitTestResult executionId="136237f1-57ee-4ad4-bf3d-9491fbc5fd72" testId="ad480e63-0564-c719-966f-fb5ef85845f6" testName="CreateNodeAndInsertOneSeq" computerName="W01319" duration="00:00:02.1618309" startTime="2013-09-27T09:27:00.8787936+10:00" endTime="2013-09-27T09:27:03.0449175+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="136237f1-57ee-4ad4-bf3d-9491fbc5fd72">
+    </UnitTestResult>
+    <UnitTestResult executionId="10aec099-55c4-4105-95eb-c9b4b3b6c988" testId="d856cb1e-0ef3-0f43-9241-50f5d6a404fb" testName="CreateNodeAndInsertTwoSeq" computerName="W01319" duration="00:00:00.0006056" startTime="2013-09-27T09:27:03.0569182+10:00" endTime="2013-09-27T09:27:03.0619185+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10aec099-55c4-4105-95eb-c9b4b3b6c988">
+    </UnitTestResult>
+  </Results>
+</TestRun>
