@@ -23,23 +23,66 @@ namespace JellyDb.Core.Storage
 
         public BPTreeNode Insert(long key, long data)
         {
-            if (IsLeafNode)
-            {
-                _data[key] = data;
-                if (IsFull) return SplitNode();
-            }
+            if (IsLeafNode) InsertNodeData(key, data);
             else
             {
                 var selectedNode = _children.Single(c => c.IsKeyInNodeRange(key));
                 selectedNode.Insert(key, data);
             }
-            return this;
+            return GetRoot();
         }
 
-        private BPTreeNode SplitNode()
+        private BPTreeNode GetRoot()
+        {
+            if (this.Parent == null) return this;
+            else return Parent.GetRoot();
+        }
+
+        private void InsertNodeData(long key, long data)
+        {
+            _data[key] = data;
+            if (IsFull) SplitNode();
+        }
+
+        private long GetLargerSiblingMinKey(BPTreeNode target)
+        {
+            if (!_children.Contains(target)) throw new InvalidOperationException("Can only assign key range to a child node");
+
+            
+        }
+
+        private void InsertChildNode(BPTreeNode node)
+        {
+
+        }
+
+        private void SplitNode()
         {
             var splitIndex = (_branchingFactor - 1)/2;
-            
+            var left = this;
+            var right = new BPTreeNode() { Parent = this.Parent };
+
+            var splitElem = _data.ElementAt(splitIndex);
+            left.MaxKey = splitElem.Key - 1;
+            right.MinKey = splitElem.Key;
+            right.MaxKey = Parent.GetLargerSiblingMinKey(right) - 1;
+
+            for (int i = _data.Count-1; i >= splitIndex; i--)
+            {
+                var elem = _data.ElementAt(i);
+                right.Insert(elem.Key, elem.Value);
+                _data.RemoveAt(i);
+            }            
+
+            var childSplitElem = _children.OrderBy(c => c.MinKey).Last(c => c.MinKey < splitElem.Key);
+            var childSplitIndex = _children.IndexOf(childSplitElem);
+
+            for (int i = _children.Count; i >= childSplitIndex; i--)
+            {
+                right.Children.Add(_children[i]);
+                _children.RemoveAt(i);
+            }
+            Parent.InsertNodeData(splitElem.Key, splitElem.Value);
         }
 
         public bool IsKeyInNodeRange(long key)
