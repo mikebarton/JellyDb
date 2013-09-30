@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="24016e53-afd9-4b2c-89e2-cb3bc4015919" name="mbarton@W01319 2013-09-30 10:13:46" runUser="LEAP\mbarton" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="c2ac7c8f-b854-4a5b-85c6-ef7243af65a3">
+    <Deployment runDeploymentRoot="mbarton_W01319 2013-09-30 10_13_46">
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Core.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\RhinoMock\Rhino.Mocks.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\Libs\CastleWindsor\Castle.Windsor.dll" />
+      <DeploymentItem filename="C:\Users\mbarton\Documents\GitHub\JellyDb\JellyDb.Core\bin\Debug\JellyDb.Core.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2013-09-30T10:13:46.0062935+10:00" queuing="2013-09-30T10:13:48.1724174+10:00" start="2013-09-30T10:13:48.3904299+10:00" finish="2013-09-30T10:13:50.0215231+10:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="CreateSingleNode" storage="c:\users\mbarton\documents\github\jellydb\jellydb.core.test\bin\debug\jellydb.core.test.dll" id="043c9141-02d0-ac99-6ebf-b1410711ae59">
+      <Execution id="2edb158c-0c42-4e06-a8e9-ccb6653f5f53" />
+      <TestMethod codeBase="C:/Users/mbarton/Documents/GitHub/JellyDb/JellyDb.Core.Test/bin/Debug/JellyDb.Core.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="JellyDb.Core.Test.Unit.Storage.BPTreeNodeTest, JellyDb.Core.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateSingleNode" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="043c9141-02d0-ac99-6ebf-b1410711ae59" executionId="2edb158c-0c42-4e06-a8e9-ccb6653f5f53" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="2edb158c-0c42-4e06-a8e9-ccb6653f5f53" testId="043c9141-02d0-ac99-6ebf-b1410711ae59" testName="CreateSingleNode" computerName="W01319" duration="00:00:00.0187172" startTime="2013-09-30T10:13:48.5834409+10:00" endTime="2013-09-30T10:13:49.9735204+10:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2edb158c-0c42-4e06-a8e9-ccb6653f5f53">
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -12,24 +12,29 @@ namespace JellyDb.Visualisations.ViewModels
         public MainWindowViewModel()
         {
             var node = new BPTreeNode();
-            node.Insert(1, 1);
-            node.Insert(2, 2);
-            node.Insert(3, 3);
-            node.Insert(4, 4);
-            node.Insert(5, 5);
-            node.Insert(6, 6);
+            for (int i = 1; i < 17; i++)
+            {
+                node = node.Insert(i, i);
+            }
+            node = node.Insert(17, 17);
             TreeNode = node;
         }
 
         private BPTreeNode _node;
+
         public BPTreeNode TreeNode
         {
             get { return _node; }
-            set 
+            set
             {
                 _node = value;
                 if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("TreeNode"));
             }
+        }
+
+        public List<BPTreeNode> Root 
+        {
+            get { return new List<BPTreeNode>() {_node}; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

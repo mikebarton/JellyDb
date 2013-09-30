@@ -23,7 +23,11 @@ namespace JellyDb.Core.Storage
 
         public BPTreeNode Insert(long key, long data)
         {
-            if (IsLeafNode) InsertNodeData(key, data);
+            if (IsLeafNode)
+            {
+                _data[key] = data;
+                if(IsFull) SplitNode();
+            }
             else
             {
                 var selectedNode = _children.Single(c => c.IsKeyInNodeRange(key));
@@ -37,35 +41,39 @@ namespace JellyDb.Core.Storage
             if (this.Parent == null) return this;
             else return Parent.GetRoot();
         }
-
-        private void InsertNodeData(long key, long data)
+        
+        private void InsertChildNode(BPTreeNode node, long key, long data)
         {
             _data[key] = data;
+            node.Parent = this;
+            var keyIndex = _data.IndexOfKey(key);
+
+            var grandChildKey = node.Data.Keys.First();
+            if (grandChildKey < key)
+            {
+                node.MaxKey = key - 1;
+                if (keyIndex > 0) node.MinKey = _data.Keys.ElementAt(--keyIndex);
+                else node.MinKey = long.MinValue;
+            }
+            else
+            {
+                node.MinKey = key;
+                if (keyIndex < _data.Count - 1) node.MaxKey = _data.Keys.ElementAt(++keyIndex);
+                else node.MaxKey = long.MaxValue;    
+            }
+
+            _children.Add(node);
             if (IsFull) SplitNode();
-        }
-
-        private long GetLargerSiblingMinKey(BPTreeNode target)
-        {
-            if (!_children.Contains(target)) throw new InvalidOperationException("Can only assign key range to a child node");
-
-            
-        }
-
-        private void InsertChildNode(BPTreeNode node)
-        {
-
         }
 
         private void SplitNode()
         {
             var splitIndex = (_branchingFactor - 1)/2;
             var left = this;
-            var right = new BPTreeNode() { Parent = this.Parent };
+            var right = new BPTreeNode();
 
             var splitElem = _data.ElementAt(splitIndex);
             left.MaxKey = splitElem.Key - 1;
-            right.MinKey = splitElem.Key;
-            right.MaxKey = Parent.GetLargerSiblingMinKey(right) - 1;
 
             for (int i = _data.Count-1; i >= splitIndex; i--)
             {
@@ -74,15 +82,24 @@ namespace JellyDb.Core.Storage
                 _data.RemoveAt(i);
             }            
 
-            var childSplitElem = _children.OrderBy(c => c.MinKey).Last(c => c.MinKey < splitElem.Key);
-            var childSplitIndex = _children.IndexOf(childSplitElem);
-
-            for (int i = _children.Count; i >= childSplitIndex; i--)
+            var childSplitElem = _children.OrderBy(c => c.MinKey).FirstOrDefault(c => c.MinKey >= splitElem.Key);
+            if (childSplitElem != null)
             {
-                right.Children.Add(_children[i]);
-                _children.RemoveAt(i);
+                var childSplitIndex = _children.IndexOf(childSplitElem);
+
+                for (int i = _children.Count-1; i >= childSplitIndex; i--)
+                {
+                    right.Children.Add(_children[i]);
+                    _children[i].Parent = right;
+                    _children.RemoveAt(i);
+                }
             }
-            Parent.InsertNodeData(splitElem.Key, splitElem.Value);
+            if (this.Parent == null)
+            {
+                this.Parent = new BPTreeNode();
+                this.Parent.InsertChildNode(left, splitElem.Key, splitElem.Value);
+            }
+            Parent.InsertChildNode(right, splitElem.Key, splitElem.Value);
         }
 
         public bool IsKeyInNodeRange(long key)
