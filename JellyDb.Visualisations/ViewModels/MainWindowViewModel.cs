@@ -12,10 +12,10 @@ namespace JellyDb.Visualisations.ViewModels
     {
         public MainWindowViewModel()
         {
-            var node = new BPTreeNode();
+            var node = new BPTreeNode(5);
             Stopwatch stop = new Stopwatch();
             stop.Start();
-            for (int i = 1; i < 100000; i++)
+            for (int i = 1; i < 20; i++)
             {
                 try
                 {
@@ -41,14 +41,14 @@ namespace JellyDb.Visualisations.ViewModels
             //node = node.Insert(15, 15);
             //node = node.Insert(22, 22);
             //node = node.Insert(3, 3);
-            //TreeNode = node;
+            TreeNode = node;
         }
 
         private List<int> results = new List<int>();
         public long GenerateRandomNumber(Random random = null)
         {
             if(random == null) random = new Random();
-            var result = random.Next(1, 999999999);
+            var result = random.Next(1, 100);
             if (!results.Contains(result))
             {
                 results.Add(result);

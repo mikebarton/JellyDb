@@ -7,7 +7,21 @@ namespace JellyDb.Core.Storage
 {
     public class BPTreeNode
     {
-        private int _branchingFactor = 50;
+        private int _branchingFactor = -1;
+        public BPTreeNode(int branchingFactor)
+        {
+            this._branchingFactor = branchingFactor;
+        }
+
+        public int BranchingFactor
+        {
+            get { return _branchingFactor; }
+            set 
+            {
+                if (_branchingFactor != -1) throw new InvalidOperationException("once branching factor is defined for a node it cannot be redefined");
+                _branchingFactor = value; 
+            }
+        }
         private List<BPTreeNode> _children = new List<BPTreeNode>();
         private SortedList<long, long> _data = new SortedList<long, long>();
 
@@ -20,6 +34,7 @@ namespace JellyDb.Core.Storage
         public BPTreeNode Parent { get; set; }
         public long? MaxKey { get; set; }
         public long? MinKey { get; set; }
+
 
         public BPTreeNode Insert(long key, long data)
         {
@@ -34,6 +49,16 @@ namespace JellyDb.Core.Storage
                 selectedNode.Insert(key, data);
             }
             return GetRoot();
+        }
+
+        public long? Query(long key)
+        {
+            if (_data.ContainsKey(key)) return _data[key];
+            else
+            {
+                var childNode = _children.SingleOrDefault(c => c.IsKeyInNodeRange(key));
+                return childNode == null ? null : childNode.Query(key);
+            }
         }
 
         private BPTreeNode GetRoot()
@@ -68,9 +93,9 @@ namespace JellyDb.Core.Storage
 
         private void SplitNode()
         {
-            var splitIndex = (_branchingFactor - 1)/2;
+            var splitIndex = (BranchingFactor - 1) / 2;
             var left = this;
-            var right = new BPTreeNode();
+            var right = new BPTreeNode(BranchingFactor);
 
             var splitElem = _data.ElementAt(splitIndex);
             left.MaxKey = splitElem.Key - 1;
@@ -91,7 +116,7 @@ namespace JellyDb.Core.Storage
 
             if (this.Parent == null)
             {
-                this.Parent = new BPTreeNode();
+                this.Parent = new BPTreeNode(BranchingFactor);
                 this.Parent.InsertChildNode(left, splitElem.Key, splitElem.Value);
             }
             Parent.InsertChildNode(right, splitElem.Key, splitElem.Value);
@@ -108,7 +133,7 @@ namespace JellyDb.Core.Storage
         
         public bool IsFull
         {
-            get { return _data.Count >= _branchingFactor; }
+            get { return _data.Count >= BranchingFactor; }
         }
         
         public List<BPTreeNode> Children
