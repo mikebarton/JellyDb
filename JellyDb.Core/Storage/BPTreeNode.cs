@@ -7,7 +7,7 @@ namespace JellyDb.Core.Storage
 {
     public class BPTreeNode
     {
-        private int _branchingFactor = 5;
+        private int _branchingFactor = 50;
         private List<BPTreeNode> _children = new List<BPTreeNode>();
         private SortedList<long, long> _data = new SortedList<long, long>();
 
@@ -80,20 +80,15 @@ namespace JellyDb.Core.Storage
                 var elem = _data.ElementAt(i);
                 right.Insert(elem.Key, elem.Value);
                 _data.RemoveAt(i);
-            }            
-
-            var childSplitElem = _children.OrderBy(c => c.MinKey).FirstOrDefault(c => c.MinKey >= splitElem.Key);
-            if (childSplitElem != null)
+            }   
+            
+            foreach (var child in _children.Where(c=>c.MinKey >= splitElem.Key).ToList())
             {
-                var childSplitIndex = _children.IndexOf(childSplitElem);
-
-                for (int i = _children.Count-1; i >= childSplitIndex; i--)
-                {
-                    right.Children.Add(_children[i]);
-                    _children[i].Parent = right;
-                    _children.RemoveAt(i);
-                }
+                right.Children.Add(child);
+                child.Parent = right;
+                _children.Remove(child);
             }
+
             if (this.Parent == null)
             {
                 this.Parent = new BPTreeNode();
@@ -105,9 +100,9 @@ namespace JellyDb.Core.Storage
         public bool IsKeyInNodeRange(long key)
         {
             if (MaxKey == MinKey && MinKey == null) return false;
-            if (MaxKey == null && MinKey != null && MinKey < key) return true;
-            if (MinKey == null && MaxKey != null && MaxKey > key) return true;
-            if (MaxKey != null && MinKey != null && MinKey < key && MaxKey > key) return true;
+            if (MaxKey == null && MinKey != null && MinKey <= key) return true;
+            if (MinKey == null && MaxKey != null && MaxKey >= key) return true;
+            if (MaxKey != null && MinKey != null && MinKey <= key && MaxKey >= key) return true;
             return false;
         }
         

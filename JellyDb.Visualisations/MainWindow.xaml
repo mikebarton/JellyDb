@@ -6,7 +6,7 @@
         mc:Ignorable="d" 
         xmlns:visualisations="clr-namespace:JellyDb.Visualisations"
         xmlns:storage="clr-namespace:JellyDb.Core.Storage;assembly=JellyDb.Core"
-        Title="MainWindow" Height="600" Width="600" >
+        Title="MainWindow" Height="300" Width="1300" SizeToContent="WidthAndHeight" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
