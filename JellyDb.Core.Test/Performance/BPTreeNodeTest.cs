@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using JellyDb.Core.Test.Performance;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JellyDb.Core.Storage;
 using System.Diagnostics;
@@ -139,46 +140,9 @@ namespace JellyDb.Core.Test.Performance
         }
     }
 
-    [Serializable]
-    public class PerformanceTestResults
-    {
-        public int NumberOfInsertionsPerTest { get; set; }
-        public List<BranchingFactorGroup> BranchFactorGroupResults = new List<BranchingFactorGroup>();
-    }
+    
 
-    [Serializable]
-    public class BranchingFactorGroup
-    {
-        public int BranchingFactor { get; set; }
-        public List<BranchingFactorGroupResult> SequentialResults = new List<BranchingFactorGroupResult>();
-        public List<BranchingFactorGroupResult> UnSequentialResults = new List<BranchingFactorGroupResult>();
-    }
+    
 
-    [Serializable]
-    public class BranchingFactorGroupResult
-    {
-        [XmlIgnore]
-        public Dictionary<int, int> UsedNumbers = new Dictionary<int, int>();
-
-        [XmlIgnore]
-        public BPTreeNode NodeResult { get; set; }
-
-        //public List<int> InsertedNumbers
-        //{
-        //    get { return UsedNumbers.Keys.ToList(); }
-        //    set
-        //    {
-        //        UsedNumbers = new Dictionary<int, int>();
-        //        if (value != null)
-        //        {
-        //            foreach (var num in value)
-        //            {
-        //                UsedNumbers[num] = num;
-        //            }
-        //        }
-        //    }
-        //}
-        public long TestResult { get; set; }
-        public List<long> ReadResults = new List<long>();
-    }
+    
 }

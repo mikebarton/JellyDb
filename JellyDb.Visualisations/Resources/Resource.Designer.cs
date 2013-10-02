@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JellyDb.Visualisations.Properties {
+namespace JellyDb.Visualisations.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace JellyDb.Visualisations.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal Resource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace JellyDb.Visualisations.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JellyDb.Visualisations.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JellyDb.Visualisations.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,28 @@ namespace JellyDb.Visualisations.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
+        ///&lt;PerformanceTestResults xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+        ///  &lt;BranchFactorGroupResults&gt;
+        ///    &lt;BranchingFactorGroup&gt;
+        ///      &lt;SequentialResults&gt;
+        ///        &lt;BranchingFactorGroupResult&gt;
+        ///          &lt;ReadResults&gt;
+        ///            &lt;long&gt;1666&lt;/long&gt;
+        ///            &lt;long&gt;24&lt;/long&gt;
+        ///            &lt;long&gt;21&lt;/long&gt;
+        ///            &lt;long&gt;20&lt;/long&gt;
+        ///            &lt;long&gt;21&lt;/long&gt;
+        ///          &lt;/ReadResults&gt;
+        ///          &lt;TestResult&gt;24041166&lt;/TestResult&gt; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string PerfTestResults {
+            get {
+                return ResourceManager.GetString("PerfTestResults", resourceCulture);
             }
         }
     }

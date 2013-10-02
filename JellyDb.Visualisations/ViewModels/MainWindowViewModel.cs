@@ -5,6 +5,9 @@ using System.Text;
 using JellyDb.Core.Storage;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Xml.Serialization;
+using JellyDb.Core.Test.Performance;
+using System.IO;
 
 namespace JellyDb.Visualisations.ViewModels
 {
@@ -12,6 +15,8 @@ namespace JellyDb.Visualisations.ViewModels
     {
         public MainWindowViewModel()
         {
+            TestResults = new JellyDb.Core.Test.Performance.PerformanceTestResults();
+
             var node = new BPTreeNode(5);
             Stopwatch stop = new Stopwatch();
             stop.Start();
@@ -33,15 +38,15 @@ namespace JellyDb.Visualisations.ViewModels
                 }
             }
             stop.Stop();
-            //node = node.Insert(2, 2);
-            //node = node.Insert(7, 7);
-            //node = node.Insert(12, 12);
-            //node = node.Insert(1, 1);
-            //node = node.Insert(6, 6);
-            //node = node.Insert(15, 15);
-            //node = node.Insert(22, 22);
-            //node = node.Insert(3, 3);
+            
             TreeNode = node;
+
+            XmlSerializer ser = new XmlSerializer(typeof(PerformanceTestResults));
+            using(FileStream stream = File.OpenRead(@"..\..\Resources\PerfTestResults.xml"))
+            {
+                var result = ser.Deserialize(stream) as PerformanceTestResults;
+                TestResults = result;
+            }
         }
 
         private List<int> results = new List<int>();
@@ -68,6 +73,8 @@ namespace JellyDb.Visualisations.ViewModels
                 if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("TreeNode"));
             }
         }
+
+        public Core.Test.Performance.PerformanceTestResults TestResults { get; set; }
 
         public List<BPTreeNode> Root 
         {

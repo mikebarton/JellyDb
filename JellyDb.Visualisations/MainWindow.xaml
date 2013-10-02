@@ -5,38 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d" 
         xmlns:visualisations="clr-namespace:JellyDb.Visualisations"
-        xmlns:storage="clr-namespace:JellyDb.Core.Storage;assembly=JellyDb.Core"
+        xmlns:controls="clr-namespace:JellyDb.Visualisations.Controls"
+
         Title="MainWindow" Height="300" Width="1300" SizeToContent="WidthAndHeight" >
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/TreeGraphStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-
-            <HierarchicalDataTemplate DataType="{x:Type storage:BPTreeNode}" ItemsSource="{Binding Children}">
-                <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
-						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
-                    <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Key, StringFormat='{}{0}, '}"
-							               HorizontalAlignment="Center" 
-							               VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                </Border>
-            </HierarchicalDataTemplate>
-        </ResourceDictionary>
-    </Window.Resources>
+    
 
     <d:DesignProperties.DataContext>
         <Binding Path="MainViewModel">
@@ -47,6 +19,6 @@
     </d:DesignProperties.DataContext>
 
     <Grid>
-        <TreeView ItemContainerStyle="{StaticResource GraphStyle}" ItemsSource="{Binding Root}" />
+        <controls:BTree/>
     </Grid>
 </Window>
