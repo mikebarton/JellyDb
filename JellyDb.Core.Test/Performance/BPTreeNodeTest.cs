@@ -72,7 +72,7 @@ namespace JellyDb.Core.Test.Performance
 
             timer.Stop();
             result.TestResult = timer.ElapsedTicks;
-            result.NodeResult = node;
+            //result.NodeResult = node;
 
             for (int i = 0; i < 5; i++)
             {
@@ -103,7 +103,7 @@ namespace JellyDb.Core.Test.Performance
 
             timer.Stop();
             result.TestResult = timer.ElapsedTicks;
-            result.NodeResult = node;
+            //result.NodeResult = node;
 
             for (int i = 0; i < 5; i++)
             {
