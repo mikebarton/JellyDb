@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JellyDb.Visualisations.ViewModels;
 
 namespace JellyDb.Visualisations.Controls
 {
@@ -22,6 +23,7 @@ namespace JellyDb.Visualisations.Controls
         public BTree()
         {
             InitializeComponent();
+            DataContext = new BTreeViewModel();
         }
     }
 }

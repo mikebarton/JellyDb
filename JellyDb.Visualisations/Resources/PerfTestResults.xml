@@ -5,7 +5,6 @@
       <SequentialResults>
         <BranchingFactorGroupResult>
           <ReadResults>
-            <long>1666</long>
             <long>24</long>
             <long>21</long>
             <long>20</long>
@@ -770,17 +769,7 @@
             <long>248</long>
           </ReadResults>
           <TestResult>70167452</TestResult>
-        </BranchingFactorGroupResult>
-        <BranchingFactorGroupResult>
-          <ReadResults>
-            <long>345</long>
-            <long>335</long>
-            <long>330</long>
-            <long>329</long>
-            <long>328</long>
-          </ReadResults>
-          <TestResult>46244771722</TestResult>
-        </BranchingFactorGroupResult>
+        </BranchingFactorGroupResult>        
       </UnSequentialResults>
       <BranchingFactor>500</BranchingFactor>
     </BranchingFactorGroup>

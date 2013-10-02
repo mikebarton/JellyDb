@@ -16,8 +16,18 @@
         </Binding>
     </d:DesignProperties.DataContext>
     <Grid>
-        <chartingToolkit:Chart Height="262" HorizontalAlignment="Left" Margin="33,0,0,620" Name="columnChart" Title="Column Series Demo" VerticalAlignment="Bottom" Width="360">
-            <chartingToolkit:ColumnSeries DependentValuePath="TestResult" IndependentValuePath="TestResult" ItemsSource="{Binding TestResults.BranchFactorGroupResults.SequentialResults}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <chartingToolkit:Chart Grid.Column="0" Height="600"  Name="insertChart" Title="Insert Times" Width="600">
+            <chartingToolkit:ColumnSeries Title="Sequential Insert Times" DependentValuePath="TestResult" IndependentValuePath="BranchFactor" ItemsSource="{Binding SequentialResults}" />
+            <chartingToolkit:ColumnSeries Title="UnSequential Insert Times"  DependentValuePath="TestResult" IndependentValuePath="BranchFactor" ItemsSource="{Binding UnSequentialResults}" />
+        </chartingToolkit:Chart>
+
+        <chartingToolkit:Chart Height="600" Grid.Column="1" Name="readChart" Title="Read Times" Width="600">
+            <chartingToolkit:ColumnSeries Title="Sequential read Times" DependentValuePath="TestResult" IndependentValuePath="BranchFactor" ItemsSource="{Binding SequentialReadResults}" />
+            <chartingToolkit:ColumnSeries Title="UnSequential read Times"  DependentValuePath="TestResult" IndependentValuePath="BranchFactor" ItemsSource="{Binding UnSequentialReadResults}" />
         </chartingToolkit:Chart>
     </Grid>
 </UserControl>

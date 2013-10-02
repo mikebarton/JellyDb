@@ -15,7 +15,7 @@ namespace JellyDb.Core.Test.Performance
     public class BPTreeNodeTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TimingTest()
         {
             List<int> branchingFactor = new List<int>() { 5, 10, 30, 50, 100, 150, 200, 300,500 };
 
@@ -32,6 +32,56 @@ namespace JellyDb.Core.Test.Performance
                 XmlSerializer ser = new XmlSerializer(typeof(PerformanceTestResults));
                 ser.Serialize(stream, result);
             }
+        }
+
+        [TestMethod]
+        public void IndexSequentialTest()
+        {
+            BPTreeNode node = new BPTreeNode(10);
+            for (int i = 1; i <= 1000000; i++)
+            {
+                node = node.Insert(i, i);
+            }
+
+            if (File.Exists(@"C:\temp\node.xml")) File.Delete(@"C:\temp\node.xml");
+
+            using (FileStream stream = File.Create(@"C:\temp\node.xml"))
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode));
+                ser.Serialize(stream, node);
+            }
+        }
+
+        [TestMethod]
+        public void IndexNonSequentialTest()
+        {
+            BPTreeNode node = new BPTreeNode(10);
+            for (int i = 1; i <= 1000000; i++)
+            {
+                var num = GenerateRandomNumber();
+                node = node.Insert(num, num);
+            }
+
+            if (File.Exists(@"C:\temp\node.xml")) File.Delete(@"C:\temp\node.xml");
+
+            using (FileStream stream = File.Create(@"C:\temp\node.xml"))
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode));
+                ser.Serialize(stream, node);
+            }
+        }
+
+        private List<int> results = new List<int>();
+        public long GenerateRandomNumber(Random random = null)
+        {
+            if (random == null) random = new Random();
+            var result = random.Next(1, 999999999);
+            if (!results.Contains(result))
+            {
+                results.Add(result);
+                return result;
+            }
+            return GenerateRandomNumber(random);
         }
     }
 

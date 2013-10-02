@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace JellyDb.Core.Storage
 {
+    [Serializable]
     public class BPTreeNode
     {
         private int _branchingFactor = -1;
-        public BPTreeNode(int branchingFactor)
+        public BPTreeNode(int branchingFactor) : this()
         {
             this._branchingFactor = branchingFactor;
         }
 
+        [XmlIgnore]
         public int BranchingFactor
         {
             get { return _branchingFactor; }
@@ -31,7 +34,9 @@ namespace JellyDb.Core.Storage
             MaxKey = long.MaxValue;
         }
         
+        [XmlIgnore]
         public BPTreeNode Parent { get; set; }
+
         public long? MaxKey { get; set; }
         public long? MinKey { get; set; }
 
@@ -142,9 +147,15 @@ namespace JellyDb.Core.Storage
             set { _children = value; }
         }
 
+        [XmlIgnore]
         public SortedList<long,long> Data
         {
             get { return _data; }
+        }
+
+        public List<long> SerializableData
+        {
+            get { return Data.Keys.ToList(); }
         }
 
         public bool IsLeafNode 

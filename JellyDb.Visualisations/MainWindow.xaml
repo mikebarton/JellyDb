@@ -9,16 +9,14 @@
 
         Title="MainWindow" Height="300" Width="1300" SizeToContent="WidthAndHeight" >
     
-
-    <d:DesignProperties.DataContext>
-        <Binding Path="MainViewModel">
-            <Binding.Source>
-                <visualisations:DesignTime/>
-            </Binding.Source>
-        </Binding>
-    </d:DesignProperties.DataContext>
-
     <Grid>
-        <controls:BTree/>
+        <TabControl Width="1300" Height="700">
+            <TabItem Header="Tree Demo">
+                <controls:BTree/>
+            </TabItem>
+            <TabItem Header="Test Results">
+                <controls:PerfTestResultsGraph/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

@@ -77,7 +77,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\BTreeViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PerfTestResultsViewModel.cs" />
     <Page Include="Controls\BTree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
