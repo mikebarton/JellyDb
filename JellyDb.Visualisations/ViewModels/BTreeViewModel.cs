@@ -12,7 +12,7 @@ namespace JellyDb.Visualisations.ViewModels
     {
         public BTreeViewModel()
         {
-            var node = new BPTreeNode(5);
+            BPTreeNode<int, int> node = new IntTreeNode(5);
             Stopwatch stop = new Stopwatch();
             stop.Start();
             for (int i = 1; i < 20; i++)
@@ -27,7 +27,7 @@ namespace JellyDb.Visualisations.ViewModels
             }
             stop.Stop();
 
-            TreeNode = node;
+            TreeNode = (IntTreeNode)node;
         }
 
         private List<int> results = new List<int>();
@@ -43,9 +43,9 @@ namespace JellyDb.Visualisations.ViewModels
             return GenerateRandomNumber(random);
         }
 
-        private BPTreeNode _node;
+        private IntTreeNode _node;
 
-        public BPTreeNode TreeNode
+        public IntTreeNode TreeNode
         {
             get { return _node; }
             set
@@ -55,9 +55,9 @@ namespace JellyDb.Visualisations.ViewModels
             }
         }
 
-        public List<BPTreeNode> Root
+        public List<IntTreeNode> Root
         {
-            get { return new List<BPTreeNode>() { _node }; }
+            get { return new List<IntTreeNode>() { _node }; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -37,7 +37,7 @@ namespace JellyDb.Core.Test.Performance
         [TestMethod]
         public void IndexSequentialTest()
         {
-            BPTreeNode node = new BPTreeNode(10);
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(10);
             for (int i = 1; i <= 1000000; i++)
             {
                 node = node.Insert(i, i);
@@ -47,7 +47,7 @@ namespace JellyDb.Core.Test.Performance
 
             using (FileStream stream = File.Create(@"C:\temp\node.xml"))
             {
-                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode));
+                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode<int, int>));
                 ser.Serialize(stream, node);
             }
         }
@@ -55,7 +55,7 @@ namespace JellyDb.Core.Test.Performance
         [TestMethod]
         public void IndexNonSequentialTest()
         {
-            BPTreeNode node = new BPTreeNode(10);
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(10);
             for (int i = 1; i <= 1000000; i++)
             {
                 var num = GenerateRandomNumber();
@@ -66,13 +66,13 @@ namespace JellyDb.Core.Test.Performance
 
             using (FileStream stream = File.Create(@"C:\temp\node.xml"))
             {
-                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode));
+                XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode<int, int>));
                 ser.Serialize(stream, node);
             }
         }
 
         private List<int> results = new List<int>();
-        public long GenerateRandomNumber(Random random = null)
+        public int GenerateRandomNumber(Random random = null)
         {
             if (random == null) random = new Random();
             var result = random.Next(1, 999999999);
@@ -90,12 +90,12 @@ namespace JellyDb.Core.Test.Performance
         public List<int> BranchFactors { get; set; }
         public int InsertionsToPerform { get; set; }
 
-        private long GetRandomNumber(Dictionary<int,int> numberTracker, Random rnd = null)
+        private int GetRandomNumber(Dictionary<int,int> numberTracker, Random rnd = null)
         {
             return GetRandomNumber(1, 999999999, numberTracker, rnd);
         }
 
-        private long GetRandomNumber(int min, int max, Dictionary<int, int> numberTracker, Random rnd = null)
+        private int GetRandomNumber(int min, int max, Dictionary<int, int> numberTracker, Random rnd = null)
         {
             if (rnd == null) rnd = new Random();
             var num = rnd.Next(min, max);
@@ -112,7 +112,7 @@ namespace JellyDb.Core.Test.Performance
             var result = new BranchingFactorGroupResult();
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            var node = new BPTreeNode();
+            var node = new BPTreeNode<int, int>();
             node.BranchingFactor = branchFactor;
 
             for (int i = 1; i < numInsertions+1; i++)
@@ -140,7 +140,7 @@ namespace JellyDb.Core.Test.Performance
             var result = new BranchingFactorGroupResult();
             Stopwatch timer = new Stopwatch();
             timer.Start();
-            var node = new BPTreeNode();
+            var node = new BPTreeNode<int, int>();
             node.BranchingFactor = branchFactor;
 
             for (int i = 1; i < numInsertions + 1; i++)

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:visualisations="clr-namespace:JellyDb.Visualisations"
-             xmlns:storage="clr-namespace:JellyDb.Core.Storage;assembly=JellyDb.Core"
+             xmlns:inter="clr-namespace:JellyDb.Visualisations.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="1300">
     <UserControl.Resources>
@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="../Resources/Styles/TreeGraphStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <HierarchicalDataTemplate DataType="{x:Type storage:BPTreeNode}" ItemsSource="{Binding Children}">
+            <HierarchicalDataTemplate DataType="{x:Type inter:IntTreeNode}" ItemsSource="{Binding Children}">
                 <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
 						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
                     <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">

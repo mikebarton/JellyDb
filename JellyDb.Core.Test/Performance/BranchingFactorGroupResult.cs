@@ -18,7 +18,7 @@ namespace JellyDb.Core.Test.Performance
         public Dictionary<int, int> UsedNumbers = new Dictionary<int, int>();
 
         [XmlIgnore]
-        public BPTreeNode NodeResult { get; set; }
+        public BPTreeNode<int,int> NodeResult { get; set; }
 
         //public List<int> InsertedNumbers
         //{

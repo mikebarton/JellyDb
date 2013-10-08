@@ -13,7 +13,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         [TestMethod]
         public void CreateSingleNode()
         {
-            var node = new BPTreeNode();
+            var node = new BPTreeNode<int, int>();
             node = node.Insert(1, 123);
             
             Assert.IsTrue(TestNode(node, 1, 123));
@@ -22,7 +22,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         [TestMethod]
         public void CreateNodeAndInsertSequentially()
         {
-            var node = new BPTreeNode();
+            var node = new BPTreeNode<int, int>();
             node = node.Insert(1, 1);
             Assert.IsTrue(TestNode(node, 1, 1));
 
@@ -160,7 +160,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         }
 
 
-        private bool TestNode(BPTreeNode node, long key, long data)
+        private bool TestNode(BPTreeNode<int,int> node, long key, long data)
         {
             if (node == null) return false;
             return node.Data.Any(n => n.Key == key && n.Value == data);
