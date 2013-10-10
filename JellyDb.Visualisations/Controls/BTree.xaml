@@ -13,7 +13,7 @@
                 <ResourceDictionary Source="../Resources/Styles/TreeGraphStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <HierarchicalDataTemplate DataType="{x:Type inter:IntTreeNode}" ItemsSource="{Binding Children}">
+            <HierarchicalDataTemplate x:Key="template" ItemsSource="{Binding Children}">
                 <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
 						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
                     <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">
@@ -46,6 +46,6 @@
     </d:DesignProperties.DataContext>
 
     <Grid>
-        <TreeView ItemContainerStyle="{StaticResource GraphStyle}" ItemsSource="{Binding Root}" />
+        <TreeView ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
     </Grid>
 </UserControl>

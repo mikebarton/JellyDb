@@ -27,7 +27,7 @@ namespace JellyDb.Visualisations.ViewModels
             }
             stop.Stop();
 
-            TreeNode = (IntTreeNode)node;
+            TreeNode = node;
         }
 
         private List<int> results = new List<int>();
@@ -43,9 +43,9 @@ namespace JellyDb.Visualisations.ViewModels
             return GenerateRandomNumber(random);
         }
 
-        private IntTreeNode _node;
+        private BPTreeNode<int, int> _node;
 
-        public IntTreeNode TreeNode
+        public BPTreeNode<int, int> TreeNode
         {
             get { return _node; }
             set
@@ -55,9 +55,9 @@ namespace JellyDb.Visualisations.ViewModels
             }
         }
 
-        public List<IntTreeNode> Root
+        public List<BPTreeNode<int, int>> Root
         {
-            get { return new List<IntTreeNode>() { _node }; }
+            get { return new List<BPTreeNode<int, int>>() { _node }; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
