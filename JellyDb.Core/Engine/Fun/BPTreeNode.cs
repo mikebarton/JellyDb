@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JellyDb.Core.Storage
+namespace JellyDb.Core.Engine.Fun
 {
     [Serializable]
     public class BPTreeNode<TKey, TData>

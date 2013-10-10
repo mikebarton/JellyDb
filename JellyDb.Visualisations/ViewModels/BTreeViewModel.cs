@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JellyDb.Core.Storage;
+using JellyDb.Core.Engine.Fun;
 using System.ComponentModel;
 using System.Diagnostics;
 
@@ -12,7 +12,7 @@ namespace JellyDb.Visualisations.ViewModels
     {
         public BTreeViewModel()
         {
-            BPTreeNode<int, int> node = new IntTreeNode(5);
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(5);
             Stopwatch stop = new Stopwatch();
             stop.Start();
             for (int i = 1; i < 20; i++)

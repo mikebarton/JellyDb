@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Fun\Database.cs" />
+    <Compile Include="Engine\Fun\DataPage.cs" />
+    <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
     <Compile Include="Sql\Dml\AdditionOperator.cs" />
@@ -98,10 +101,11 @@
     <Compile Include="Sql\Dml\SubtractionOperator.cs" />
     <Compile Include="Sql\Dml\Term.cs" />
     <Compile Include="Sql\Dml\ValueTerm.cs" />
-    <Compile Include="Storage\BPTreeNode.cs" />
-    <Compile Include="Storage\IntComparer.cs" />
-    <Compile Include="Storage\ITypeComparer.cs" />
-    <Compile Include="Storage\TypeComparer.cs" />
+    <Compile Include="Engine\Fun\BPTreeNode.cs" />
+    <Compile Include="Engine\Fun\IntComparer.cs" />
+    <Compile Include="Engine\Fun\ITypeComparer.cs" />
+    <Compile Include="Engine\Fun\TypeComparer.cs" />
+    <Compile Include="Storage\IDataStorage.cs" />
     <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />

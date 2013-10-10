@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using JellyDb.Core.Storage;
+using JellyDb.Core.Engine.Fun;
 
 namespace JellyDb.Core.Test.Performance
 {
