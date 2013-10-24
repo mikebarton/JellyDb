@@ -8,6 +8,6 @@ namespace JellyDb.Core.Storage
     public interface IDataStorage
     {
         byte[] Read(long offset, long length);
-        long Write(long offset, long length, byte[] buffer, long startIndex);
+        void Write(long offset, long length, byte[] buffer, long startIndex);
     }
 }

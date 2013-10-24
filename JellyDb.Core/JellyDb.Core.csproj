@@ -52,6 +52,7 @@
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataPage.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
+    <Compile Include="Engine\Fun\IndexResult.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
     <Compile Include="Sql\Dml\AdditionOperator.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
+    <Compile Include="Storage\InMemoryStorage.cs" />
     <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />
