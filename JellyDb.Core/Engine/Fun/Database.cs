@@ -19,8 +19,11 @@ namespace JellyDb.Core.Engine.Fun
         private void InitializeNewDataStorage()
         {
             _dataStorage = new InMemoryStorage();
-            var indexSize = _dataStorage.Read(0, 4);//read first int
-            //BitConverter.ToInt32(indexSize);
+            var indexSizeBytes = _dataStorage.Read(0, 4);//read first int
+            var indexSize = BitConverter.ToInt32(indexSizeBytes, 0);
+
+            var indexBytes = _dataStorage.Read(1, indexSize);
+
         }
 
         private void WriteIndex()

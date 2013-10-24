@@ -53,6 +53,7 @@
     <Compile Include="Engine\Fun\DataPage.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Engine\Fun\IndexResult.cs" />
+    <Compile Include="Engine\Fun\NodeExtensions.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
     <Compile Include="Sql\Dml\AdditionOperator.cs" />
