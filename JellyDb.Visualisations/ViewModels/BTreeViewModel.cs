@@ -15,7 +15,7 @@ namespace JellyDb.Visualisations.ViewModels
             BPTreeNode<int, int> node = new BPTreeNode<int, int>(5);
             Stopwatch stop = new Stopwatch();
             stop.Start();
-            for (int i = 1; i < 20; i++)
+            for (int i = 1; i < 30; i++)
             {
                 var num = i;
 

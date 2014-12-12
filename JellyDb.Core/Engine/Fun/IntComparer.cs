@@ -24,12 +24,12 @@ namespace JellyDb.Core.Engine.Fun
 
         public int Decrement(int input)
         {
-            return input--;
+            return input - 1; ;
         }
 
         public int Increment(int input)
         {
-            return input++;
+            return input + 1;
         }
     }
 }
