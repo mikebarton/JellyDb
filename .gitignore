@@ -25,3 +25,4 @@ JellyDb.Visualisations/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.ca
 JellyDb.Visualisations/obj/x86/Debug/JellyDb.Visualisations_MarkupCompile.i.cache
 JellyDb.Visualisations/obj/x86/Debug/MainWindow.g.i.cs
 packages/System.*
+JellyDb.Visualisations/obj/*
