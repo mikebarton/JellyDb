@@ -3,7 +3,7 @@ JellyDb.Core.Test/obj
 JellyDb.Core/bin
 JellyDb.Core/obj
 *.suo
-JellyDb.Visualisations/obj
+JellyDb.Visualisations/obj/*
 JellyDb.Visualisations/bin
 TestResults/*
 JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
@@ -26,3 +26,5 @@ JellyDb.Visualisations/obj/x86/Debug/JellyDb.Visualisations_MarkupCompile.i.cach
 JellyDb.Visualisations/obj/x86/Debug/MainWindow.g.i.cs
 packages/System.*
 JellyDb.Visualisations/obj/*
+JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
+JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs

@@ -13,15 +13,16 @@ namespace JellyDb.Visualisations.ViewModels
         public BTreeViewModel()
         {
             BPTreeNode<int, int> node = new BPTreeNode<int, int>(5);
+            TreeNode = node;
             Stopwatch stop = new Stopwatch();
             stop.Start();
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i <= 20; i++)
             {
-                var num = i;
+                //var num = i;
 
-                //stop.Stop();
-                //var num = GenerateRandomNumber();
-                //stop.Start();
+                stop.Stop();
+                var num = GenerateRandomNumber();
+                stop.Start();
 
                 node = node.Insert(num, num);
             }
@@ -31,7 +32,7 @@ namespace JellyDb.Visualisations.ViewModels
         }
 
         private List<int> results = new List<int>();
-        public long GenerateRandomNumber(Random random = null)
+        public int GenerateRandomNumber(Random random = null)
         {
             if (random == null) random = new Random();
             var result = random.Next(1, 100);

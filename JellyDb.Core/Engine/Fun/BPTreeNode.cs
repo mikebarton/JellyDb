@@ -109,12 +109,13 @@ namespace JellyDb.Core.Engine.Fun
             var splitElem = _data.ElementAt(splitIndex);
             left.MaxKey = _comparer.Decrement(splitElem.Key);
 
-            for (int i = _data.Count-1; i >= splitIndex; i--)
+            for (int i = _data.Count-1; i > splitIndex; i--)
             {
                 var elem = _data.ElementAt(i);
                 right.Insert(elem.Key, elem.Value);
                 _data.RemoveAt(i);
-            }   
+            }
+            _data.RemoveAt(splitIndex);
             
             foreach (var child in _children.Where(c=>_comparer.Compare( c.MinKey, splitElem.Key) >= 0).ToList())
             {
