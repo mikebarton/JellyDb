@@ -12,17 +12,25 @@ namespace JellyDb.Visualisations.ViewModels
     {
         public BTreeViewModel()
         {
-            BPTreeNode<int, int> node = new BPTreeNode<int, int>(2);
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(3);
             TreeNode = node;
             Stopwatch stop = new Stopwatch();
             stop.Start();
 
             node = node.Insert(5, 5);
             node = node.Insert(1, 1);
-            //node = node.Insert(3, 3);
-            //node = node.Insert(4, 4);
-            //node = node.Insert(2, 2);
-            //for (int i = 1; i <= 20; i++)
+            node = node.Insert(3, 3);
+            node = node.Insert(2, 2);
+
+            node = node.Insert(4, 4);
+            node = node.Insert(22, 22);
+            node = node.Insert(8, 8);
+            node = node.Insert(14, 14);
+            node = node.Insert(17, 17);
+            node = node.Insert(20, 20);
+            node = node.Insert(16, 16);
+            node = node.Insert(18, 18);
+            //for (int i = 1; i <= 99; i++)
             //{
             //    //var num = i;
 
