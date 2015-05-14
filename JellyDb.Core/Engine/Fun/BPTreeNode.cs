@@ -82,7 +82,7 @@ namespace JellyDb.Core.Engine.Fun
             node.Parent = this;
             var keyIndex = _data.IndexOfKey(key);
 
-            var grandChildKey = node.Data.Keys.First();
+            var grandChildKey = node.Data.Keys.FirstOrDefault();
             if (_comparer.Compare( grandChildKey, key) < 0)
             {
                 node.MaxKey = _comparer.Decrement(key);
@@ -132,12 +132,12 @@ namespace JellyDb.Core.Engine.Fun
             Parent.InsertChildNode(right, splitElem.Key, splitElem.Value);
         }
 
-        public bool IsKeyInNodeRange(TKey key)
+        private bool IsKeyInNodeRange(TKey key)
         {
             if (_comparer.Compare(MaxKey, MinKey) == 0 && MinKey == null) return false;
             if (MaxKey == null && MinKey != null && _comparer.Compare(MinKey, key) <= 0) return true;
             if (MinKey == null && MaxKey != null && _comparer.Compare(MaxKey,key) > 0) return true;
-            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) <= 0 && _comparer.Compare(MaxKey, key) > 0) return true;
+            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) < 0 && _comparer.Compare(MaxKey, key) >= 0) return true;
             return false;
         }
         
