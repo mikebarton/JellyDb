@@ -28,3 +28,4 @@ packages/System.*
 JellyDb.Visualisations/obj/*
 JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
 JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
+*.cache

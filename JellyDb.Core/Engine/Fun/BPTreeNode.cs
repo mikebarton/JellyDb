@@ -92,7 +92,7 @@ namespace JellyDb.Core.Engine.Fun
             else
             {
                 node.MinKey = key;
-                if (keyIndex < _data.Count - 1) node.MaxKey = _data.Keys.ElementAt(++keyIndex);
+                if (keyIndex < _data.Count - 1) node.MaxKey = _comparer.Decrement(_data.Keys.ElementAt(++keyIndex));
                 else node.MaxKey = _comparer.MaxKey;    
             }
 

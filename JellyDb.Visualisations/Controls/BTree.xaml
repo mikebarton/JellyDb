@@ -16,7 +16,9 @@
             <HierarchicalDataTemplate x:Key="template" ItemsSource="{Binding Children}">
                 <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
 						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
-                    <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">
+                    <DockPanel>
+                        <TextBlock Text="{Binding MinKey}" FontSize="8" VerticalAlignment="Bottom" Foreground="Green"/>
+                        <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
@@ -32,6 +34,8 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+                        <TextBlock Text="{Binding MaxKey}" FontSize="8"  VerticalAlignment="Bottom" Foreground="Green"/>
+                    </DockPanel>
 
                 </Border>
             </HierarchicalDataTemplate>
@@ -46,6 +50,15 @@
     </d:DesignProperties.DataContext>
 
     <Grid>
-        <TreeView ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="60" Text="{Binding TextValue, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Insert" Command="{Binding InsertCommand}"/>
+            <Button Content="Reset" Command="{Binding ResetCommand}"/>
+        </StackPanel>        
+        <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
     </Grid>
 </UserControl>

@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\BTree.xaml.cs">
       <DependentUpon>BTree.xaml</DependentUpon>
     </Compile>
