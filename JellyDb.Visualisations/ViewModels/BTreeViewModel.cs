@@ -11,6 +11,7 @@ namespace JellyDb.Visualisations.ViewModels
 {
     public class BTreeViewModel : INotifyPropertyChanged
     {
+        private List<int> _history = new List<int>();
         public BTreeViewModel()
         {
             BPTreeNode<int, int> node = new BPTreeNode<int, int>(3);
@@ -18,25 +19,7 @@ namespace JellyDb.Visualisations.ViewModels
             //Stopwatch stop = new Stopwatch();
             //stop.Start();
 
-            //node = node.Insert(5, 5);
-            //node = node.Insert(1, 1);
-            //node = node.Insert(3, 3);
-            //node = node.Insert(2, 2);
-
-            //node = node.Insert(4, 4);
-            //node = node.Insert(22, 22);
-            //node = node.Insert(8, 8);
-            //node = node.Insert(14, 14);
-            //node = node.Insert(17, 17);
-            //node = node.Insert(20, 20);
-            //node = node.Insert(16, 16);
-            //node = node.Insert(18, 18);
-            //node = node.Insert(19, 19);
-            //node = node.Insert(6, 6);
-            //node = node.Insert(7, 7);
-
-
-            //for (int i = 1; i <= 99; i++)
+            //for (int i = 1; i <= 999; i++)
             //{
             //    //var num = i;
 
@@ -56,23 +39,44 @@ namespace JellyDb.Visualisations.ViewModels
                 {
                     TreeNode = TreeNode.Insert(val, val);
                     PropertyChanged(this, new PropertyChangedEventArgs("Root"));
+                    _history.Add(val);
+                }
+                else
+                {
+                    var elems = TextValue.Split(new[]{","}, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var e in elems)
+                    {
+                        int v = 0;
+                        if (int.TryParse(e, out v))
+                        {
+                            TreeNode = TreeNode.Insert(v, v);
+                            PropertyChanged(this, new PropertyChangedEventArgs("Root"));
+                            _history.Add(v);
+                        }
+                    }
                 }
                 TextValue = null;
                 PropertyChanged(this, new PropertyChangedEventArgs("TextValue"));
+                PropertyChanged(this, new PropertyChangedEventArgs("History"));
+                PropertyChanged(this, new PropertyChangedEventArgs("HistoryString"));
 
             });
             ResetCommand = new DelegateCommand(o => true, o =>
             {
                 TreeNode = new BPTreeNode<int, int>(3);
                 PropertyChanged(this, new PropertyChangedEventArgs("Root"));
+                _history = new List<int>();
+                PropertyChanged(this, new PropertyChangedEventArgs("History"));
             });
+
+            //TextValue = "50,100,20,150,40,10,30,18,2,19,15";
         }
 
         private List<int> results = new List<int>();
         private int GenerateRandomNumber(Random random = null)
         {
             if (random == null) random = new Random();
-            var result = random.Next(1, 100);
+            var result = random.Next(1, 1000);
             if (!results.Contains(result))
             {
                 results.Add(result);
@@ -91,6 +95,23 @@ namespace JellyDb.Visualisations.ViewModels
                 _node = value;
                 if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("TreeNode"));
             }
+        }
+
+        public List<int> History
+        {
+            get
+            {
+                return _history;
+            }
+            set
+            {
+                _history = value;
+            }
+        }
+
+        public string HistoryString
+        {
+            get { return string.Join(",", History); }
         }
 
         private string _textValue;

@@ -19,7 +19,9 @@ namespace JellyDb.Core.Engine.Fun
 
         public int Compare(int one, int two)
         {
-            return one == two ? 0 : one < two ? -1 : 1;
+            return one == two ? 0 
+                : one < two ? -1 
+                : 1;
         }
 
         public int Decrement(int input)

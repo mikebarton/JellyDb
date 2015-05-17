@@ -93,11 +93,23 @@ namespace JellyDb.Core.Engine.Fun
             {
                 node.MinKey = key;
                 if (keyIndex < _data.Count - 1) node.MaxKey = _comparer.Decrement(_data.Keys.ElementAt(++keyIndex));
-                else node.MaxKey = _comparer.MaxKey;    
+                else node.MaxKey = FindMyMaxKey(node);    
             }
 
             _children.Add(node);
             if (IsFull) SplitNode();
+        }
+
+        private TKey FindMyMaxKey(BPTreeNode<TKey,TData> node)
+        {
+            var x = _children.SkipWhile(y => _comparer.Compare(y.MinKey, node.MinKey) <= 0).FirstOrDefault();
+            
+            if (x == null || _comparer.Compare(x.MinKey, node.MinKey) == 0)
+            {
+                if(Parent != null) return Parent.FindMyMaxKey(node);
+                return _comparer.MaxKey;
+            }
+            else return _comparer.Decrement(x.MinKey);
         }
 
         private void SplitNode()

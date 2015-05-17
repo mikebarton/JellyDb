@@ -34,9 +34,8 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                        <TextBlock Text="{Binding MaxKey}" FontSize="8"  VerticalAlignment="Bottom" Foreground="Green"/>
+                    <TextBlock Text="{Binding MaxKey}" FontSize="8"  VerticalAlignment="Bottom" Foreground="Green"/>
                     </DockPanel>
-
                 </Border>
             </HierarchicalDataTemplate>
         </ResourceDictionary>
@@ -53,12 +52,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <TextBox Width="60" Text="{Binding TextValue, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Width="800" Text="{Binding TextValue, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Insert" Command="{Binding InsertCommand}"/>
             <Button Content="Reset" Command="{Binding ResetCommand}"/>
         </StackPanel>        
         <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
+        <DockPanel Grid.Row="2">
+            <TextBlock Text="History:" HorizontalAlignment="Left"/>
+            <TextBox Text="{Binding HistoryString, Mode=OneWay}" Width="800" HorizontalAlignment="Left"/>
+        </DockPanel>
     </Grid>
 </UserControl>
