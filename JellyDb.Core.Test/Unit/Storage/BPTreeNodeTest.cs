@@ -13,7 +13,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         [TestMethod]
         public void CreateSingleNode()
         {
-            var node = new BPTreeNode<int, int>();
+            var node = new BPTreeNode<int, int>(10);
             node = node.Insert(1, 123);
             
             Assert.IsTrue(TestNode(node, 1, 123));
@@ -22,142 +22,24 @@ namespace JellyDb.Core.Test.Unit.Storage
         [TestMethod]
         public void CreateNodeAndInsertSequentially()
         {
-            var node = new BPTreeNode<int, int>();
-            node = node.Insert(1, 1);
-            Assert.IsTrue(TestNode(node, 1, 1));
+            var node = new BPTreeNode<int, int>(10);
 
-            node = node.Insert(2, 2);
-            Assert.IsTrue(TestNode(node, 1, 1));
-            Assert.IsTrue(TestNode(node, 2, 2));
+            // insert arbitrary calc based on i to spice things up and know that it isn't just returning the key
+            Func<int,int> calcData = num => ((int)(((num + 3) * 5) / 4));
 
-            node = node.Insert(3, 3);
-            Assert.IsTrue(TestNode(node, 1, 1));
-            Assert.IsTrue(TestNode(node, 2, 2));
-            Assert.IsTrue(TestNode(node, 3, 3));
-
-            node = node.Insert(4, 4);
-            Assert.IsTrue(TestNode(node, 1, 1));
-            Assert.IsTrue(TestNode(node, 2, 2));
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 4, 4));
-
-            node = node.Insert(5, 5);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node.Children[0], 1,1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[1], 5, 5));
-
-            node = node.Insert(6, 6);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[1], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[1], 6, 6));
-
-            node = node.Insert(7, 7);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[2], 7, 7));
-
-            node = node.Insert(8, 8);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[2], 7, 7));
-            Assert.IsTrue(TestNode(node.Children[2], 8, 8));
-
-            node = node.Insert(9, 9);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node, 7, 7));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[3], 7, 7));
-            Assert.IsTrue(TestNode(node.Children[3], 8, 8));
-            Assert.IsTrue(TestNode(node.Children[3], 9, 9));
-
-            node = node.Insert(10, 10);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node, 7, 7));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[3], 7, 7));
-            Assert.IsTrue(TestNode(node.Children[3], 8, 8));
-            Assert.IsTrue(TestNode(node.Children[3], 9, 9));
-            Assert.IsTrue(TestNode(node.Children[3], 10, 10));
-
-            node = node.Insert(11, 11);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node, 7, 7));
-            Assert.IsTrue(TestNode(node, 9, 9));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[3], 7, 7));
-            Assert.IsTrue(TestNode(node.Children[3], 8, 8));
-            Assert.IsTrue(TestNode(node.Children[4], 9, 9));
-            Assert.IsTrue(TestNode(node.Children[4], 10, 10));
-            Assert.IsTrue(TestNode(node.Children[4], 11, 11));
-
-            node = node.Insert(12, 12);
-            Assert.IsTrue(TestNode(node, 3, 3));
-            Assert.IsTrue(TestNode(node, 5, 5));
-            Assert.IsTrue(TestNode(node, 7, 7));
-            Assert.IsTrue(TestNode(node, 9, 9));
-            Assert.IsTrue(TestNode(node.Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[2], 6, 6));
-            Assert.IsTrue(TestNode(node.Children[3], 7, 7));
-            Assert.IsTrue(TestNode(node.Children[3], 8, 8));
-            Assert.IsTrue(TestNode(node.Children[4], 9, 9));
-            Assert.IsTrue(TestNode(node.Children[4], 10, 10));
-            Assert.IsTrue(TestNode(node.Children[4], 11, 11));
-            Assert.IsTrue(TestNode(node.Children[4], 12, 12));
-
-            node = node.Insert(13, 13);
-            Assert.IsTrue(TestNode(node, 7, 7));
-            Assert.IsTrue(TestNode(node.Children[0], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[0], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[1], 9, 9));
-            Assert.IsTrue(TestNode(node.Children[1], 11, 11));
-            Assert.IsTrue(TestNode(node.Children[0].Children[0], 1, 1));
-            Assert.IsTrue(TestNode(node.Children[0].Children[0], 2, 2));
-            Assert.IsTrue(TestNode(node.Children[0].Children[1], 3, 3));
-            Assert.IsTrue(TestNode(node.Children[0].Children[1], 4, 4));
-            Assert.IsTrue(TestNode(node.Children[0].Children[2], 5, 5));
-            Assert.IsTrue(TestNode(node.Children[0].Children[2], 6, 6));
+            for (int i = 0; i < 1000; i++)
+            {
+                
+                node = node.Insert(i, calcData(i)); 
+                for (int j = 0; j <= i; j++)
+                {
+                    var retrieved = node.Query(j);
+                    Assert.AreEqual(retrieved, calcData(j));
+                }
+            }              
         }
+
+        
 
 
         private bool TestNode(BPTreeNode<int,int> node, long key, long data)

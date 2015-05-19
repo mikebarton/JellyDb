@@ -117,7 +117,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         public void CreateBigFileTest()
         {
             Stopwatch sw = new Stopwatch();
-            byte[] data = CreateTestByteArray((1024 * 1024), 100);
+            byte[] data = CreateTestByteArray((1024 * 1024), 1024);
             using (target = new FileDataPersistence())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();

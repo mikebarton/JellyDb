@@ -11,7 +11,7 @@ using System.IO;
 
 namespace JellyDb.Core.Test.Performance
 {
-    [TestClass]
+    [TestClass][Ignore]
     public class BPTreeNodeTest
     {
         [TestMethod]

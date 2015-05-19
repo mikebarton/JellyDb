@@ -32,6 +32,7 @@ namespace JellyDb.Core.Engine.Fun
 
         public BPTreeNode()
         {
+            this._branchingFactor = 5;
             _comparer = new TypeComparer<TKey>();
         }
         
