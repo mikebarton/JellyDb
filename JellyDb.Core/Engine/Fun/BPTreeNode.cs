@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    [Serializable][XmlRoot(ElementName = "N")]
+    [Serializable][XmlRoot(ElementName = "Node")]
     public class BPTreeNode<TKey, TData>
     {
         private int _branchingFactor = -1;
@@ -38,10 +38,10 @@ namespace JellyDb.Core.Engine.Fun
         [XmlIgnore]
         public BPTreeNode<TKey, TData> Parent { get; set; }
 
-        [XmlElement(ElementName = "M")]
+        [XmlElement(ElementName = "MaxKey")]
         public TKey MaxKey { get; set; }
 
-        [XmlElement(ElementName = "m")]
+        [XmlElement(ElementName = "MinKey")]
         public TKey MinKey { get; set; }
 
 
@@ -158,8 +158,8 @@ namespace JellyDb.Core.Engine.Fun
             get { return _data.Count >= BranchingFactor; }
         }
 
-        [XmlArray(ElementName = "C")]
-        [XmlArrayItem(ElementName = "N")]
+        [XmlArray(ElementName = "Children")]
+        [XmlArrayItem(ElementName = "Node")]
         public List<BPTreeNode<TKey, TData>> Children
         {
             get { return _children; }
@@ -172,8 +172,8 @@ namespace JellyDb.Core.Engine.Fun
             get { return _data; }
         }
 
-        [XmlArray(ElementName = "S")]
-        [XmlArrayItem(ElementName = "d")]
+        [XmlArray(ElementName = "SerializableData")]
+        [XmlArrayItem(ElementName = "Data")]
         public List<TKey> SerializableData
         {
             get { return Data.Keys.ToList(); }

@@ -6,6 +6,10 @@ using JellyDb.Core.Engine.Fun;
 using System.ComponentModel;
 using System.Diagnostics;
 using JellyDb.Visualisations.Commands;
+using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace JellyDb.Visualisations.ViewModels
 {
@@ -14,24 +18,25 @@ namespace JellyDb.Visualisations.ViewModels
         private List<int> _history = new List<int>();
         public BTreeViewModel()
         {
-            BPTreeNode<int, int> node = new BPTreeNode<int, int>(3);
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(20);
             TreeNode = node;
-            //Stopwatch stop = new Stopwatch();
-            //stop.Start();
+            Stopwatch stop = new Stopwatch();
+            stop.Start();
 
-            //for (int i = 1; i <= 999; i++)
-            //{
-            //    //var num = i;
+            for (int i = 1; i <= 999; i++)
+            {
+                //var num = i;
 
-            //    stop.Stop();
-            //    var num = GenerateRandomNumber();
-            //    stop.Start();
+                //stop.Stop();
+                var num = GenerateRandomNumber();
+                //stop.Start();
 
-            //    node = node.Insert(num, num);
-            //}
+                node = node.Insert(num, num);
+            }
             //stop.Stop();
 
             TreeNode = node;
+            
             InsertCommand = new DelegateCommand(o => !string.IsNullOrEmpty(TextValue), o =>
             {
                 int val = 0;
@@ -63,12 +68,23 @@ namespace JellyDb.Visualisations.ViewModels
             });
             ResetCommand = new DelegateCommand(o => true, o =>
             {
-                TreeNode = new BPTreeNode<int, int>(3);
+                TreeNode = new BPTreeNode<int, int>(100);
                 PropertyChanged(this, new PropertyChangedEventArgs("Root"));
                 _history = new List<int>();
                 PropertyChanged(this, new PropertyChangedEventArgs("History"));
             });
-
+            SaveCommand = new DelegateCommand(o => true, o =>
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    using(var stream = File.Create(dialog.FileName))
+                    {
+                        XmlSerializer ser = new XmlSerializer(typeof(BPTreeNode<int, int>));
+                        ser.Serialize(stream, TreeNode);
+                    }
+                }
+            });
             //TextValue = "50,100,20,150,40,10,30,18,2,19,15";
         }
 
@@ -76,7 +92,7 @@ namespace JellyDb.Visualisations.ViewModels
         private int GenerateRandomNumber(Random random = null)
         {
             if (random == null) random = new Random();
-            var result = random.Next(1, 1000);
+            var result = random.Next(1, Int32.MaxValue);
             if (!results.Contains(result))
             {
                 results.Add(result);
@@ -132,6 +148,7 @@ namespace JellyDb.Visualisations.ViewModels
 
         public DelegateCommand InsertCommand { get; set; }
         public DelegateCommand ResetCommand { get; set; }
+        public DelegateCommand SaveCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

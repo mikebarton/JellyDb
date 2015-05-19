@@ -10,5 +10,6 @@ namespace JellyDb.Core.VirtualAddressSpace
     {
         byte[] GetData(Guid addressSpaceId, long offset, long numBytes);
         void SetData(Guid addressSpaceId, long offset, long startIndex, long numBytes, byte[] dataArray);
+        Guid CreateVirtualAddressSpace();
     }
 }

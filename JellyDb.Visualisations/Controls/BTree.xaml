@@ -58,6 +58,7 @@
             <TextBox Width="800" Text="{Binding TextValue, UpdateSourceTrigger=PropertyChanged}"/>
             <Button Content="Insert" Command="{Binding InsertCommand}"/>
             <Button Content="Reset" Command="{Binding ResetCommand}"/>
+            <Button Content="Save Index" Command="{Binding SaveCommand}"/>
         </StackPanel>        
         <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
         <DockPanel Grid.Row="2">
