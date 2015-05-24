@@ -8,7 +8,7 @@ namespace JellyDb.Core.VirtualAddressSpace
     public interface IViewManager : IDisposable
     {
         void Flush();
-        void WriteVirtualPage(ref byte[] dataBuffer, long bufferIndex, long storageOffset, long numBytesToWrite);
-        void ReadVirtualPage(ref byte[] dataBuffer, long bufferIndex, long storageOffset, long numBytesToRead);
+        void WriteVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
+        void ReadVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
     }
 }

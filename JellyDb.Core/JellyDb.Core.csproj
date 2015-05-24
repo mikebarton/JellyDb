@@ -110,16 +110,14 @@
     <Compile Include="Engine\Fun\TypeComparer.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
     <Compile Include="Storage\InMemoryStorage.cs" />
-    <Compile Include="VirtualAddressSpace\FileDataPersistence.cs" />
+    <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="ExpirationManager.cs" />
     <Compile Include="VirtualAddressSpace\IViewManager.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
-    <Compile Include="VirtualAddressSpace\IPersistData.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
-    <Compile Include="VirtualAddressSpace\ViewContainer.cs" />
-    <Compile Include="VirtualAddressSpace\ViewManager.cs" />
-    <Compile Include="VirtualAddressSpace\VirtualAddressSpace.cs" />
-    <Compile Include="VirtualAddressSpace\VirtualPage.cs" />
+    <Compile Include="VirtualAddressSpace\ViewManagers\IoFileManager.cs" />
+    <Compile Include="VirtualAddressSpace\ViewManagers\StreamManager.cs" />
+    <Compile Include="VirtualAddressSpace\ViewManagers\MemoryMappedFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sql\Dml\SelectStatement.cd" />

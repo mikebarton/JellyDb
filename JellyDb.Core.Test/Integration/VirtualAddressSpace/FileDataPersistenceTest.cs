@@ -13,7 +13,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
     [TestClass]
     public class FileDataPersistenceTest
     {
-        FileDataPersistence target;
+        AddressSpaceManager target;
         private string fileLoc;
 
         public FileDataPersistenceTest()
@@ -41,7 +41,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_CreateFilePersistence()
         {
-            using (target = new FileDataPersistence())
+            using (target = new AddressSpaceManager())
             {
                 
             }
@@ -50,7 +50,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetContiguousData()
         {            
-            using (target = new FileDataPersistence())
+            using (target = new AddressSpaceManager())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 byte[] data = CreateTestByteArray(8, 1024);
@@ -66,7 +66,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetScatteredData()
         {
-            using (target = new FileDataPersistence())
+            using (target = new AddressSpaceManager())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -99,7 +99,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata()
         {
-            using (target = new FileDataPersistence())
+            using (target = new AddressSpaceManager())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -117,8 +117,8 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         public void CreateBigFileTest()
         {
             Stopwatch sw = new Stopwatch();
-            byte[] data = CreateTestByteArray((1024 * 1024), 1024);
-            using (target = new FileDataPersistence())
+            byte[] data = CreateTestByteArray((1024 * 1024), 200);
+            using (target = new AddressSpaceManager())
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 sw.Start();
