@@ -35,4 +35,4 @@ JellyDb.Visualisations/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.ca
 _ReSharper.JellyDb/BuildScriptCache/.crc
 *.version
 *.crc
-_ReSharper.JellyDb\*
+_ReSharper.JellyDb/*
