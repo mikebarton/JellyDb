@@ -5,6 +5,7 @@ using System.Text;
 using System.IO.MemoryMappedFiles;
 using JellyDb.Core.Configuration;
 using System.IO;
+using JellyDb.Core.Extensions;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
@@ -98,7 +99,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                     continue;
                 }
                 
-                int dataAvailableOnPage = summary.Size - (int)localOffset;//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 viewManager.ReadVirtualPage(ref result,
@@ -125,8 +126,8 @@ namespace JellyDb.Core.VirtualAddressSpace
                     localOffset -= summary.Size;
                     continue;
                 }
-                
-                int dataAvailableOnPage = summary.Size - (int)localOffset;//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+
+                int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 viewManager.WriteVirtualPage(ref dataBuffer,

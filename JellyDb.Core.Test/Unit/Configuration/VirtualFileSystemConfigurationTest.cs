@@ -16,7 +16,7 @@ namespace JellyDb.Core.Test.Unit.Configuration
         {
             VirtualFileSystemConfigurationSection target = VirtualFileSystemConfigurationSection.ConfigSection;
             Assert.IsNotNull(target);
-            Assert.AreEqual(2048, target.PageSizeInKb);
+            Assert.AreEqual(65536, target.PageSizeInKb);
             Assert.AreEqual(4, target.PageIncreaseNum);
             Assert.AreEqual(@"c:\Temp\DbEngine.db", target.vfsFileName);
         }
