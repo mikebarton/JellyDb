@@ -6,20 +6,20 @@ using System.IO.MemoryMappedFiles;
 using JellyDb.Core.Configuration;
 using System.IO;
 using JellyDb.Core.Extensions;
+using JellyDb.Core.VirtualAddressSpace.Storage;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
     public class AddressSpaceManager : IDisposable
     {
         private PageIndex pageIndex;
-        private MemoryMappedFile fileMapping;
         private const string indexFileFormat = "{0}.pages";
-        private const string memoryMappingName = "jellydb";
         private string dbFileName;
-        private IViewManager viewManager;
+        private IDataStorage dataStorage;
 
-        public AddressSpaceManager()
+        public AddressSpaceManager(IDataStorage storage)
         {
+            dataStorage = storage;
             dbFileName = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
             pageIndex = new PageIndex(File.Open(string.Format(indexFileFormat, dbFileName), FileMode.OpenOrCreate, FileAccess.ReadWrite));
             long capacity = pageIndex.EndOfPageIndex;
@@ -30,8 +30,6 @@ namespace JellyDb.Core.VirtualAddressSpace
                 capacity = (long)increaseSize;
                 IndexFileGrowth();
             }
-            fileMapping = MemoryMappedFile.CreateFromFile(dbFileName, FileMode.Create, memoryMappingName, capacity);
-            viewManager = new MemryMappedFileManager(fileMapping);
         }
 
         public Guid CreateVirtualAddressSpace()
@@ -45,7 +43,6 @@ namespace JellyDb.Core.VirtualAddressSpace
         {
             if (pageIndex.EmptyPages.Count() == 0)
             {
-                ExpandStorageFile();
                 IndexFileGrowth();
             }
             PageSummary summary = pageIndex.EmptyPages[0];
@@ -66,23 +63,10 @@ namespace JellyDb.Core.VirtualAddressSpace
             }            
         }
 
-        private void ExpandStorageFile()
-        {
-            int increaseSize = VirtualFileSystemConfigurationSection.ConfigSection.PageSizeInKb *
-                VirtualFileSystemConfigurationSection.ConfigSection.PageIncreaseNum;
-            long capacity = pageIndex.EndOfPageIndex + (long)increaseSize;
-            
-            fileMapping.Dispose();
-            viewManager.Dispose();
-            fileMapping = MemoryMappedFile.CreateFromFile(dbFileName, FileMode.OpenOrCreate, memoryMappingName, capacity);
-            viewManager = new MemryMappedFileManager(fileMapping);
-        }
-
         public void Dispose()
         {
             pageIndex.Dispose();
-            viewManager.Dispose();
-            fileMapping.Dispose();
+            dataStorage.Dispose();
         }
 
         public byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
@@ -102,7 +86,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
-                viewManager.ReadVirtualPage(ref result,
+                dataStorage.ReadVirtualPage(ref result,
                     numProcessed,
                     (summary.Offset + localOffset),
                     amountToProcess);
@@ -130,7 +114,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
-                viewManager.WriteVirtualPage(ref dataBuffer,
+                dataStorage.WriteVirtualPage(ref dataBuffer,
                     (numProcessed + bufferIndex),
                     (summary.Offset + localOffset),
                     amountToProcess);
@@ -146,7 +130,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public void Flush()
         {
-            viewManager.Flush();
+            dataStorage.Flush();
         }
         
     }

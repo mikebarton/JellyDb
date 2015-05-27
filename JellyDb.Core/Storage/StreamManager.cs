@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace JellyDb.Core.VirtualAddressSpace.ViewManagers
+namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
-    public abstract class StreamManager : IViewManager
+    public abstract class StreamManager : IDataStorage
     {
         protected abstract Stream Stream { get; }
 

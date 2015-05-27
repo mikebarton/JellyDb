@@ -109,23 +109,20 @@
     <Compile Include="Engine\Fun\IntComparer.cs" />
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
-    <Compile Include="Storage\IDataStorage.cs" />
-    <Compile Include="Storage\InMemoryStorage.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="ExpirationManager.cs" />
-    <Compile Include="VirtualAddressSpace\IViewManager.cs" />
+    <Compile Include="Storage\IDataStorage.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
-    <Compile Include="VirtualAddressSpace\ViewManagers\IoFileManager.cs" />
-    <Compile Include="VirtualAddressSpace\ViewManagers\StreamManager.cs" />
-    <Compile Include="VirtualAddressSpace\ViewManagers\MemoryMappedFileManager.cs" />
+    <Compile Include="Storage\IoFileManager.cs" />
+    <Compile Include="Storage\StreamManager.cs" />
+    <Compile Include="Storage\MemoryMappedFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sql\Dml\SelectStatement.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
-    <Folder Include="Engine\Fun\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

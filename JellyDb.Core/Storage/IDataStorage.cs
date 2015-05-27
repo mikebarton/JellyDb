@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JellyDb.Core.Storage
+namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
-    public interface IDataStorage
+    public interface IDataStorage : IDisposable
     {
-        byte[] Read(long offset, long length);
-        void Write(long offset, long length, byte[] buffer, long startIndex);
+        void Flush();
+        void WriteVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
+        void ReadVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
     }
 }

@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace JellyDb.Core.VirtualAddressSpace.ViewManagers
+namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
     public class IoFileManager : StreamManager
     {
@@ -33,7 +33,7 @@ namespace JellyDb.Core.VirtualAddressSpace.ViewManagers
         private Stream InitialiseStream()
         {
             var dbFileName = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
-            return File.Open(dbFileName, FileMode.Open);
+            return File.Open(dbFileName, FileMode.OpenOrCreate);
         }
     }
 }

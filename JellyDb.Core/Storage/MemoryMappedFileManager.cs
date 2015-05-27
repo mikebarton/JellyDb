@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO.MemoryMappedFiles;
 
-namespace JellyDb.Core.VirtualAddressSpace
+namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
-    public class MemryMappedFileManager : IViewManager
+    public class MemryMappedFileManager : IDataStorage
     {
         private MemoryMappedFile fileMapping;
         private MemoryMappedViewAccessor view;
