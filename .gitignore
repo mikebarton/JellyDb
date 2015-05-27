@@ -29,3 +29,10 @@ JellyDb.Visualisations/obj/*
 JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
 JellyDb.Visualisations/obj/x86/Debug/App.g.i.cs
 *.cache
+*.cache
+JellyDb.Visualisations/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.dat
+_ReSharper.JellyDb/BuildScriptCache/.crc
+*.version
+*.crc
+_ReSharper.JellyDb\*

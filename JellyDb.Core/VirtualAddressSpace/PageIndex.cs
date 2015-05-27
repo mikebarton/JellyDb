@@ -55,12 +55,12 @@ namespace JellyDb.Core.VirtualAddressSpace
             {
                 indices[summary.AddressSpaceId] = new List<PageSummary>();
             }
+
             if (!summary.PageFileIndex.HasValue)
             {                
                 stream.Position = stream.Length;
                 indices[summary.AddressSpaceId].Add(summary);
-                long newIndex = summary.Offset + summary.Size;
-                endOfIndex = newIndex > endOfIndex ? newIndex : endOfIndex;
+                endOfIndex = Math.Max((summary.Offset + summary.Size), endOfIndex);
             }
             else
             {

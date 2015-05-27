@@ -21,18 +21,23 @@ namespace JellyDb.Core.VirtualAddressSpace
             set { addressSpaceId = value; }
         }
 
+        //the index of this pagesummary in the index file
         public long? PageFileIndex
         {
             get { return pageFileIndex; }
             set { pageFileIndex = value; }
         }
 
+        //the offset of this page in the data file
         public long Offset
         {
             get { return offset; }
             set { offset = value; }
         }
 
+        //size of this page in the data file 
+        //should be the same for every page, but needs to be stored in case config file is different to already defined db. 
+        //perhaps this would best be stored somewhere else
         public int Size
         {
             get { return size; }

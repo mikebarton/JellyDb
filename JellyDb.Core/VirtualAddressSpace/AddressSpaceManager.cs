@@ -84,10 +84,10 @@ namespace JellyDb.Core.VirtualAddressSpace
             fileMapping.Dispose();
         }
 
-        public byte[] GetData(Guid addressSpaceId, long offset, int numBytes)
+        public byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
         {            
             byte[] result = new byte[numBytes];
-            long localOffset = offset;
+            long localOffset = storageOffset;
             int numProcessed = 0;
 
             foreach (var summary in pageIndex[addressSpaceId])
@@ -97,27 +97,25 @@ namespace JellyDb.Core.VirtualAddressSpace
                     localOffset -= summary.Size;
                     continue;
                 }
-                else
-                {
-                    long dataAvailableOnPage = summary.Size - localOffset;
-                    int bytesLeftToProcess = numBytes - numProcessed;
-                    long amountToProcess = dataAvailableOnPage < bytesLeftToProcess ? dataAvailableOnPage : bytesLeftToProcess;
-                    viewManager.ReadVirtualPage(ref result,
-                        numProcessed,
-                        (summary.Offset + localOffset),
-                        amountToProcess);
-                    numProcessed += amountToProcess;
-                    localOffset = 0;
-                    if (numProcessed == numBytes) break;
-                }
+                
+                int dataAvailableOnPage = summary.Size - (int)localOffset;//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                int bytesLeftToProcess = numBytes - numProcessed;
+                int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
+                viewManager.ReadVirtualPage(ref result,
+                    numProcessed,
+                    (summary.Offset + localOffset),
+                    amountToProcess);
+                numProcessed += amountToProcess;
+                localOffset = 0;
+                if (numProcessed == numBytes) break;
             }
             return result;
         }
 
-        public void SetData(Guid addressSpaceId, long offset, long startIndex, long numBytes, byte[] dataBuffer)
+        public void SetData(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer)
         {
-            long localOffset = offset;
-            long numProcessed = 0;
+            long localOffset = storageOffset;
+            int numProcessed = 0;
 
             for (int i = 0; i < pageIndex[addressSpaceId].Count; i++)
             {
@@ -127,22 +125,20 @@ namespace JellyDb.Core.VirtualAddressSpace
                     localOffset -= summary.Size;
                     continue;
                 }
-                else
+                
+                int dataAvailableOnPage = summary.Size - (int)localOffset;//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                int bytesLeftToProcess = numBytes - numProcessed;
+                int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
+                viewManager.WriteVirtualPage(ref dataBuffer,
+                    (numProcessed + bufferIndex),
+                    (summary.Offset + localOffset),
+                    amountToProcess);
+                numProcessed += amountToProcess;
+                localOffset = 0;
+                if (numProcessed == numBytes) break;
+                else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
-                    long dataAvailableOnPage = summary.Size - localOffset;
-                    long bytesLeftToProcess = numBytes - numProcessed;
-                    long amountToProcess = dataAvailableOnPage < bytesLeftToProcess ? dataAvailableOnPage : bytesLeftToProcess;
-                    viewManager.WriteVirtualPage(ref dataBuffer,
-                        (numProcessed + startIndex),
-                        (summary.Offset + localOffset),
-                        amountToProcess);
-                    numProcessed += amountToProcess;
-                    localOffset = 0;
-                    if (numProcessed == numBytes) break;
-                    else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
-                    {
-                        ExpandAddressSpace(addressSpaceId);
-                    }
+                    ExpandAddressSpace(addressSpaceId);
                 }
             }
         }
