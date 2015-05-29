@@ -15,14 +15,9 @@ namespace JellyDb.Core.Engine.Fun
         private SortedList<TKey, TData> _data = new SortedList<TKey, TData>();
         private ITypeComparer<TKey> _comparer;
 
-        public BPTreeNode(int branchingFactor) : this()
+        public BPTreeNode(int branchingFactor = 15)
         {
             _branchingFactor = branchingFactor;
-        }
-
-        public BPTreeNode()
-        {
-            _branchingFactor = 5;
             _comparer = new TypeComparer<TKey>();
         }
 

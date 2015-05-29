@@ -10,6 +10,8 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
     {
         protected abstract Stream Stream { get; }
 
+        public abstract void Initialise(string databaseName);
+
         public void Flush()
         {
             Stream.Flush();
@@ -32,6 +34,6 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Flush();
             Stream.Close();
             Stream.Dispose();
-        }
+        }        
     }
 }

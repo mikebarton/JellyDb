@@ -42,5 +42,10 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
         }
 
 
+
+
+        public void Initialise(string databaseName)
+        {
+        }
     }
 }

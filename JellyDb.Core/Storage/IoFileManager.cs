@@ -9,32 +9,16 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
     public class IoFileManager : StreamManager
     {
-        private Stream _stream;
         private static object _SyncObject = new object();
-        
-        protected override Stream Stream
-        {
-            get 
-            {
-                if (_stream == null)
-                {
-                    lock (_SyncObject)
-                    {
-                        if (_stream == null)
-                        {
-                            _stream = InitialiseStream();                            
-                        }
-                    }
-                }
-                return _stream;
-            }
-        }
+        private Stream _stream;
 
-        private Stream InitialiseStream()
+        protected override Stream Stream { get { return _stream; } }
+
+        public override void Initialise(string databaseName)
         {
             var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            var dbFileName = Path.Combine(folderName, "dbFile.dat");
-            return File.Open(dbFileName, FileMode.OpenOrCreate);
+            var dbFileName = Path.Combine(folderName, string.Format("{0}.dat", databaseName));
+            _stream = File.Open(dbFileName, FileMode.OpenOrCreate);
         }
     }
 }
