@@ -5,15 +5,9 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class DataPage
+    public class DataPage : BPTreeNode<long, string>
     {
-        public static long PageSize { get; set; }
-        public long Offset { get; set; }
-        private BPTreeNode<long, IndexResult> _pageIndex;
+        public long DataFileOffset { get; set; }
 
-        static DataPage()
-        {
-            PageSize = 1024*8;
-        }
     }
 }

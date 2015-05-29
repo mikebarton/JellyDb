@@ -11,9 +11,19 @@ namespace JellyDb.Core.Engine.Fun
     public class BPTreeNode<TKey, TData>
     {
         private int _branchingFactor = -1;
+        private List<BPTreeNode<TKey, TData>> _children = new List<BPTreeNode<TKey, TData>>();
+        private SortedList<TKey, TData> _data = new SortedList<TKey, TData>();
+        private ITypeComparer<TKey> _comparer;
+
         public BPTreeNode(int branchingFactor) : this()
         {
-            this._branchingFactor = branchingFactor;
+            _branchingFactor = branchingFactor;
+        }
+
+        public BPTreeNode()
+        {
+            _branchingFactor = 5;
+            _comparer = new TypeComparer<TKey>();
         }
 
         [XmlIgnore]
@@ -25,15 +35,6 @@ namespace JellyDb.Core.Engine.Fun
                 if (_branchingFactor != -1) throw new InvalidOperationException("once branching factor is defined for a node it cannot be redefined");
                 _branchingFactor = value; 
             }
-        }
-        private List<BPTreeNode<TKey, TData>> _children = new List<BPTreeNode<TKey, TData>>();
-        private SortedList<TKey, TData> _data = new SortedList<TKey, TData>();
-        private ITypeComparer<TKey> _comparer;
-
-        public BPTreeNode()
-        {
-            this._branchingFactor = 5;
-            _comparer = new TypeComparer<TKey>();
         }
         
         [XmlIgnore]

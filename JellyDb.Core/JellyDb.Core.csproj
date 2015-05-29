@@ -52,8 +52,6 @@
   <ItemGroup>
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataPage.cs" />
-    <Compile Include="Engine\Fun\Index.cs" />
-    <Compile Include="Engine\Fun\IndexResult.cs" />
     <Compile Include="Engine\Fun\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
@@ -64,8 +62,6 @@
     <Compile Include="Sql\Dml\ComparisonOperator.cs" />
     <Compile Include="Configuration\DbEngineConfigurationSection.cs" />
     <Compile Include="Configuration\VirtualFileSystemConfigurationSection.cs" />
-    <Compile Include="ExpirableBase.cs" />
-    <Compile Include="ExpirableView.cs" />
     <Compile Include="Sql\Dml\DivisionOperator.cs" />
     <Compile Include="Sql\Dml\EqualToOperator.cs" />
     <Compile Include="Sql\Dml\ExpressionTerm.cs" />
@@ -110,7 +106,6 @@
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
-    <Compile Include="ExpirationManager.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />

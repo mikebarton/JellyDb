@@ -1,26 +1,27 @@
-﻿using System;
+﻿using JellyDb.Core.VirtualAddressSpace.Storage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JellyDb.Core.Storage;
 
 namespace JellyDb.Core.Engine.Fun
 {
     public class Database
     {
-        private BPTreeNode<long, IndexResult> _indexRoot;
+        private BPTreeNode<long, DataPage> _indexRoot;
+        private IDataStorage _dataStorage;
 
-        public Database()
+        public Database(IDataStorage dataStorage)
+        {
+            _dataStorage = dataStorage;
+        }
+
+        public string Read(long key)
         {
             
         }
 
-        private void InitializeNewDataStorage()
-        {
-
-        }
-
-        private void WriteIndex()
+        public void Write(long key, string data)
         {
             
         }
