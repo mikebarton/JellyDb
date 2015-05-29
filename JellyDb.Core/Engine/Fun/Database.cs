@@ -8,7 +8,7 @@ namespace JellyDb.Core.Engine.Fun
 {
     public class Database
     {
-        private BPTreeNode<long, DataPage> _indexRoot;
+        private Index _indexRoot;
         private IDataStorage _dataStorage;
 
         public Database(IDataStorage dataStorage)
@@ -18,7 +18,7 @@ namespace JellyDb.Core.Engine.Fun
 
         public string Read(long key)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Write(long key, string data)

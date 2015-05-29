@@ -6,27 +6,8 @@ using System.Configuration;
 
 namespace JellyDb.Core.Configuration
 {
-    public class VirtualFileSystemConfigurationSection : ConfigurationSection
+    public class VirtualFileSystemConfigurationSection : ConfigurationElement
     {
-        private static VirtualFileSystemConfigurationSection config;
-
-        public VirtualFileSystemConfigurationSection()
-        {
-
-        }
-
-        public static VirtualFileSystemConfigurationSection ConfigSection
-        {
-            get
-            {
-                if (config == null)
-                {
-                    config = (VirtualFileSystemConfigurationSection)ConfigurationManager.GetSection("DbEngine/VirtualFileSystemConfig");
-                }
-                return config;
-            }
-        }
-
         private const string pageSizeKbKey = "pagesizekb";
         [ConfigurationProperty("pagesizekb", DefaultValue = 1024)]
         public int PageSizeInKb
@@ -41,14 +22,6 @@ namespace JellyDb.Core.Configuration
         {
             get { return (int)this[pageIncreaseKey]; }
             set { this[pageIncreaseKey] = value; }
-        }
-        
-        private const string dbFileKey = "vfsfilename";
-        [ConfigurationProperty("vfsfilename", IsRequired = true)]
-        public string vfsFileName
-        {
-            get { return this[dbFileKey].ToString(); }
-            set { this[dbFileKey] = value; }
         }
     }
 }

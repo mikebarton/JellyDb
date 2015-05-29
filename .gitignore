@@ -37,3 +37,4 @@ _ReSharper.JellyDb/BuildScriptCache/.crc
 *.crc
 _ReSharper.JellyDb/*
 JellyDb*/obj/*
+JellyDb.Visualisations/obj/*

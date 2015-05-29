@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using JellyDb.Core.VirtualAddressSpace.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JellyDb.Core.VirtualAddressSpace;
 using JellyDb.Core.Configuration;
@@ -14,23 +15,27 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
     public class FileDataPersistenceTest
     {
         AddressSpaceManager target;
+        private IDataStorage _storage;
         private string fileLoc;
 
         public FileDataPersistenceTest()
         {
-            fileLoc = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
+            var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
+            fileLoc = Path.Combine(folderPath, "DbTestEngine");
         }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            
+            _storage = new IoFileManager();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
             target = null;
+            _storage.Dispose();
+            _storage = null;
             if (File.Exists(fileLoc))
             {
                 File.Delete(fileLoc);
@@ -41,7 +46,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_CreateFilePersistence()
         {
-            using (target = new AddressSpaceManager())
+            using (target = new AddressSpaceManager(_storage))
             {
                 
             }
@@ -49,8 +54,8 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
 
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetContiguousData()
-        {            
-            using (target = new AddressSpaceManager())
+        {
+            using (target = new AddressSpaceManager(_storage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 byte[] data = CreateTestByteArray(8, 1024);
@@ -66,7 +71,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetScatteredData()
         {
-            using (target = new AddressSpaceManager())
+            using (target = new AddressSpaceManager(_storage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -99,7 +104,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata()
         {
-            using (target = new AddressSpaceManager())
+            using (target = new AddressSpaceManager(_storage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -118,7 +123,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         {
             Stopwatch sw = new Stopwatch();
             byte[] data = CreateTestByteArray((1024 * 1024), 200);
-            using (target = new AddressSpaceManager())
+            using (target = new AddressSpaceManager(_storage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 sw.Start();

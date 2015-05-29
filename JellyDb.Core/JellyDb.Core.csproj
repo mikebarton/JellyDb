@@ -40,6 +40,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\CastleWindsor\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -52,7 +55,8 @@
   <ItemGroup>
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataPage.cs" />
-    <Compile Include="Engine\Fun\NodeExtensions.cs" />
+    <Compile Include="Engine\Fun\Index.cs" />
+    <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Storage\MemoryMappedFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Sql\Dml\SelectStatement.cd" />
   </ItemGroup>
   <ItemGroup>

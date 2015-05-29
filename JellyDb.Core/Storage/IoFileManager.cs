@@ -32,7 +32,8 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 
         private Stream InitialiseStream()
         {
-            var dbFileName = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
+            var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
+            var dbFileName = Path.Combine(folderName, "dbFile.dat");
             return File.Open(dbFileName, FileMode.OpenOrCreate);
         }
     }

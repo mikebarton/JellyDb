@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    [Serializable][XmlRoot(ElementName = "Node")]
     public class BPTreeNode<TKey, TData>
     {
         private int _branchingFactor = -1;
@@ -26,7 +26,7 @@ namespace JellyDb.Core.Engine.Fun
             _comparer = new TypeComparer<TKey>();
         }
 
-        [XmlIgnore]
+        [JsonIgnore]
         public int BranchingFactor
         {
             get { return _branchingFactor; }
@@ -36,14 +36,14 @@ namespace JellyDb.Core.Engine.Fun
                 _branchingFactor = value; 
             }
         }
-        
-        [XmlIgnore]
+
+        [JsonIgnore]
         public BPTreeNode<TKey, TData> Parent { get; set; }
 
-        [XmlElement(ElementName = "MaxKey")]
+        
         public TKey MaxKey { get; set; }
 
-        [XmlElement(ElementName = "MinKey")]
+        
         public TKey MinKey { get; set; }
 
 
@@ -160,22 +160,19 @@ namespace JellyDb.Core.Engine.Fun
             get { return _data.Count >= BranchingFactor; }
         }
 
-        [XmlArray(ElementName = "Children")]
-        [XmlArrayItem(ElementName = "Node")]
+        
         public List<BPTreeNode<TKey, TData>> Children
         {
             get { return _children; }
             set { _children = value; }
         }
 
-        [XmlIgnore]
+        [JsonIgnore]
         public SortedList<TKey, TData> Data
         {
             get { return _data; }
         }
-
-        [XmlArray(ElementName = "SerializableData")]
-        [XmlArrayItem(ElementName = "Data")]
+        
         public List<TKey> SerializableData
         {
             get { return Data.Keys.ToList(); }

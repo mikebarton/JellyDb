@@ -13,21 +13,17 @@ namespace JellyDb.Core.VirtualAddressSpace
     public class AddressSpaceManager : IDisposable
     {
         private PageIndex pageIndex;
-        private const string indexFileFormat = "{0}.pages";
-        private string dbFileName;
+        private string pageIndexFileName;
         private IDataStorage dataStorage;
 
         public AddressSpaceManager(IDataStorage storage)
         {
             dataStorage = storage;
-            dbFileName = VirtualFileSystemConfigurationSection.ConfigSection.vfsFileName;
-            pageIndex = new PageIndex(File.Open(string.Format(indexFileFormat, dbFileName), FileMode.OpenOrCreate, FileAccess.ReadWrite));
-            long capacity = pageIndex.EndOfPageIndex;
-            if (capacity == 0)
+            var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
+            pageIndexFileName = Path.Combine(folderName, "dbFile.pageIndex");
+            pageIndex = new PageIndex(File.Open(pageIndexFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite));
+            if (pageIndex.EndOfPageIndex == 0)
             {
-                int increaseSize = VirtualFileSystemConfigurationSection.ConfigSection.PageSizeInKb *
-                    VirtualFileSystemConfigurationSection.ConfigSection.PageIncreaseNum;
-                capacity = (long)increaseSize;
                 IndexFileGrowth();
             }
         }
@@ -41,7 +37,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         private void ExpandAddressSpace(Guid addressSpaceId)
         {
-            if (pageIndex.EmptyPages.Count() == 0)
+            if (pageIndex.EmptyPages.Any())
             {
                 IndexFileGrowth();
             }
@@ -52,12 +48,12 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         private void IndexFileGrowth()
         {
-            for (int i = 0; i < VirtualFileSystemConfigurationSection.ConfigSection.PageIncreaseNum; i++)
+            for (int i = 0; i < DbEngineConfigurationSection.ConfigSection.VfsConfig.PageIncreaseNum; i++)
             {
                 PageSummary newSummary = new PageSummary();
                 newSummary.Allocated = false;
                 newSummary.Offset = pageIndex.EndOfPageIndex;
-                newSummary.Size = VirtualFileSystemConfigurationSection.ConfigSection.PageSizeInKb;
+                newSummary.Size = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
                 newSummary.Used = 0;
                 pageIndex.AddOrUpdateEntry(newSummary);
             }            

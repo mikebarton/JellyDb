@@ -68,7 +68,6 @@
     <Compile Include="Performance\PerformanceTestResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit\Configuration\DbEngineConfigurationSectionTest.cs" />
-    <Compile Include="Unit\Configuration\VirtualFileSystemConfigurationTest.cs" />
     <Compile Include="Integration\VirtualAddressSpace\FileDataPersistenceTest.cs" />
     <Compile Include="Unit\Storage\BPTreeNodeTest.cs" />
     <Compile Include="Unit\VirtualAddressSpace\PageIndexTest.cs" />

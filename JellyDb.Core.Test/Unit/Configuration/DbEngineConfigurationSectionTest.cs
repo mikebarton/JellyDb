@@ -16,6 +16,13 @@ namespace JellyDb.Core.Test.Unit.Configuration
         [TestMethod]
         public void GetConfigurationSection()
         {
+            var section = DbEngineConfigurationSection.ConfigSection;
+            var folderPath = section.FolderPath;
+            var pageSizeIncrease = section.VfsConfig.PageSizeInKb;
+            var pageNumIncrease = section.VfsConfig.PageIncreaseNum;
+            Assert.AreEqual(@"c:\temp", folderPath);
+            Assert.AreEqual(65536, pageSizeIncrease);
+            Assert.AreEqual(4, pageNumIncrease);
         }
     }
 }
