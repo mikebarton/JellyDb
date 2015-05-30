@@ -10,7 +10,7 @@ namespace JellyDb.Core.Engine.Fun
     {
         private Index _indexRoot;
         private string _databaseName;
-        private Dictionary<Guid, byte[]> _pageCache = new Dictionary<Guid, byte[]>();
+        private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
 
         public Database(string databaseName)
         {
@@ -21,17 +21,28 @@ namespace JellyDb.Core.Engine.Fun
         public string Read(long key)
         {
             var page = _indexRoot.Query(key);
+            var dataItem = page.Query(key);
+            var totalData = RetrieveRemainderOfDataFromNextPage(new List<byte>(), page.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength);
+
+            var text = Encoding.Unicode.GetString(totalData.ToArray());
+            return text;
+        }
+
+        private List<byte> RetrieveRemainderOfDataFromNextPage(List<byte> itemData, long dataFileOffset, int pageOffset, int itemLength)
+        {
             byte[] pageData = null;
-            if (!_pageCache.TryGetValue(page.Id, out pageData))
+            if (!_pageCache.TryGetValue(dataFileOffset, out pageData))
             {
                 var pageSizeInBytes = DataPage.PageSize * 1024;
-                pageData = ReadFromDisk(page.DataFileOffset, pageSizeInBytes);
-                _pageCache[page.Id] = pageData;
+                pageData = ReadFromDisk(dataFileOffset, pageSizeInBytes);
+                _pageCache[dataFileOffset] = pageData;
             }
-            var dataItem = page.Query(key);
-            //TODO: retrieve data from page
-            //TODO need to handle case of data overlapping multiple pages
+            var totalData = itemData.Concat(pageData.Skip(pageOffset).Take(itemLength)).ToList();
+            if (totalData.Count < itemLength) totalData = RetrieveRemainderOfDataFromNextPage(totalData, dataFileOffset + DataPage.PageSize, 0, itemLength);
+            return totalData;            
         }
+
+
 
         public void Write(long key, string data)
         {
@@ -42,6 +53,6 @@ namespace JellyDb.Core.Engine.Fun
         public WriteDelegate WriteToDisk { get; set; }
     }
 
-    internal delegate byte[] ReadDelegate(long storageOffset, int numBytes);
-    internal delegate void WriteDelegate(long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer);
+    public delegate byte[] ReadDelegate(long storageOffset, int numBytes);
+    public delegate void WriteDelegate(long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer);
 }

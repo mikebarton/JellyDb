@@ -10,7 +10,6 @@ namespace JellyDb.Core.Engine.Fun
     {
         public long DataFileOffset { get; set; }
         public static int PageSize { get; set; }
-        public Guid Id { get; set; }
 
         static DataPage()
         {
