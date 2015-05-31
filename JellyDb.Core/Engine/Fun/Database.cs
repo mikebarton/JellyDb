@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using JellyDb.Core.Extensions;
+using JellyDb.Core.Configuration;
 
 namespace JellyDb.Core.Engine.Fun
 {
@@ -13,9 +14,9 @@ namespace JellyDb.Core.Engine.Fun
         private Index _indexRoot;
         private string _databaseName;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
-        private const byte[] _startBytes = new byte[] { 0xAF };
-        private const  byte[] _endBytes = new byte[] { 0xFA };
-
+        private static byte[] _startBytes = new byte[] { 0xAF };
+        private static byte[] _endBytes = new byte[] { 0xFA };
+        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024;
 
         public Database(string databaseName)
         {
@@ -25,25 +26,24 @@ namespace JellyDb.Core.Engine.Fun
 
         public string Read(long key)
         {
-            var page = _indexRoot.Query(key);
-            var dataItem = page.Query(key);
-            var totalData = RetrieveRemainderOfDataFromNextPage(new List<byte>(), page.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength);
+            var dataItem = _indexRoot.Query(key);
+            var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength);
 
             var text = Encoding.Unicode.GetString(totalData.ToArray());
             return text;
         }
 
-        private List<byte> RetrieveRemainderOfDataFromNextPage(List<byte> itemData, long dataFileOffset, int pageOffset, int itemLength)
+        private List<byte> RetrieveItemData(List<byte> itemData, long dataFileOffset, int pageOffset, int itemLength)
         {
+            var pageStartOffset = dataFileOffset - pageOffset;
             byte[] pageData = null;
-            if (!_pageCache.TryGetValue(dataFileOffset, out pageData))
+            if (!_pageCache.TryGetValue(pageStartOffset, out pageData))
             {
-                var pageSizeInBytes = DataPage.PageSize * 1024;
-                pageData = ReadFromDisk(dataFileOffset, pageSizeInBytes);
-                _pageCache[dataFileOffset] = pageData;
+                pageData = ReadFromDisk(pageStartOffset, _pageSizeInBytes);
+                _pageCache[pageStartOffset] = pageData;
             }
             var totalData = itemData.Concat(pageData.Skip(pageOffset).Take(itemLength)).ToList();
-            if (totalData.Count < itemLength) totalData = RetrieveRemainderOfDataFromNextPage(totalData, dataFileOffset + DataPage.PageSize, 0, itemLength);
+            if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, 0, itemLength);
             return totalData;            
         }
 
@@ -54,12 +54,9 @@ namespace JellyDb.Core.Engine.Fun
             var dataItem = new DataItem() { VersionId = Guid.NewGuid() };
             var dataBuffer = ConvertDataToBytes(dataItem, data);
             var dataFileOffset = WriteToDisk(dataBuffer);
-            dataItem.PageOffset = (dataFileOffset % (DataPage.PageSize * 1024)).TruncateToInt32();
-            var currentPage = _indexRoot.Query(dataFileOffset);
-            if (currentPage == null) currentPage = new DataPage();
-            currentPage.DataFileOffset = dataFileOffset;
-            currentPage.Insert(dataFileOffset, dataItem);
-            _indexRoot.Insert(dataFileOffset, currentPage);
+            dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
+            dataItem.DataFileOffset = dataFileOffset;
+            _indexRoot.Insert(key, dataItem);
         }
 
         private byte[] ConvertDataToBytes(DataItem dataItem, string data)

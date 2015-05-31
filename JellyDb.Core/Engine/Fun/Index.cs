@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index : BPTreeNode<long, DataPage>
+    public class Index : BPTreeNode<long, DataItem>
     {
         private string _databaseName;
         private string _fileName;
