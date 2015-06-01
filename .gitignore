@@ -38,3 +38,4 @@ _ReSharper.JellyDb/BuildScriptCache/.crc
 _ReSharper.JellyDb/*
 JellyDb*/obj/*
 JellyDb.Visualisations/obj/*
+JellyDb.Visualisations/obj/x86/Debug/JellyDb.Visualisations_MarkupCompile.i.cache
