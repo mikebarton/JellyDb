@@ -21,7 +21,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         public FileDataPersistenceTest()
         {
             var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            fileLoc = Path.Combine(folderPath, "DbTestEngine");
+            fileLoc = Path.Combine(folderPath, "dbFile");
         }
 
         [TestInitialize]
@@ -34,11 +34,11 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         public void TestCleanup()
         {
             target = null;
-            _storage.Dispose();
             _storage = null;
-            if (File.Exists(fileLoc))
+            var dbFile = string.Format("{0}.dat", fileLoc);
+            if (File.Exists(dbFile))
             {
-                File.Delete(fileLoc);
+                File.Delete(dbFile);
                 File.Delete(string.Format("{0}.pages", fileLoc));
             }
         }

@@ -9,7 +9,7 @@ using JellyDb.Core.Configuration;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Database
+    public class Database : IDisposable
     {
         private Index _indexRoot;
         private string _databaseName;
@@ -79,6 +79,11 @@ namespace JellyDb.Core.Engine.Fun
 
         public ReadDelegate ReadFromDisk { get; set; }
         public WriteDelegate WriteToDisk { get; set; }
+
+        public void Dispose()
+        {
+            _indexRoot.SaveIndexToDisk();
+        }
     }
 
     public delegate byte[] ReadDelegate(long storageOffset, int numBytes);

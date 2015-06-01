@@ -19,6 +19,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         public AddressSpaceManager(IDataStorage storage)
         {
             dataStorage = storage;
+            storage.Initialise();
             var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
             pageIndexFileName = Path.Combine(folderName, "dbFile.pageIndex");
             pageIndex = new PageIndex(File.Open(pageIndexFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite));

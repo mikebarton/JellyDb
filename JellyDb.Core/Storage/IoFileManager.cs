@@ -14,10 +14,10 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 
         protected override Stream Stream { get { return _stream; } }
 
-        public override void Initialise(string databaseName)
+        public override void Initialise()
         {
             var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            var dbFileName = Path.Combine(folderName, string.Format("{0}.dat", databaseName));
+            var dbFileName = Path.Combine(folderName, "dbFile.dat");
             _stream = File.Open(dbFileName, FileMode.OpenOrCreate);
         }
     }
