@@ -27,9 +27,9 @@ namespace JellyDb.Core.Engine.Fun
         public string Read(long key)
         {
             var dataItem = _indexRoot.Query(key);
-            var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength);
+            var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength).ToArray();
 
-            var text = Encoding.Unicode.GetString(totalData.ToArray());
+            var text = ConvertBytesToData(dataItem, totalData);
             return text;
         }
 
@@ -73,7 +73,7 @@ namespace JellyDb.Core.Engine.Fun
             if (!dataBuffer.Skip(dataItem.ItemLength - _startBytes.Length - _endBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.", dataItem.PageOffset));
 
             var strippedData = dataBuffer.Skip(_startBytes.Length).Take(dataItem.ItemLength = _startBytes.Length - _endBytes.Length);
-            var data = Encoding.Unicode.GetString(dataBuffer);
+            var data = Encoding.Unicode.GetString(strippedData.ToArray());
             return data;
         }
 
