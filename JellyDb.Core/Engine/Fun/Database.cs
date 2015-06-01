@@ -70,9 +70,9 @@ namespace JellyDb.Core.Engine.Fun
         private string ConvertBytesToData(DataItem dataItem, byte[] dataBuffer)
         {
             if (!dataBuffer.Take(_startBytes.Length).SequenceEqual(_startBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary start markers did not align.", dataItem.PageOffset));
-            if (!dataBuffer.Skip(dataItem.ItemLength - _startBytes.Length - _endBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.", dataItem.PageOffset));
+            if (!dataBuffer.Skip(dataItem.ItemLength - _startBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.", dataItem.PageOffset));
 
-            var strippedData = dataBuffer.Skip(_startBytes.Length).Take(dataItem.ItemLength = _startBytes.Length - _endBytes.Length);
+            var strippedData = dataBuffer.Skip(_startBytes.Length).Take(dataItem.ItemLength - _startBytes.Length - _endBytes.Length);
             var data = Encoding.Unicode.GetString(strippedData.ToArray());
             return data;
         }

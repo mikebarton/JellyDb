@@ -9,7 +9,6 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
     public class IoFileManager : StreamManager
     {
-        private static object _SyncObject = new object();
         private Stream _stream;
 
         protected override Stream Stream { get { return _stream; } }

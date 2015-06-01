@@ -10,17 +10,13 @@ namespace JellyDb.Core.Engine.Fun
 {
     public class Index : BPTreeNode<long, DataItem>
     {
-        private string _databaseName;
-        private string _fileName;
+        private static string _fileName;
         private static string _indexFileNameFormat = "{0}.index";
 
-        private Index(string databaseName, string fileName)
+        public Index()
             : base(15)
-        {
-            _fileName = fileName;
-            _databaseName = databaseName; 
-        }
-                
+        {}
+        
         public void SaveIndexToDisk()
         {
             using(var stream = File.Open(_fileName,FileMode.OpenOrCreate))
@@ -35,19 +31,22 @@ namespace JellyDb.Core.Engine.Fun
         {
             var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
             var fileName = Path.Combine(folderPath, string.Format(_indexFileNameFormat, databaseName));
-            if (File.Exists(fileName))
+            if (File.Exists(_fileName))
             {
-                using (var stream = File.Open(fileName, FileMode.OpenOrCreate))
+                using (var stream = File.Open(_fileName, FileMode.OpenOrCreate))
                 using (TextReader reader = new StreamReader(stream))
                 {
                     var index = JsonConvert.DeserializeObject<Index>(reader.ReadToEnd());
+                    index.FileName = fileName;
                     return index;
                 }
             }
-            else
-            {
-                return new Index(databaseName, fileName);
-            }
+            return new Index() {FileName = fileName};
+        }
+
+        private string FileName 
+        {
+            set { _fileName = value; }
         }
     }
 }

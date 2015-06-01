@@ -161,13 +161,12 @@ namespace JellyDb.Core.Engine.Fun
             get { return _children; }
             set { _children = value; }
         }
-
-        [JsonIgnore]
+        
         public SortedList<TKey, TData> Data
         {
             get { return _data; }
         }
-        
+        [JsonIgnore]
         public List<TKey> SerializableData
         {
             get { return Data.Keys.ToList(); }

@@ -29,7 +29,12 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Stream.Read(dataBuffer, bufferIndex, numBytesToRead);
         }
 
-        public void Dispose()
+        public long EndOfStreamIndex
+        {
+            get { return Stream.Length; }
+        }
+
+        public virtual void Dispose()
         {
             Flush();
             Stream.Close();

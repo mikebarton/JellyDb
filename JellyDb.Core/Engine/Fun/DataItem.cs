@@ -5,6 +5,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
+    [Serializable]
     public class DataItem
     {
         public long DataFileOffset { get; set; }

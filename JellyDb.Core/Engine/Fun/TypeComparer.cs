@@ -11,6 +11,7 @@ namespace JellyDb.Core.Engine.Fun
         public TypeComparer()
         {
             if (typeof(TKey) == typeof(int)) _specificComparer = (ITypeComparer<TKey>)new IntComparer();
+            else if (typeof(TKey) == typeof(long)) _specificComparer = (ITypeComparer<TKey>) new LongComparer();
             else throw new NotSupportedException("type not supported: " + typeof(TKey).FullName);
         }
 
