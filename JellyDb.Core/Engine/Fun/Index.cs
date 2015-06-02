@@ -8,14 +8,26 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index : BPTreeNode<long, DataItem>
+    public class Index
     {
         private static string _fileName;
         private static string _indexFileNameFormat = "{0}.index";
+        private BPTreeNode<long, DataItem> _indexTree;
 
         public Index()
-            : base(15)
-        {}
+        {
+            _indexTree = new BPTreeNode<long, DataItem>(15);
+        }
+
+        public void Insert(long key, DataItem value)
+        {
+            _indexTree = _indexTree.Insert(key, value);
+        }
+
+        public DataItem Query(long key)
+        {
+            return _indexTree.Query(key);
+        }
         
         public void SaveIndexToDisk()
         {
@@ -42,6 +54,12 @@ namespace JellyDb.Core.Engine.Fun
                 }
             }
             return new Index() {FileName = fileName};
+        }
+
+        public BPTreeNode<long,DataItem> IndexData
+        {
+            get { return _indexTree; }
+            set { _indexTree = value; }
         }
 
         private string FileName 
