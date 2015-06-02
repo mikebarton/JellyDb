@@ -86,12 +86,66 @@ namespace JellyDb.Core.Test.Unit.Engine
                 };
 
 
-                for (int i = 1; i < 100000; i++)
+                for (int i = 1; i < 1000; i++)
                 {
                     _target.Write(i, string.Format("hello {0}", i));
                 }
                 fileIo.Flush();
-                for (int i = 1; i < 100000; i++)
+                for (int i = 1; i < 1000; i++)
+                {
+                    Assert.AreEqual(string.Format("hello {0}", i), _target.Read(i));
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Database_CreateCloseAndReadDatabase()
+        {
+            using (var fileIo = new IoFileManager())
+            using (_target = new Database("testDatabase"))
+            {
+                fileIo.Initialise();
+                _target.ReadFromDisk = (offset, bytes) =>
+                {
+                    var buffer = new byte[bytes];
+                    fileIo.ReadVirtualPage(ref buffer, 0, offset, bytes);
+                    return buffer;
+                };
+
+                _target.WriteToDisk = buffer =>
+                {
+                    var offset = fileIo.EndOfStreamIndex;
+                    fileIo.WriteVirtualPage(ref buffer, 0, offset, buffer.Length);
+                    return offset;
+                };
+
+
+                for (int i = 1; i < 10; i++)
+                {
+                    _target.Write(i, string.Format("hello {0}", i));
+                }                
+            }
+
+            using (var fileIo = new IoFileManager())
+            using (_target = new Database("testDatabase"))
+            {
+                fileIo.Initialise();
+                _target.ReadFromDisk = (offset, bytes) =>
+                {
+                    var buffer = new byte[bytes];
+                    fileIo.ReadVirtualPage(ref buffer, 0, offset, bytes);
+                    return buffer;
+                };
+
+                _target.WriteToDisk = buffer =>
+                {
+                    var offset = fileIo.EndOfStreamIndex;
+                    fileIo.WriteVirtualPage(ref buffer, 0, offset, buffer.Length);
+                    return offset;
+                };
+
+
+                for (int i = 1; i < 10; i++)
                 {
                     Assert.AreEqual(string.Format("hello {0}", i), _target.Read(i));
                 }

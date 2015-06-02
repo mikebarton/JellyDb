@@ -33,7 +33,7 @@ namespace JellyDb.Core.Engine.Fun
             return text;
         }
 
-        private List<byte> RetrieveItemData(List<byte> itemData, long dataFileOffset, int pageOffset, int itemLength)
+        private List<byte> RetrieveItemData(List<byte> itemData, long dataFileOffset, int pageOffset, int itemLength, bool isContinuance = false)
         {
             var pageStartOffset = dataFileOffset - pageOffset;
             byte[] pageData = null;
@@ -42,8 +42,8 @@ namespace JellyDb.Core.Engine.Fun
                 pageData = ReadFromDisk(pageStartOffset, _pageSizeInBytes);
                 _pageCache[pageStartOffset] = pageData;
             }
-            var totalData = itemData.Concat(pageData.Skip(pageOffset).Take(itemLength)).ToList();
-            if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, 0, itemLength);
+            var totalData = itemData.Concat(pageData.Skip(isContinuance ? 0 : pageOffset).Take(itemLength)).ToList();
+            if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, pageOffset, itemLength - (totalData.Count - itemData.Count), true);
             return totalData;            
         }
 

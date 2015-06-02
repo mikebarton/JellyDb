@@ -43,12 +43,13 @@ namespace JellyDb.Core.Engine.Fun
         {
             var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
             var fileName = Path.Combine(folderPath, string.Format(_indexFileNameFormat, databaseName));
-            if (File.Exists(_fileName))
+            if (File.Exists(fileName))
             {
-                using (var stream = File.Open(_fileName, FileMode.OpenOrCreate))
+                using (var stream = File.Open(fileName, FileMode.OpenOrCreate))
                 using (TextReader reader = new StreamReader(stream))
                 {
-                    var index = JsonConvert.DeserializeObject<Index>(reader.ReadToEnd());
+                    var json = reader.ReadToEnd();
+                    var index = JsonConvert.DeserializeObject<Index>(json);
                     index.FileName = fileName;
                     return index;
                 }

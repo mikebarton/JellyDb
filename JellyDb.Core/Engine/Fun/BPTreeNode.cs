@@ -20,14 +20,13 @@ namespace JellyDb.Core.Engine.Fun
             _branchingFactor = branchingFactor;
             _comparer = new TypeComparer<TKey>();
         }
-
-        [JsonIgnore]
+                
         public int BranchingFactor
         {
             get { return _branchingFactor; }
             set 
             {
-                if (_branchingFactor != -1) throw new InvalidOperationException("once branching factor is defined for a node it cannot be redefined");
+                //if (_branchingFactor != -1) throw new InvalidOperationException("once branching factor is defined for a node it cannot be redefined");
                 _branchingFactor = value; 
             }
         }
@@ -146,7 +145,7 @@ namespace JellyDb.Core.Engine.Fun
             if (_comparer.Compare(MaxKey, MinKey) == 0 && MinKey == null) return false;
             if (MaxKey == null && MinKey != null && _comparer.Compare(MinKey, key) <= 0) return true;
             if (MinKey == null && MaxKey != null && _comparer.Compare(MaxKey,key) > 0) return true;
-            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) < 0 && _comparer.Compare(MaxKey, key) >= 0) return true;
+            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) <= 0 && _comparer.Compare(MaxKey, key) > 0) return true;
             return false;
         }
         
