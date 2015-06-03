@@ -145,7 +145,7 @@ namespace JellyDb.Core.Engine.Fun
             if (_comparer.Compare(MaxKey, MinKey) == 0 && MinKey == null) return false;
             if (MaxKey == null && MinKey != null && _comparer.Compare(MinKey, key) <= 0) return true;
             if (MinKey == null && MaxKey != null && _comparer.Compare(MaxKey,key) > 0) return true;
-            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) <= 0 && _comparer.Compare(MaxKey, key) > 0) return true;
+            if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) <= 0 && _comparer.Compare(MaxKey, key) >= 0) return true;
             return false;
         }
         

@@ -1,0 +1,7 @@
+Save each DataItem with more meta data
+	-ID
+	-VersionId
+	-DateSaved	
+	-Data
+
+Flush Disk and Data to disk more often

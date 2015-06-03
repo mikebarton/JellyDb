@@ -39,7 +39,27 @@ namespace JellyDb.Core.Test.Unit.Storage
             }              
         }
 
-        
+        [TestMethod]
+        public void CreateTreeAndOverWriteSomeAndReadAgain()
+        {
+            var node = new BPTreeNode<int, TestObject>(15);
+            for (int i = 0; i < 20; i++)
+            {
+                node = node.Insert(i, new TestObject() {Num = i.ToString()});
+            }
+            var result = node.Query(6);
+            node = node.Insert(6, new TestObject() { Num = 6.ToString() + "a" });
+            for (int i = 0; i < 10; i++)
+            {
+                node = node.Insert(i, new TestObject() { Num = i.ToString() + "b" });
+            }
+
+        }
+
+        public class TestObject
+        {
+            public string Num { get; set; }
+        }
 
 
         private bool TestNode(BPTreeNode<int,int> node, long key, long data)
