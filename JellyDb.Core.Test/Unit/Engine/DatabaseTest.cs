@@ -6,6 +6,7 @@ using JellyDb.Core.VirtualAddressSpace.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JellyDb.Core.Engine.Fun;
 using JellyDb.Core.Configuration;
+using System.IO;
 
 namespace JellyDb.Core.Test.Unit.Engine
 {
@@ -13,17 +14,23 @@ namespace JellyDb.Core.Test.Unit.Engine
     public class DatabaseTest
     {
         private Database _target = null;
+        private Stream _stream;
+        private string _fileLoc;
+
+        public DatabaseTest()
+        {
+            var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
+            _fileLoc = Path.Combine(folderPath, "dbFile.dat");
+        }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-
         }
 
         [TestMethod]
@@ -38,10 +45,12 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateAndSaveDatabase()
         {
+            _stream = File.Create(_fileLoc);
+
             using (var fileIo = new IoFileManager())
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise();
+                fileIo.Initialise(_stream);
                 _target.ReadFromDisk = (offset, bytes) =>
                     {
                         var buffer = new byte[bytes];
@@ -67,10 +76,12 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateAndSaveLOTSInDatabase()
         {
+            _stream = File.Create(_fileLoc);
+
             using (var fileIo = new IoFileManager())
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise();
+                fileIo.Initialise(_stream);
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];
@@ -101,10 +112,12 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateCloseAndReadDatabase()
         {
+            _stream = File.Create(_fileLoc);
+
             using (var fileIo = new IoFileManager())
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise();
+                fileIo.Initialise(_stream);
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];
@@ -125,11 +138,12 @@ namespace JellyDb.Core.Test.Unit.Engine
                     _target.Write(i, string.Format("hello {0}", i));
                 }                
             }
+            _stream = File.Open(_fileLoc, FileMode.OpenOrCreate);
 
             using (var fileIo = new IoFileManager())
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise();
+                fileIo.Initialise(_stream);
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];

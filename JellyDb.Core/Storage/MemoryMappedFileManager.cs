@@ -47,5 +47,11 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
         public void Initialise()
         {
         }
+
+
+        public void Initialise(System.IO.Stream stream)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -27,7 +27,9 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestInitialize]
         public void TestInitialize()
         {
+            var stream = File.Open(string.Format("{0}.dat", fileLoc), FileMode.OpenOrCreate);
             _storage = new IoFileManager();
+            _storage.Initialise(stream);
         }
 
         [TestCleanup]
@@ -122,7 +124,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         public void CreateBigFileTest()
         {
             Stopwatch sw = new Stopwatch();
-            byte[] data = CreateTestByteArray((1024 * 1024), 200);
+            byte[] data = CreateTestByteArray((1024 * 1024), 5);
             using (target = new AddressSpaceManager(_storage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();

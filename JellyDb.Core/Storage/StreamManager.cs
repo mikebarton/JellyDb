@@ -10,7 +10,7 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
     {
         protected abstract Stream Stream { get; }
 
-        public abstract void Initialise();
+        public abstract void Initialise(Stream stream);
 
         public void Flush()
         {

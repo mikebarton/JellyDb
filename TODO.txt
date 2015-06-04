@@ -1,3 +1,6 @@
+Have started creating HostingInstance and HostingConfiguration
+Need to refactor StreamManager. FileIoManager isn't really necessary if it takes a stream as input
+
 Save each DataItem with more meta data
 	-ID
 	-VersionId
@@ -5,3 +8,4 @@ Save each DataItem with more meta data
 	-Data
 
 Flush Disk and Data to disk more often
+Fix page caching to only store recently accessed pages

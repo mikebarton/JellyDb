@@ -59,6 +59,8 @@
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="Hosting\HostingConfiguration.cs" />
+    <Compile Include="Hosting\HostingInstance.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
     <Compile Include="Sql\Dml\AdditionOperator.cs" />
@@ -122,7 +124,10 @@
     <None Include="packages.config" />
     <None Include="Sql\Dml\SelectStatement.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Client\" />
+    <Folder Include="Server\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
