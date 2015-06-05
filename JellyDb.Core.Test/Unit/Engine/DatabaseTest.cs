@@ -14,7 +14,6 @@ namespace JellyDb.Core.Test.Unit.Engine
     public class DatabaseTest
     {
         private Database _target = null;
-        private Stream _stream;
         private string _fileLoc;
 
         public DatabaseTest()
@@ -26,6 +25,7 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestInitialize]
         public void TestInitialize()
         {
+            if(File.Exists(_fileLoc))File.Delete(_fileLoc);
         }
 
         [TestCleanup]
@@ -45,12 +45,10 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateAndSaveDatabase()
         {
-            _stream = File.Create(_fileLoc);
-
-            using (var fileIo = new IoFileManager())
+            using (var fileIo = new IoFileManager(_fileLoc))
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise(_stream);
+                fileIo.Initialise();
                 _target.ReadFromDisk = (offset, bytes) =>
                     {
                         var buffer = new byte[bytes];
@@ -76,12 +74,10 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateAndSaveLOTSInDatabase()
         {
-            _stream = File.Create(_fileLoc);
-
-            using (var fileIo = new IoFileManager())
+            using (var fileIo = new IoFileManager(_fileLoc))
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise(_stream);
+                fileIo.Initialise();
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];
@@ -112,12 +108,10 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateCloseAndReadDatabase()
         {
-            _stream = File.Create(_fileLoc);
-
-            using (var fileIo = new IoFileManager())
+            using (var fileIo = new IoFileManager(_fileLoc))
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise(_stream);
+                fileIo.Initialise();
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];
@@ -138,12 +132,11 @@ namespace JellyDb.Core.Test.Unit.Engine
                     _target.Write(i, string.Format("hello {0}", i));
                 }                
             }
-            _stream = File.Open(_fileLoc, FileMode.OpenOrCreate);
 
-            using (var fileIo = new IoFileManager())
+            using (var fileIo = new IoFileManager(_fileLoc))
             using (_target = new Database("testDatabase"))
             {
-                fileIo.Initialise(_stream);
+                fileIo.Initialise();
                 _target.ReadFromDisk = (offset, bytes) =>
                 {
                     var buffer = new byte[bytes];

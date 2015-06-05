@@ -10,12 +10,18 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
     public class IoFileManager : StreamManager
     {
         private Stream _stream;
+        private string _filePath;
+
+        public IoFileManager(string filePath)
+        {
+            _filePath = filePath;
+        }
 
         protected override Stream Stream { get { return _stream; } }
 
-        public override void Initialise(Stream stream)
+        public override void Initialise()
         {
-            _stream = stream;
+            _stream = File.Open(_filePath, FileMode.OpenOrCreate);
         }
     }
 }

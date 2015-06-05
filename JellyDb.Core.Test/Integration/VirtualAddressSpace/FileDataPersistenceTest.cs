@@ -27,9 +27,10 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestInitialize]
         public void TestInitialize()
         {
-            var stream = File.Open(string.Format("{0}.dat", fileLoc), FileMode.OpenOrCreate);
-            _storage = new IoFileManager();
-            _storage.Initialise(stream);
+            var fileName = string.Format("{0}.dat", fileLoc);
+            if(File.Exists(fileName))File.Delete(fileName);
+            _storage = new IoFileManager(fileName);
+            _storage.Initialise();
         }
 
         [TestCleanup]
