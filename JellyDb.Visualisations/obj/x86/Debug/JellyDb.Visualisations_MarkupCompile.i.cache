@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\mbarton.W01491\Desktop\Repositories\Github\JellyDb\JellyDb.Visualisations\obj\x86\Debug\
+C:\Users\Mike\Desktop\JellyDb\JellyDb.Visualisations\obj\x86\Debug\
 JellyDb.Visualisations
 none
 false
 DEBUG;TRACE
-C:\Users\mbarton.W01491\Desktop\Repositories\Github\JellyDb\JellyDb.Visualisations\App.xaml
+C:\Users\Mike\Desktop\JellyDb\JellyDb.Visualisations\App.xaml
 4-1877655382
 
-16-433131805
-171901181355
+16-1271943288
+171808107424
 Controls\BTree.xaml;Controls\PerfTestResultsGraph.xaml;MainWindow.xaml;Resources\Styles\TreeGraphStyle.xaml;
 
-False
+True
 

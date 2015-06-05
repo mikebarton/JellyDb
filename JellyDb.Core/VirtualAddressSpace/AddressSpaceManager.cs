@@ -59,6 +59,18 @@ namespace JellyDb.Core.VirtualAddressSpace
             }            
         }
 
+        public void ResetAddressSpace(Guid addressSpaceId)
+        {
+            foreach (var page in pageIndex[addressSpaceId])
+            {
+                byte[] buffer = new byte[page.Size];
+                SetData(addressSpaceId, page.Offset, 0, buffer.Length, buffer);
+                page.Allocated = false;
+                page.Used = 0;
+                pageIndex.AddOrUpdateEntry(page);
+            }
+        }
+
         public void Dispose()
         {
             pageIndex.Dispose();

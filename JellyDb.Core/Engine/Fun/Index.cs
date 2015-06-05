@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index
+    public class Index : DataWritableBase
     {
         private static string _fileName;
         private static string _indexFileNameFormat = "{0}.index";
@@ -31,12 +31,10 @@ namespace JellyDb.Core.Engine.Fun
         
         public void SaveIndexToDisk()
         {
-            using(var stream = File.Open(_fileName,FileMode.OpenOrCreate))
-            using (var writer = new StreamWriter(stream))
-            {
-                var json = JsonConvert.SerializeObject(this);
-                writer.Write(json);
-            }
+            var json = JsonConvert.SerializeObject(this);
+            int numBytes = 0;
+            var bytes = ConvertDataToBytes(out numBytes, json);
+            WriteToDisk(bytes);            
         }
 
         public static Index CreateOrLoad(string databaseName)
