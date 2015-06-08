@@ -10,8 +10,6 @@ namespace JellyDb.Core.Engine.Fun
 {
     public class Index : DataWritableBase
     {
-        private static string _fileName;
-        private static string _indexFileNameFormat = "{0}.index";
         private BPTreeNode<long, DataItem> _indexTree;
 
         public Index()
@@ -32,38 +30,21 @@ namespace JellyDb.Core.Engine.Fun
         public void SaveIndexToDisk()
         {
             var json = JsonConvert.SerializeObject(this);
-            int numBytes = 0;
-            var bytes = ConvertDataToBytes(out numBytes, json);
-            WriteToDisk(bytes);            
+            var bytes = ConvertDataToBytes(json);
+            WriteToDisk(bytes);
         }
 
-        public static Index CreateOrLoad(string databaseName)
+        public static Index Load(byte[] dataBuffer)
         {
-            var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            var fileName = Path.Combine(folderPath, string.Format(_indexFileNameFormat, databaseName));
-            if (File.Exists(fileName))
-            {
-                using (var stream = File.Open(fileName, FileMode.OpenOrCreate))
-                using (TextReader reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    var index = JsonConvert.DeserializeObject<Index>(json);
-                    index.FileName = fileName;
-                    return index;
-                }
-            }
-            return new Index() {FileName = fileName};
+            var json = ConvertBytesToData(dataBuffer);
+            var index = JsonConvert.DeserializeObject<Index>(json);
+            return index;             
         }
 
         public BPTreeNode<long,DataItem> IndexData
         {
             get { return _indexTree; }
             set { _indexTree = value; }
-        }
-
-        private string FileName 
-        {
-            set { _fileName = value; }
         }
     }
 }

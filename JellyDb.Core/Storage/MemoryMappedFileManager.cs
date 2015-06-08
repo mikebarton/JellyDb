@@ -17,14 +17,14 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             view = fileMapping.CreateViewAccessor();
         }
 
-        public void ReadVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
+        public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
         {
             //n.b. the intellisense description of parameters is incorrect. 
             //see http://msdn.microsoft.com/es-es/library/dd267761.aspx for correct description
             int result = view.ReadArray<byte>(storageOffset, dataBuffer, (int)bufferIndex, (int)numBytesToRead);
         }
 
-        public void WriteVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
+        public void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
         {
             //n.b. the intellisense description of parameters is incorrect. 
             //see http://msdn.microsoft.com/es-es/library/dd267754.aspx for correct description
@@ -50,6 +50,12 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 
 
         public void Initialise(System.IO.Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public byte[] ReadToEnd(long storageOffset)
         {
             throw new NotImplementedException();
         }

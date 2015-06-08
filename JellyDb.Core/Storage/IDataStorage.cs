@@ -9,8 +9,9 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
     public interface IDataStorage : IDisposable
     {
         void Flush();
-        void WriteVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
-        void ReadVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
+        void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
+        void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
+        byte[] ReadToEnd(long storageOffset);
         void Initialise();
     }
 }

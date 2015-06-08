@@ -1,4 +1,5 @@
 ﻿using JellyDb.Core.Engine.Fun;
+using JellyDb.Core.VirtualAddressSpace;
 using JellyDb.Core.VirtualAddressSpace.Storage;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,9 @@ namespace JellyDb.Core.Hosting
 
         private void InitialiseFileBasedDatabase()
         {
-            
+            _dataStorage = new IoFileManager(_hostingConfig.ConnectionString);
+            _dataStorage.Initialise();
+            var dataManager = new AddressSpaceManager(_dataStorage);
         }
     }
 }

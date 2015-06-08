@@ -60,6 +60,7 @@
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="Hosting\AddressSpaceIndex.cs" />
     <Compile Include="Hosting\HostingConfiguration.cs" />
     <Compile Include="Hosting\HostingInstance.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />

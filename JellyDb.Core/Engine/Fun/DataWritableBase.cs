@@ -1,4 +1,5 @@
 ﻿using JellyDb.Core.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,27 +11,28 @@ namespace JellyDb.Core.Engine.Fun
     public abstract class DataWritableBase
     {
         private static byte[] _startBytes = new byte[] { 0xAF };
-        private static byte[] _endBytes = new byte[] { 0xFA };
+        private static byte[] _endBytes = new byte[] { 0xFA, 0xAF };
 
-        protected virtual string ConvertBytesToData(int numBytes, byte[] dataBuffer)
+        protected static string ConvertBytesToData(byte[] dataBuffer)
         {
-            if (!dataBuffer.Take(_startBytes.Length).SequenceEqual(_startBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary start markers did not align.", dataItem.PageOffset));
-            if (!dataBuffer.Skip(numBytes - _startBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException(string.Format("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.", dataItem.PageOffset));
+            if (!dataBuffer.Take(_startBytes.Length).SequenceEqual(_startBytes)) throw new InvalidDataException("Data File is Corrupt. When reading data item. data boundary start markers did not align.");
+            if (!dataBuffer.Skip(dataBuffer.Length - _endBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.");
 
-            var strippedData = dataBuffer.Skip(_startBytes.Length).Take(numBytes - _startBytes.Length - _endBytes.Length);
+            var strippedData = dataBuffer.Skip(_startBytes.Length).Take(dataBuffer.Length - _startBytes.Length - _endBytes.Length);
             var data = Encoding.Unicode.GetString(strippedData.ToArray());
             return data;
         }
 
-        protected virtual byte[] ConvertDataToBytes(out int numBytes, string data)
+        protected static byte[] ConvertDataToBytes(string data)
         {
             var dataBytes = Encoding.Unicode.GetBytes(data);
             var totalData = _startBytes.Concat(dataBytes).Concat(_endBytes).ToArray();
-            numBytes = totalData.Length;
             return totalData;
         }        
 
+        [JsonIgnore]
         public ReadDelegate ReadFromDisk { get; set; }
+        [JsonIgnore]
         public WriteDelegate WriteToDisk { get; set; }
     }
     public delegate byte[] ReadDelegate(long storageOffset, int numBytes);

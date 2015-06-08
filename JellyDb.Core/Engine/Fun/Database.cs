@@ -12,23 +12,19 @@ namespace JellyDb.Core.Engine.Fun
     public class Database : DataWritableBase, IDisposable
     {
         private Index _indexRoot;
-        private string _databaseName;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
-        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024;
- 
+        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024; 
 
-        public Database(string databaseName)
+        public Database(Index index)
         {
-            _databaseName = databaseName;
-            _indexRoot = Index.CreateOrLoad(databaseName);
+            _indexRoot = index;
         }
 
         public string Read(long key)
         {
             var dataItem = _indexRoot.Query(key);
             var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength).ToArray();
-
-            var text = ConvertBytesToData(dataItem.ItemLength, totalData);
+            var text = ConvertBytesToData(totalData);
             return text;
         }
 
@@ -49,9 +45,8 @@ namespace JellyDb.Core.Engine.Fun
         public void Write(long key, string data)
         {
             var dataItem = new DataItem() { VersionId = Guid.NewGuid() };
-            int itemLength = 0;
-            var dataBuffer = ConvertDataToBytes(out itemLength, data);
-            dataItem.ItemLength = itemLength;
+            var dataBuffer = ConvertDataToBytes(data);
+            dataItem.ItemLength = dataBuffer.Length;
             var dataFileOffset = WriteToDisk(dataBuffer);
             dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
             dataItem.DataFileOffset = dataFileOffset;
