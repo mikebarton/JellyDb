@@ -5,3 +5,4 @@ Save each DataItem with more meta data
 	-Data
 
 Flush Disk and Data to disk more often
+Save Index and Data all in one file
