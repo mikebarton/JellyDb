@@ -117,6 +117,7 @@
     <Compile Include="VirtualAddressSpace\AddressSpaceAgent.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
+    <Compile Include="VirtualAddressSpace\DataWriterBase.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
     <Compile Include="Storage\IoFileManager.cs" />

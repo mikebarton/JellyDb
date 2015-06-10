@@ -52,11 +52,7 @@ namespace JellyDb.Core.Engine.Fun
             dataItem.DataFileOffset = dataFileOffset;
             _indexRoot.Insert(key, dataItem);
         }
-
         
-        public ReadDelegate ReadFromDisk { get; set; }
-        public WriteDelegate WriteToDisk { get; set; }
-
         public void Dispose()
         {
             _indexRoot.SaveIndexToDisk();

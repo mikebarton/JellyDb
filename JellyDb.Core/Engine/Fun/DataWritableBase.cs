@@ -1,4 +1,5 @@
 ﻿using JellyDb.Core.Configuration;
+using JellyDb.Core.VirtualAddressSpace;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public abstract class DataWritableBase
+    public abstract class DataWritableBase : DataWriterBase
     {
         private static byte[] _startBytes = new byte[] { 0xAF };
         private static byte[] _endBytes = new byte[] { 0xFA, 0xAF };
@@ -28,13 +29,6 @@ namespace JellyDb.Core.Engine.Fun
             var dataBytes = Encoding.Unicode.GetBytes(data);
             var totalData = _startBytes.Concat(dataBytes).Concat(_endBytes).ToArray();
             return totalData;
-        }        
-
-        [JsonIgnore]
-        public ReadDelegate ReadFromDisk { get; set; }
-        [JsonIgnore]
-        public WriteDelegate WriteToDisk { get; set; }
-    }
-    public delegate byte[] ReadDelegate(long storageOffset, int numBytes);
-    public delegate long WriteDelegate(byte[] dataBuffer);
+        }            
+    }    
 }

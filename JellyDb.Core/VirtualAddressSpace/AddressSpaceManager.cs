@@ -28,6 +28,11 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
         }
 
+        public AddressSpaceAgent CreateVirtualAddressSpaceAgent(Guid addressSpaceId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Guid CreateVirtualAddressSpace()
         {
             Guid newGuid = Guid.NewGuid();
