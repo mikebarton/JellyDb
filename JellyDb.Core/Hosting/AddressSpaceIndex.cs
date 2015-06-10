@@ -1,11 +1,12 @@
-﻿using System;
+﻿using JellyDb.Core.Engine.Fun;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace JellyDb.Core.Hosting
 {
-    public class AddressSpaceIndex
+    public class AddressSpaceIndex : DataWritableBase
     {
         public AddressSpaceIndex()
         {

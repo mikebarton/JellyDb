@@ -114,6 +114,7 @@
     <Compile Include="Engine\Fun\IntComparer.cs" />
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
+    <Compile Include="VirtualAddressSpace\AddressSpaceAgent.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />

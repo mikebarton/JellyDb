@@ -13,6 +13,7 @@ namespace JellyDb.Core.Hosting
         private HostingConfiguration _hostingConfig;
         private Dictionary<string, Database> _databases = new Dictionary<string, Database>();
         private IDataStorage _dataStorage;
+        private AddressSpaceIndex _addressSpaceIndex;
 
         public HostingInstance(HostingConfiguration config)
         {
@@ -20,7 +21,7 @@ namespace JellyDb.Core.Hosting
         }
 
         public void Initialise()
-        {
+        {            
             switch (_hostingConfig.HostingType)
             {
                 case HostingType.FileBased:
@@ -42,6 +43,17 @@ namespace JellyDb.Core.Hosting
             _dataStorage = new IoFileManager(_hostingConfig.ConnectionString);
             _dataStorage.Initialise();
             var dataManager = new AddressSpaceManager(_dataStorage);
+            _addressSpaceIndex = new AddressSpaceIndex()
+            {
+                ReadFromDisk = (offset, numBytes) =>
+                {
+                    return new byte[2];
+                },
+                WriteToDisk = buffer =>
+                {
+                    return long.MaxValue;
+                }
+            };
         }
     }
 }

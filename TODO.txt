@@ -1,5 +1,5 @@
 Have started creating HostingInstance and HostingConfiguration
-Need to refactor StreamManager. FileIoManager isn't really necessary if it takes a stream as input
+
 
 Save each DataItem with more meta data
 	-ID
