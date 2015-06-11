@@ -30,15 +30,26 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public AddressSpaceAgent CreateVirtualAddressSpaceAgent(Guid addressSpaceId)
         {
-            throw new NotImplementedException();
-        }
+            var result = new AddressSpaceAgent(addressSpaceId);
+            result.ReadFromDisk = (storageOffset, numBytes) =>
+            {
+                var addressSpaceIdClosure = addressSpaceId;
+                return GetData(addressSpaceIdClosure, storageOffset, numBytes);
+            };
 
-        public Guid CreateVirtualAddressSpace()
-        {
-            Guid newGuid = Guid.NewGuid();
-            ExpandAddressSpace(newGuid);
-            return newGuid;
-        }
+            result.WriteToDisk = (storageOffset, buffer) =>
+            {
+                var addressSpaceIfClosure = addressSpaceId;
+                SetData(addressSpaceIfClosure, storageOffset, 0, buffer.Length, buffer);
+                //TODO how to handle when we write to end of file? what is the storage offset
+            };
+
+            if (!pageIndex.HasAddressSpace(addressSpaceId))
+            {
+                ExpandAddressSpace(addressSpaceId);
+            }
+            return result;
+        }        
 
         private void ExpandAddressSpace(Guid addressSpaceId)
         {

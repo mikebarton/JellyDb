@@ -14,5 +14,6 @@ namespace JellyDb.Core.VirtualAddressSpace
         public WriteDelegate WriteToDisk { get; set; }
     }
     public delegate byte[] ReadDelegate(long storageOffset, int numBytes);
-    public delegate long WriteDelegate(byte[] dataBuffer);
+    public delegate void WriteDelegate(long storageOffset, byte[] dataBuffer);
+
 }

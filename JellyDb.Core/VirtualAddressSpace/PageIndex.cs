@@ -42,7 +42,17 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public IList<PageSummary> this[Guid addressSpaceId]
         {
-            get { return indices[addressSpaceId]; }            
+            get 
+            {
+                List<PageSummary> index = null;
+                indices.TryGetValue(addressSpaceId, out index);
+                return index;
+            }            
+        }
+
+        public bool HasAddressSpace(Guid addressSpaceId)
+        {
+            return indices.ContainsKey(addressSpaceId);
         }
 
         public IList<PageSummary> EmptyPages { get { return indices[Guid.Empty]; } }

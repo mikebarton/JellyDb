@@ -8,12 +8,10 @@ namespace JellyDb.Core.VirtualAddressSpace
     public class AddressSpaceAgent : DataWriterBase
     {
         private Guid _addressSpaceId;
-        private AddressSpaceManager _manager;
 
-        public AddressSpaceAgent(Guid addressSpaceId, AddressSpaceManager manager)
+        public AddressSpaceAgent(Guid addressSpaceId)
         {
             _addressSpaceId = addressSpaceId;
-            _manager = manager;
         }
     }
 }
