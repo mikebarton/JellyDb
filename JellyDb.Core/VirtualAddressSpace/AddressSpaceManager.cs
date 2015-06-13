@@ -24,7 +24,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             pageIndex = new PageIndex(File.Open(pageIndexFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             if (pageIndex.EndOfPageIndex == 0)
             {
-                IndexFileGrowth();
+                pageIndex.IndexFileGrowth();
             }
         }
 
@@ -46,34 +46,12 @@ namespace JellyDb.Core.VirtualAddressSpace
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
-                ExpandAddressSpace(addressSpaceId);
+                pageIndex.ExpandAddressSpace(addressSpaceId);
             }
             return result;
         }        
 
-        private void ExpandAddressSpace(Guid addressSpaceId)
-        {
-            if (pageIndex.EmptyPages.Any())
-            {
-                IndexFileGrowth();
-            }
-            PageSummary summary = pageIndex.EmptyPages[0];
-            summary.AddressSpaceId = addressSpaceId;
-            pageIndex.AddOrUpdateEntry(summary);            
-        }
-
-        private void IndexFileGrowth()
-        {
-            for (int i = 0; i < DbEngineConfigurationSection.ConfigSection.VfsConfig.PageIncreaseNum; i++)
-            {
-                PageSummary newSummary = new PageSummary();
-                newSummary.Allocated = false;
-                newSummary.Offset = pageIndex.EndOfPageIndex;
-                newSummary.Size = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
-                newSummary.Used = 0;
-                pageIndex.AddOrUpdateEntry(newSummary);
-            }            
-        }
+             
 
         public void ResetAddressSpace(Guid addressSpaceId)
         {
@@ -147,7 +125,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 if (numProcessed == numBytes) break;
                 else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
-                    ExpandAddressSpace(addressSpaceId);
+                    pageIndex.ExpandAddressSpace(addressSpaceId);
                 }
             }
         }
