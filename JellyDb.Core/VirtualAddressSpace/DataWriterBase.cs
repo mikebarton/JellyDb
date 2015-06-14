@@ -7,13 +7,11 @@ using System.Text;
 namespace JellyDb.Core.VirtualAddressSpace
 {
     public class DataWriterBase
-    {        
-        [JsonIgnore]
-        public ReadDelegate ReadFromDisk { get; set; }
-        [JsonIgnore]
-        public WriteDelegate WriteToDisk { get; set; }
+    {   
+        internal ReadDelegate ReadFromDisk { get; set; }        
+        internal WriteDelegate WriteToDisk { get; set; }
     }
     public delegate byte[] ReadDelegate(long storageOffset, int numBytes);
-    public delegate void WriteDelegate(long storageOffset, byte[] dataBuffer);
+    public delegate long WriteDelegate(byte[] dataBuffer);
 
 }

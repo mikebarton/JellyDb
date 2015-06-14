@@ -31,27 +31,21 @@ namespace JellyDb.Core.VirtualAddressSpace
         public AddressSpaceAgent CreateVirtualAddressSpaceAgent(Guid addressSpaceId)
         {
             var result = new AddressSpaceAgent(addressSpaceId);
-            result.ReadFromDisk = (storageOffset, numBytes) =>
-            {
-                var addressSpaceIdClosure = addressSpaceId;
-                return GetData(addressSpaceIdClosure, storageOffset, numBytes);
-            };
-
-            result.WriteToDisk = (storageOffset, buffer) =>
-            {
-                var addressSpaceIfClosure = addressSpaceId;
-                SetData(addressSpaceIfClosure, storageOffset, 0, buffer.Length, buffer);
-                //TODO how to handle when we write to end of file? what is the storage offset
-            };
+            result.ReadFromDisk += GetData;
+            result.WriteToDisk += SetData;
+            result.GetEndOfAddressSpaceOffset += pageIndex.GetEndOfUsedAddressSpaceOffset;
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
                 pageIndex.ExpandAddressSpace(addressSpaceId);
             }
             return result;
-        }        
+        }
 
-             
+        private long SetData(byte[] dataBuffer)
+        {
+            throw new NotImplementedException();
+        }   
 
         public void ResetAddressSpace(Guid addressSpaceId)
         {
@@ -71,7 +65,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             dataStorage.Dispose();
         }
 
-        public byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
+        internal byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
         {            
             byte[] result = new byte[numBytes];
             long localOffset = storageOffset;
@@ -99,7 +93,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             return result;
         }
 
-        public void SetData(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer)
+        internal void SetData(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer)
         {
             long localOffset = storageOffset;
             int numProcessed = 0;

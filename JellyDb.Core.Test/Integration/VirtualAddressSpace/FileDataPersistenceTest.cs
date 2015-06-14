@@ -60,7 +60,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         {
             using (target = new AddressSpaceManager(_storage))
             {
-                Guid id1 = target.CreateVirtualAddressSpace();
+                var agent = target.CreateVirtualAddressSpaceAgent(Guid.NewGuid());
                 byte[] data = CreateTestByteArray(8, 1024);
                 target.SetData(id1, 0, 0, (8 * 1024), data);
                 byte[] retrieved = target.GetData(id1, 0, data.Length);
