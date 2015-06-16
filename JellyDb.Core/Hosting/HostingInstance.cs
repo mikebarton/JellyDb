@@ -43,17 +43,7 @@ namespace JellyDb.Core.Hosting
             _dataStorage = new IoFileManager(_hostingConfig.ConnectionString);
             _dataStorage.Initialise();
             var dataManager = new AddressSpaceManager(_dataStorage);
-            _addressSpaceIndex = new AddressSpaceIndex()
-            {
-                ReadFromDisk = (offset, numBytes) =>
-                {
-                    return new byte[2];
-                },
-                WriteToDisk = buffer =>
-                {
-                    return long.MaxValue;
-                }
-            };
+            
         }
     }
 }

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace JellyDb.Core.Hosting
 {
-    public class AddressSpaceIndex : DataWritableBase
+    public class AddressSpaceIndex 
     {
-        public AddressSpaceIndex()
+        public AddressSpaceIndex() 
         {
             Pairs = new List<IndexDataPair>();
         }

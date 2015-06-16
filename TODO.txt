@@ -1,6 +1,6 @@
 Have started creating HostingInstance and HostingConfiguration
 
-
+implement flush() properly in AddressSpaceAgent
 Save each DataItem with more meta data
 	-ID
 	-VersionId

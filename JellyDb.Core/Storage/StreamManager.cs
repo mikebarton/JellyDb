@@ -29,7 +29,7 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Stream.Read(dataBuffer, bufferIndex, numBytesToRead);
         }
 
-        public byte[] ReadToEnd(long storageOffset)
+        public byte[] ReadToEndOfAddressSpace(long storageOffset)
         {
             Stream.Position = storageOffset;
             var size = Stream.Length - storageOffset;
@@ -39,7 +39,7 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             return buffer;
         }
 
-        public long EndOfStreamIndex
+        public long EndOfFileIndex
         {
             get { return Stream.Length; }
         }
@@ -49,6 +49,6 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Flush();
             Stream.Close();
             Stream.Dispose();
-        }        
+        }
     }
 }

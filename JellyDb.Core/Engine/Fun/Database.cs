@@ -15,7 +15,7 @@ namespace JellyDb.Core.Engine.Fun
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
         private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024; 
 
-        public Database(Index index)
+        public Database(Index index, IDataStorage dataStorage) : base(dataStorage)
         {
             _indexRoot = index;
         }
@@ -40,7 +40,7 @@ namespace JellyDb.Core.Engine.Fun
             var totalData = itemData.Concat(pageData.Skip(isContinuance ? 0 : pageOffset).Take(itemLength)).ToList();
             if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, pageOffset, itemLength - (totalData.Count - itemData.Count), true);
             return totalData;            
-        }        
+        }                
 
         public void Write(long key, string data)
         {
@@ -51,7 +51,7 @@ namespace JellyDb.Core.Engine.Fun
             dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
             dataItem.DataFileOffset = dataFileOffset;
             _indexRoot.Insert(key, dataItem);
-        }
+        }        
         
         public void Dispose()
         {

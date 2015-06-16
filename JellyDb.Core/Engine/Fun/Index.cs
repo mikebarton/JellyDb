@@ -1,4 +1,5 @@
 ﻿using JellyDb.Core.Configuration;
+using JellyDb.Core.VirtualAddressSpace.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace JellyDb.Core.Engine.Fun
     {
         private BPTreeNode<long, DataItem> _indexTree;
 
-        public Index()
+        public Index(IDataStorage dataStorage) : base(dataStorage)
         {
             _indexTree = new BPTreeNode<long, DataItem>(15);
         }

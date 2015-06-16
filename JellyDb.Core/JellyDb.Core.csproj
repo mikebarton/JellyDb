@@ -114,6 +114,7 @@
     <Compile Include="Engine\Fun\IntComparer.cs" />
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
+    <Compile Include="Storage\MemoryStreamManager.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceAgent.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
@@ -122,7 +123,6 @@
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
     <Compile Include="Storage\IoFileManager.cs" />
     <Compile Include="Storage\StreamManager.cs" />
-    <Compile Include="Storage\MemoryMappedFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

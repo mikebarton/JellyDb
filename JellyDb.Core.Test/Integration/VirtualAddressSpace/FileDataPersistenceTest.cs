@@ -8,6 +8,7 @@ using JellyDb.Core.VirtualAddressSpace;
 using JellyDb.Core.Configuration;
 using System.IO;
 using System.Diagnostics;
+using JellyDb.Core.Storage;
 
 namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
 {
@@ -15,41 +16,32 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
     public class FileDataPersistenceTest
     {
         AddressSpaceManager target;
-        private IDataStorage _storage;
-        private string fileLoc;
+        private IDataStorage _dataStorage;
 
         public FileDataPersistenceTest()
-        {
-            var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            fileLoc = Path.Combine(folderPath, "dbFile");
+        {       
         }
 
         [TestInitialize]
         public void TestInitialize()
         {
-            var fileName = string.Format("{0}.dat", fileLoc);
-            if(File.Exists(fileName))File.Delete(fileName);
-            _storage = new IoFileManager(fileName);
-            _storage.Initialise();
+            _dataStorage = new MemoryStreamManager();
+            _dataStorage.Initialise();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            target = null;
-            _storage = null;
-            var dbFile = string.Format("{0}.dat", fileLoc);
-            if (File.Exists(dbFile))
-            {
-                File.Delete(dbFile);
-                File.Delete(string.Format("{0}.pages", fileLoc));
-            }
+            target.Dispose();
+            target = null; 
+            _dataStorage.Dispose();
+            _dataStorage = null;            
         }
 
         [TestMethod]
         public void FileBasedPersistence_CreateFilePersistence()
         {
-            using (target = new AddressSpaceManager(_storage))
+            using (target = new AddressSpaceManager(_dataStorage))
             {
                 
             }
@@ -58,12 +50,14 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetContiguousData()
         {
-            using (target = new AddressSpaceManager(_storage))
+            using (target = new AddressSpaceManager(_dataStorage))
             {
-                var agent = target.CreateVirtualAddressSpaceAgent(Guid.NewGuid());
+                var id1 = Guid.NewGuid();
+                var agent = target.CreateVirtualAddressSpaceAgent(id1);
                 byte[] data = CreateTestByteArray(8, 1024);
-                target.SetData(id1, 0, 0, (8 * 1024), data);
-                byte[] retrieved = target.GetData(id1, 0, data.Length);
+                agent.WriteData(ref data, 0, 0, (8 * 1024));
+                byte[] retrieved = new byte[data.Length];
+                agent.ReadData(ref retrieved, 0, 0, retrieved.Length);
                 for (int i = 0; i < data.Length; i++)
                 {
                     Assert.AreEqual(data[i], retrieved[i]);
@@ -74,20 +68,32 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersistence_SaveAndGetScatteredData()
         {
-            using (target = new AddressSpaceManager(_storage))
+            using (target = new AddressSpaceManager(_dataStorage))
             {
-                Guid id1 = target.CreateVirtualAddressSpace();
-                Guid id2 = target.CreateVirtualAddressSpace();
+                Guid id1 = Guid.NewGuid();
+                Guid id2 = Guid.NewGuid();
+                var agent1 = target.CreateVirtualAddressSpaceAgent(id1);
+                var agent2 = target.CreateVirtualAddressSpaceAgent(id2);
                 byte[] data = CreateTestByteArray(8, 100);
-                target.SetData(id1, 0, 0, 100, data);
-                target.SetData(id2, 0, 100, 100, data);
-                target.SetData(id1, 100, 200, 100, data);
-                target.SetData(id2, 100, 300, 100, data);
-                target.SetData(id1, 200, 400, 100, data);
-                target.SetData(id2, 200, 500, 100, data);
-                target.SetData(id1, 300, 600, 100, data);
-                target.SetData(id2, 300, 700, 100, data);
-                byte[] retrieved = target.GetData(id1, 0, 4096);
+
+                agent1.WriteData(ref data, 0, 0, 100);
+                agent2.WriteData(ref data, 0, 100, 100);
+                agent1.WriteData(ref data, 100, 200, 100);
+                agent2.WriteData(ref data, 100, 300, 100);
+                agent1.WriteData(ref data, 200, 400, 100);
+                agent2.WriteData(ref data, 200, 500, 100);
+                agent1.WriteData(ref data, 300, 600, 100);
+                agent2.WriteData(ref data, 300, 700, 100);
+                //agent1.SetData(id1, 0, 0, 100, data);
+                //agent2.SetData(id2, 0, 100, 100, data);
+                //agent1.SetData(id1, 100, 200, 100, data);
+                //agent2.SetData(id2, 100, 300, 100, data);
+                //agent1.SetData(id1, 200, 400, 100, data);
+                //agent2.SetData(id2, 200, 500, 100, data);
+                //agent1.SetData(id1, 300, 600, 100, data);
+                //agent2.SetData(id2, 300, 700, 100, data);
+                byte[] retrieved = new byte[4096];
+                agent1.ReadData(ref retrieved, 0, 0, 4096);
                 int count = -2;
                 for (int i = 0; i < retrieved.Length; i++)
                 {
@@ -107,7 +113,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         [TestMethod]
         public void FileBasedPersitence_SaveMultipleAddressSpacesWithOneFullOfdata()
         {
-            using (target = new AddressSpaceManager(_storage))
+            using (target = new AddressSpaceManager(_dataStorage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 Guid id2 = target.CreateVirtualAddressSpace();
@@ -126,7 +132,7 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         {
             Stopwatch sw = new Stopwatch();
             byte[] data = CreateTestByteArray((1024 * 1024), 5);
-            using (target = new AddressSpaceManager(_storage))
+            using (target = new AddressSpaceManager(_dataStorage))
             {
                 Guid id1 = target.CreateVirtualAddressSpace();
                 sw.Start();
