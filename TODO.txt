@@ -1,5 +1,5 @@
 Have started creating HostingInstance and HostingConfiguration
-
+load config into HostingConfig at load, and verify all data
 implement flush() properly in AddressSpaceAgent
 Save each DataItem with more meta data
 	-ID

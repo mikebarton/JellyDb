@@ -1,15 +1,18 @@
 ﻿using JellyDb.Core.Engine.Fun;
+using JellyDb.Core.VirtualAddressSpace.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JellyDb.Core.Hosting
+namespace JellyDb.Core.VirtualAddressSpace
 {
     public class AddressSpaceIndex 
     {
-        public AddressSpaceIndex() 
+        private IDataStorage _dataStorage;
+        public AddressSpaceIndex(IDataStorage dataStorage) 
         {
+            _dataStorage = dataStorage;
             Pairs = new List<IndexDataPair>();
         }
 
