@@ -77,13 +77,13 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
                 byte[] data = CreateTestByteArray(8, 100);
 
                 agent1.WriteData(ref data, 0, 0, 100);
-                agent2.WriteData(ref data, 0, 100, 100);
-                agent1.WriteData(ref data, 100, 200, 100);
-                agent2.WriteData(ref data, 100, 300, 100);
-                agent1.WriteData(ref data, 200, 400, 100);
-                agent2.WriteData(ref data, 200, 500, 100);
-                agent1.WriteData(ref data, 300, 600, 100);
-                agent2.WriteData(ref data, 300, 700, 100);
+                agent2.WriteData(ref data, 100, 0, 100);
+                agent1.WriteData(ref data, 200, 100, 100);
+                agent2.WriteData(ref data, 300, 100, 100);
+                agent1.WriteData(ref data, 400, 200, 100);
+                agent2.WriteData(ref data, 500, 200, 100);
+                agent1.WriteData(ref data, 600, 300, 100);
+                agent2.WriteData(ref data, 700, 300, 100);
                 //agent1.SetData(id1, 0, 0, 100, data);
                 //agent2.SetData(id2, 0, 100, 100, data);
                 //agent1.SetData(id1, 100, 200, 100, data);
@@ -115,11 +115,14 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
         {
             using (target = new AddressSpaceManager(_dataStorage))
             {
-                Guid id1 = target.CreateVirtualAddressSpace();
-                Guid id2 = target.CreateVirtualAddressSpace();
+                Guid id1 = Guid.NewGuid();
+                Guid id2 = Guid.NewGuid();
+                var agent1 = target.CreateVirtualAddressSpaceAgent(id1);
+                var agent2 = target.CreateVirtualAddressSpaceAgent(id2);
                 byte[] data = CreateTestByteArray(8, 100);
-                target.SetData(id1, 0, 0, data.Length, data);
-                byte[] retrieved = target.GetData(id1, 0, data.Length);
+                agent1.WriteData(ref data, 0, 0, data.Length);
+                var retrieved = new byte[data.Length];
+                agent1.ReadData(ref retrieved, 0, 0, retrieved.Length);
                 for (int i = 0; i < data.Length; i++)
                 {
                     Assert.AreEqual(data[i], retrieved[i]);
@@ -134,9 +137,10 @@ namespace JellyDb.Core.Test.Integration.VirtualAddressSpace
             byte[] data = CreateTestByteArray((1024 * 1024), 5);
             using (target = new AddressSpaceManager(_dataStorage))
             {
-                Guid id1 = target.CreateVirtualAddressSpace();
+                Guid id1 = Guid.NewGuid();
+                var agent1 = target.CreateVirtualAddressSpaceAgent(id1);
                 sw.Start();
-                target.SetData(id1, 0, 0, data.Length, data);
+                agent1.WriteData(ref data, 0, 0, data.Length);
                 sw.Stop();
             }
         }

@@ -35,12 +35,13 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestCleanup]
         public void TestCleanup()
         {
+            _target.Dispose();
+            _target = null;
             _dataStorage.Dispose();
             _dataStorage = null;
             _indexStorage.Dispose();
             _indexStorage = null;
-            _target.Dispose();
-            _target = null;
+            
         }
 
         [TestMethod]
