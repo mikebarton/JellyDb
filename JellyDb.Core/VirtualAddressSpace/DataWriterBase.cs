@@ -9,17 +9,17 @@ namespace JellyDb.Core.VirtualAddressSpace
 {
     public class DataWriterBase
     {
-        private IDataStorage _dataStorage;
+        protected IDataStorage _dataStorage;
 
         public DataWriterBase(IDataStorage dataStorage)
         {
             _dataStorage = dataStorage;
         }
 
-        protected byte[] ReadFromDisk(long pageStartOffset, int _pageSizeInBytes)
+        protected byte[] ReadFromDisk(long storageOffset, int numBytesToRead)
         {
-            var retrievedPage = new byte[_pageSizeInBytes];
-            _dataStorage.ReadData(ref retrievedPage, 0, pageStartOffset, _pageSizeInBytes);
+            var retrievedPage = new byte[numBytesToRead];
+            _dataStorage.ReadData(ref retrievedPage, 0, storageOffset, numBytesToRead);
             return retrievedPage;
         }
 
