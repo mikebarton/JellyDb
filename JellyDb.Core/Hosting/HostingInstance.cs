@@ -10,8 +10,8 @@ namespace JellyDb.Core.Hosting
 {
     public class HostingInstance
     {
-        private HostingConfiguration _hostingConfig;
-        private Dictionary<string, Database> _databases = new Dictionary<string, Database>();
+        private readonly HostingConfiguration _hostingConfig;
+        private readonly Dictionary<string, Database> _databases = new Dictionary<string, Database>();
         private IDataStorage _dataStorage;
         private AddressSpaceIndex _addressSpaceIndex;
 
@@ -43,7 +43,16 @@ namespace JellyDb.Core.Hosting
             _dataStorage = new IoFileManager(_hostingConfig.ConnectionString);
             _dataStorage.Initialise();
             var dataManager = new AddressSpaceManager(_dataStorage);
-            
+            var addressSpaceIndexAgent = dataManager.CreateVirtualAddressSpaceAgent(AddressSpaceIndex.IndexRootId);
+            _addressSpaceIndex = new AddressSpaceIndex(addressSpaceIndexAgent);
+            foreach (var metaData in _addressSpaceIndex.MetaData)
+            {
+                var indexAgent = dataManager.CreateVirtualAddressSpaceAgent(metaData.IndexId);
+                var index = new Index(indexAgent);
+                var dataAgent = dataManager.CreateVirtualAddressSpaceAgent(metaData.DataId);
+                var database = new Database(index, dataAgent);
+                _databases[metaData.DatabaseName] = database;
+            }
         }
     }
 }
