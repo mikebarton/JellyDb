@@ -17,19 +17,29 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Stream.Flush();
         }
 
-        public void WriteVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
+        public void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
         {
             Stream.Position = storageOffset;
             Stream.Write(dataBuffer, bufferIndex, numBytesToWrite);
         }
 
-        public void ReadVirtualPage(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
+        public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
         {
             Stream.Position = storageOffset;
             Stream.Read(dataBuffer, bufferIndex, numBytesToRead);
         }
 
-        public long EndOfStreamIndex
+        public byte[] ReadToEndOfAddressSpace(long storageOffset)
+        {
+            Stream.Position = storageOffset;
+            var size = Stream.Length - storageOffset;
+            if (size > Int32.MaxValue) throw new InvalidOperationException("Cannot perform ReadToEnd when length is great than Int32.MaxValue");
+            var buffer = new byte[size];
+            Stream.Read(buffer, 0, (int)size);
+            return buffer;
+        }
+
+        public long EndOfFileIndex
         {
             get { return Stream.Length; }
         }
@@ -39,6 +49,6 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Flush();
             Stream.Close();
             Stream.Dispose();
-        }        
+        }
     }
 }

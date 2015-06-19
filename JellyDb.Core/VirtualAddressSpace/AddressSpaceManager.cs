@@ -19,45 +19,44 @@ namespace JellyDb.Core.VirtualAddressSpace
         public AddressSpaceManager(IDataStorage storage)
         {
             dataStorage = storage;
-            storage.Initialise();
             var folderName = DbEngineConfigurationSection.ConfigSection.FolderPath;
             pageIndexFileName = Path.Combine(folderName, "dbFile.pageIndex");
             pageIndex = new PageIndex(File.Open(pageIndexFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite));
             if (pageIndex.EndOfPageIndex == 0)
             {
-                IndexFileGrowth();
+                pageIndex.IndexFileGrowth();
             }
         }
 
-        public Guid CreateVirtualAddressSpace()
+        public AddressSpaceAgent CreateVirtualAddressSpaceAgent(Guid addressSpaceId)
         {
-            Guid newGuid = Guid.NewGuid();
-            ExpandAddressSpace(newGuid);
-            return newGuid;
-        }
+            var result = new AddressSpaceAgent(addressSpaceId);
+            result.ReadFromDisk += GetData;
+            result.WriteToDisk += SetData;
+            result.GetEndOfAddressSpaceOffset += pageIndex.GetEndOfUsedAddressSpaceOffset;
 
-        private void ExpandAddressSpace(Guid addressSpaceId)
-        {
-            if (pageIndex.EmptyPages.Any())
+            if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
-                IndexFileGrowth();
+                pageIndex.ExpandAddressSpace(addressSpaceId);
             }
-            PageSummary summary = pageIndex.EmptyPages[0];
-            summary.AddressSpaceId = addressSpaceId;
-            pageIndex.AddOrUpdateEntry(summary);            
+            return result;
         }
 
-        private void IndexFileGrowth()
+        private long SetData(byte[] dataBuffer)
         {
-            for (int i = 0; i < DbEngineConfigurationSection.ConfigSection.VfsConfig.PageIncreaseNum; i++)
+            throw new NotImplementedException();
+        }   
+
+        public void ResetAddressSpace(Guid addressSpaceId)
+        {
+            foreach (var page in pageIndex[addressSpaceId])
             {
-                PageSummary newSummary = new PageSummary();
-                newSummary.Allocated = false;
-                newSummary.Offset = pageIndex.EndOfPageIndex;
-                newSummary.Size = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
-                newSummary.Used = 0;
-                pageIndex.AddOrUpdateEntry(newSummary);
-            }            
+                byte[] buffer = new byte[page.Size];
+                SetData(addressSpaceId, page.Offset, 0, buffer.Length, buffer);
+                page.Allocated = false;
+                page.Used = 0;
+                pageIndex.AddOrUpdateEntry(page);
+            }
         }
 
         public void Dispose()
@@ -66,7 +65,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             dataStorage.Dispose();
         }
 
-        public byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
+        internal byte[] GetData(Guid addressSpaceId, long storageOffset, int numBytes)
         {            
             byte[] result = new byte[numBytes];
             long localOffset = storageOffset;
@@ -83,7 +82,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
-                dataStorage.ReadVirtualPage(ref result,
+                dataStorage.ReadData(ref result,
                     numProcessed,
                     (summary.Offset + localOffset),
                     amountToProcess);
@@ -94,7 +93,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             return result;
         }
 
-        public void SetData(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer)
+        internal void SetData(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer)
         {
             long localOffset = storageOffset;
             int numProcessed = 0;
@@ -111,7 +110,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
-                dataStorage.WriteVirtualPage(ref dataBuffer,
+                dataStorage.WriteData(ref dataBuffer,
                     (numProcessed + bufferIndex),
                     (summary.Offset + localOffset),
                     amountToProcess);
@@ -120,7 +119,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 if (numProcessed == numBytes) break;
                 else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
-                    ExpandAddressSpace(addressSpaceId);
+                    pageIndex.ExpandAddressSpace(addressSpaceId);
                 }
             }
         }

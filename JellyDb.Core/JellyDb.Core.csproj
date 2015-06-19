@@ -53,12 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Fun\DataWritableBase.cs" />
     <Compile Include="Engine\Fun\LongComparer.cs" />
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataItem.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="VirtualAddressSpace\AddressSpaceIndex.cs" />
+    <Compile Include="Hosting\HostingConfiguration.cs" />
+    <Compile Include="Hosting\HostingInstance.cs" />
     <Compile Include="Sql\Dml\ArithmeticOperationTypeEnum.cs" />
     <Compile Include="Sql\Dml\FloatValueTerm.cs" />
     <Compile Include="Sql\Dml\AdditionOperator.cs" />
@@ -110,19 +114,24 @@
     <Compile Include="Engine\Fun\IntComparer.cs" />
     <Compile Include="Engine\Fun\ITypeComparer.cs" />
     <Compile Include="Engine\Fun\TypeComparer.cs" />
+    <Compile Include="Storage\MemoryStreamManager.cs" />
+    <Compile Include="VirtualAddressSpace\AddressSpaceAgent.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceManager.cs" />
     <Compile Include="Storage\IDataStorage.cs" />
+    <Compile Include="VirtualAddressSpace\DataWriterBase.cs" />
     <Compile Include="VirtualAddressSpace\PageIndex.cs" />
     <Compile Include="VirtualAddressSpace\PageSummary.cs" />
     <Compile Include="Storage\IoFileManager.cs" />
     <Compile Include="Storage\StreamManager.cs" />
-    <Compile Include="Storage\MemoryMappedFileManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Sql\Dml\SelectStatement.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Client\" />
+    <Folder Include="Server\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

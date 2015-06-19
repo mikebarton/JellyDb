@@ -1,4 +1,5 @@
 ﻿using JellyDb.Core.Configuration;
+using JellyDb.Core.VirtualAddressSpace.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,11 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index
+    public class Index : DataWritableBase
     {
-        private static string _fileName;
-        private static string _indexFileNameFormat = "{0}.index";
         private BPTreeNode<long, DataItem> _indexTree;
 
-        public Index()
+        public Index(IDataStorage dataStorage) : base(dataStorage)
         {
             _indexTree = new BPTreeNode<long, DataItem>(15);
         }
@@ -31,41 +30,22 @@ namespace JellyDb.Core.Engine.Fun
         
         public void SaveIndexToDisk()
         {
-            using(var stream = File.Open(_fileName,FileMode.OpenOrCreate))
-            using (var writer = new StreamWriter(stream))
-            {
-                var json = JsonConvert.SerializeObject(this);
-                writer.Write(json);
-            }
+            var json = JsonConvert.SerializeObject(this);
+            var bytes = ConvertDataToBytes(json);
+            WriteToDisk(bytes);
         }
 
-        public static Index CreateOrLoad(string databaseName)
+        public static Index Load(byte[] dataBuffer)
         {
-            var folderPath = DbEngineConfigurationSection.ConfigSection.FolderPath;
-            var fileName = Path.Combine(folderPath, string.Format(_indexFileNameFormat, databaseName));
-            if (File.Exists(fileName))
-            {
-                using (var stream = File.Open(fileName, FileMode.OpenOrCreate))
-                using (TextReader reader = new StreamReader(stream))
-                {
-                    var json = reader.ReadToEnd();
-                    var index = JsonConvert.DeserializeObject<Index>(json);
-                    index.FileName = fileName;
-                    return index;
-                }
-            }
-            return new Index() {FileName = fileName};
+            var json = ConvertBytesToData(dataBuffer);
+            var index = JsonConvert.DeserializeObject<Index>(json);
+            return index;             
         }
 
         public BPTreeNode<long,DataItem> IndexData
         {
             get { return _indexTree; }
             set { _indexTree = value; }
-        }
-
-        private string FileName 
-        {
-            set { _fileName = value; }
         }
     }
 }

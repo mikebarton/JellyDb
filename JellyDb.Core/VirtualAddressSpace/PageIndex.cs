@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.IO;
+using JellyDb.Core.Configuration;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
@@ -42,12 +43,62 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public IList<PageSummary> this[Guid addressSpaceId]
         {
-            get { return indices[addressSpaceId]; }            
+            get 
+            {
+                List<PageSummary> index = null;
+                indices.TryGetValue(addressSpaceId, out index);
+                return index;
+            }            
+        }
+
+        public long GetEndOfUsedAddressSpaceOffset(Guid addressSpaceId)
+        {
+            var addressSpace = indices[addressSpaceId];
+            if (addressSpace == null) throw new InvalidDataException("AddressSpace does not exist in page index");
+            var ordered = addressSpace.OrderBy(p => p.Offset);
+            var lastPage = ordered.LastOrDefault();
+            if (lastPage == null) throw new InvalidDataException("AddressSpace exists, but has no pages in it");
+            if (lastPage.Used == lastPage.Size)
+            {
+                ExpandAddressSpace(addressSpaceId);
+                return GetEndOfUsedAddressSpaceOffset(addressSpaceId);
+            }
+            return lastPage.Offset + lastPage.Used + 1;
+        }
+
+        public bool HasAddressSpace(Guid addressSpaceId)
+        {
+            return indices.ContainsKey(addressSpaceId);
         }
 
         public IList<PageSummary> EmptyPages { get { return indices[Guid.Empty]; } }
 
         public long EndOfPageIndex { get { return endOfIndex; } }
+
+        public void ExpandAddressSpace(Guid addressSpaceId)
+        {
+            if (!EmptyPages.Any())
+            {
+                IndexFileGrowth();
+            }
+            PageSummary summary = EmptyPages[0];
+            summary.AddressSpaceId = addressSpaceId;
+            AddOrUpdateEntry(summary);
+        }   
+
+        public void IndexFileGrowth()
+        {
+            for (int i = 0; i < DbEngineConfigurationSection.ConfigSection.VfsConfig.PageIncreaseNum; i++)
+            {
+                PageSummary newSummary = new PageSummary();
+                newSummary.AddressSpaceId = Guid.Empty;
+                newSummary.Allocated = false;
+                newSummary.Offset = EndOfPageIndex;
+                newSummary.Size = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
+                newSummary.Used = 0;
+                AddOrUpdateEntry(newSummary);
+            }
+        }
                 
         public void AddOrUpdateEntry(PageSummary summary)
         {
@@ -67,7 +118,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 stream.Position = summary.PageFileIndex.Value;
                 if (!indices[summary.AddressSpaceId].Contains(summary))
                 {
-                    indices[Guid.Empty].Remove(summary);
+                    EmptyPages.Remove(summary);
                     indices[summary.AddressSpaceId].Add(summary);
                     summary.Allocated = true;
                 }
