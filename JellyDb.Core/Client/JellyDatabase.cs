@@ -69,15 +69,13 @@ namespace JellyDb.Core.Client
             Database database = null;
             if (!_databases.TryGetValue(record.EntityType, out database))
                 database = CreateNewDatabase(record.EntityType);
-            database.Write()
-        }
+            //database.Write()
+        }        
 
         private JellyRecord OnLoadRecord(string id)
         {
             throw new NotImplementedException();
         }
-
-
 
         public void Dispose()
         {
