@@ -9,18 +9,18 @@ using JellyDb.Core.Configuration;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Database : DataWritableBase, IDisposable
+    public class Database<TKey> : DataWritableBase, IDisposable
     {
-        private Index _indexRoot;
+        private Index<TKey> _indexRoot;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
         private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024; 
 
-        public Database(Index index, IDataStorage dataStorage) : base(dataStorage)
+        public Database(Index<TKey> index, IDataStorage dataStorage) : base(dataStorage)
         {
             _indexRoot = index;
         }
 
-        public string Read(long key)
+        public string Read(TKey key)
         {
             var dataItem = _indexRoot.Query(key);
             var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength).ToArray();
@@ -40,9 +40,9 @@ namespace JellyDb.Core.Engine.Fun
             var totalData = itemData.Concat(pageData.Skip(isContinuance ? 0 : pageOffset).Take(itemLength)).ToList();
             if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, pageOffset, itemLength - (totalData.Count - itemData.Count), true);
             return totalData;            
-        }                
+        }
 
-        public void Write(long key, string data)
+        public void Write(TKey key, string data)
         {
             var dataItem = new DataItem() { VersionId = Guid.NewGuid() };
             var dataBuffer = ConvertDataToBytes(data);

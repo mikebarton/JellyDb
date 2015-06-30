@@ -44,12 +44,13 @@ namespace JellyDb.Core.Client
             var session = new JellySession();
             session.LoadRecord += OnLoadRecord;
             session.StoreRecord += OnStoreRecord;
+            
             return session;
         }
 
         private Database CreateNewDatabase(string name)
         {
-            var indexId = Guid.NewGuid();
+            var indexId = Guid.NewGuid(); 
             var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(indexId);
             var databaseId = Guid.NewGuid();
             var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(databaseId);

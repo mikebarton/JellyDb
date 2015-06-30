@@ -9,6 +9,11 @@ namespace JellyDb.Core.Client
 {
     public class JellySession : IDisposable
     {
+        public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression)
+        {
+            
+        }
+
         public T Load<T>(string id)
         {
             var record = LoadRecord(id);
@@ -35,6 +40,10 @@ namespace JellyDb.Core.Client
 
         internal delegate void StoreRecordDelegate(JellyRecord record);
         internal event StoreRecordDelegate StoreRecord;
+
+        internal delegate void RegisterIdentityPropertyDelegate<TSource, TKey>(Expression<Func<TSource, TKey>> expression);
+
+        internal event RegisterIdentityPropertyDelegate<TSource, TKey> hgf;
 
         public void Dispose()
         {

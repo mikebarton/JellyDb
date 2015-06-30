@@ -9,21 +9,21 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index<T> : DataWritableBase
+    public class Index<TKey> : DataWritableBase
     {
-        private BPTreeNode<T, DataItem> _indexTree;
+        private BPTreeNode<TKey, DataItem> _indexTree;
 
         public Index(IDataStorage dataStorage) : base(dataStorage)
         {
-            _indexTree = new BPTreeNode<T, DataItem>(15);
+            _indexTree = new BPTreeNode<TKey, DataItem>(15);
         }
 
-        public void Insert(T key, DataItem value)
+        public void Insert(TKey key, DataItem value)
         {
             _indexTree = _indexTree.Insert(key, value);
         }
 
-        public DataItem Query(T key)
+        public DataItem Query(TKey key)
         {
             return _indexTree.Query(key);
         }
@@ -35,14 +35,14 @@ namespace JellyDb.Core.Engine.Fun
             WriteToDisk(bytes);
         }
 
-        public static Index<T> Load(byte[] dataBuffer)
+        public static Index<TKey> Load(byte[] dataBuffer)
         {
             var json = ConvertBytesToData(dataBuffer);
-            var index = JsonConvert.DeserializeObject<Index<T>>(json);
+            var index = JsonConvert.DeserializeObject<Index<TKey>>(json);
             return index;             
         }
 
-        public BPTreeNode<T,DataItem> IndexData
+        public BPTreeNode<TKey,DataItem> IndexData
         {
             get { return _indexTree; }
             set { _indexTree = value; }

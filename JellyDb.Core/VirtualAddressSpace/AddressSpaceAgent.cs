@@ -57,10 +57,6 @@ namespace JellyDb.Core.VirtualAddressSpace
             //TODO: implement flush properly
             throw new NotImplementedException();
         }
-
-
-
-
     }
 
     internal delegate void WriteToAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer);
