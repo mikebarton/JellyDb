@@ -9,15 +9,17 @@ namespace JellyDb.Core.Client
 {
     public class JellySession : IDisposable
     {
-        public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression)
+        private JellyDatabase _jellyDatabase;
+
+        internal JellySession(JellyDatabase jellyDatabase)
         {
-            
+            _jellyDatabase = jellyDatabase;
         }
 
-        public T Load<T>(string id)
+        public TEntity Load<TKey, TEntity>(TKey id)
         {
-            var record = LoadRecord(id);
-            var entity = JsonConvert.DeserializeObject<T>(record.Data);
+            var record = _jellyDatabase.OnLoadRecord<TKey>(id);
+            var entity = JsonConvert.DeserializeObject<TEntity>(record.Data);
             return entity;
         }
 
@@ -26,24 +28,14 @@ namespace JellyDb.Core.Client
             throw new NotImplementedException();
         }
 
-        public string Store<T>(T entity) where T : class
+        public string Store<TKey>(TKey entity) 
         {
             var entityTypeName = entity.GetType().FullName;
             var text = JsonConvert.SerializeObject(entity);
             var record = new JellyRecord { EntityType = entityTypeName, Data = text };
-            StoreRecord(record);
+            _jellyDatabase.OnStoreRecord<TKey>(record);
             return record.Id;
         }
-
-        internal delegate JellyRecord LoadRecordDelegate(string id);
-        internal event LoadRecordDelegate LoadRecord;
-
-        internal delegate void StoreRecordDelegate(JellyRecord record);
-        internal event StoreRecordDelegate StoreRecord;
-
-        internal delegate void RegisterIdentityPropertyDelegate<TSource, TKey>(Expression<Func<TSource, TKey>> expression);
-
-        internal event RegisterIdentityPropertyDelegate<TSource, TKey> hgf;
 
         public void Dispose()
         {

@@ -1,4 +1,5 @@
-﻿using JellyDb.Core.Engine.Fun;
+﻿using System.Linq.Expressions;
+using JellyDb.Core.Engine.Fun;
 using JellyDb.Core.Hosting;
 using JellyDb.Core.VirtualAddressSpace;
 using JellyDb.Core.VirtualAddressSpace.Storage;
@@ -41,11 +42,14 @@ namespace JellyDb.Core.Client
 
         public JellySession CreateSession()
         {
-            var session = new JellySession();
-            session.LoadRecord += OnLoadRecord;
-            session.StoreRecord += OnStoreRecord;
-            
+            var session = new JellySession(this);
             return session;
+        }
+
+        
+        public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression)
+        {
+            
         }
 
         private Database CreateNewDatabase(string name)
@@ -65,7 +69,7 @@ namespace JellyDb.Core.Client
             return database;
         }
 
-        private void OnStoreRecord(JellyRecord record)
+        internal void OnStoreRecord<TKey>(JellyRecord record)
         {
             Database database = null;
             if (!_databases.TryGetValue(record.EntityType, out database))
@@ -73,7 +77,7 @@ namespace JellyDb.Core.Client
             //database.Write()
         }        
 
-        private JellyRecord OnLoadRecord(string id)
+        internal JellyRecord OnLoadRecord<TKey>(TKey id)
         {
             throw new NotImplementedException();
         }
