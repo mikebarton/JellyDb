@@ -36,6 +36,7 @@ namespace JellyDb.Core.VirtualAddressSpace
     {
         public string DatabaseName { get; set; }
         public Guid IndexId { get; set; }
-        public Guid DataId { get; set; }        
+        public Guid DataId { get; set; }
+        public Type KeyType { get; set; }
     }
 }
