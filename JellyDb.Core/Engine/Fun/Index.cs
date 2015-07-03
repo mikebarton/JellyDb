@@ -9,7 +9,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index<TKey> : DataWritableBase
+    public class Index<TKey> : DataWritableBase, IIndex
     {
         private BPTreeNode<TKey, DataItem> _indexTree;
 
@@ -18,14 +18,14 @@ namespace JellyDb.Core.Engine.Fun
             _indexTree = new BPTreeNode<TKey, DataItem>(15);
         }
 
-        public void Insert(TKey key, DataItem value)
+        public void Insert(DataKey key, DataItem value)
         {
-            _indexTree = _indexTree.Insert(key, value);
+            _indexTree = _indexTree.Insert(key.GetKey<TKey>(), value);
         }
 
-        public DataItem Query(TKey key)
+        public DataItem Query(DataKey key)
         {
-            return _indexTree.Query(key);
+            return _indexTree.Query(key.GetKey<TKey>());
         }
         
         public void SaveIndexToDisk()

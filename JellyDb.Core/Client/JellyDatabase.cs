@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Reflection;
 using JellyDb.Core.Engine.Fun;
 using JellyDb.Core.Hosting;
 using JellyDb.Core.VirtualAddressSpace;
@@ -28,9 +29,8 @@ namespace JellyDb.Core.Client
             foreach (var metaData in _addressSpaceIndex.MetaData)
             {
                 var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(metaData.IndexId);
-                var index = new Index(indexAgent);
                 var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(metaData.DataId);
-                var database = new Database(index, dataAgent);
+                var database = CreateDatabase(metaData.KeyType, indexAgent, dataAgent);
                 _databases[metaData.DatabaseName] = database;
             }
         }
@@ -52,20 +52,29 @@ namespace JellyDb.Core.Client
             
         }
 
-        private Database CreateNewDatabase(string name)
+        private Database CreateNewDatabase<TKey>(string name)
         {
             var indexId = Guid.NewGuid(); 
             var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(indexId);
             var databaseId = Guid.NewGuid();
             var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(databaseId);
-            var database = new Database(new Index(indexAgent), dataAgent);
+            var database = CreateDatabase(typeof(TKey), indexAgent, dataAgent);
             _databases[name] = database;
             _addressSpaceIndex.MetaData.Add(new DatabaseMetaData
             {
                 DatabaseName = name,
                 IndexId = indexId,
-                DataId = databaseId
+                DataId = databaseId,
+                KeyType = typeof(TKey)
             });
+            return database;
+        }
+
+        private Database CreateDatabase(Type keyType, IDataStorage indexStorage, IDataStorage dataStorage)
+        {
+            var indexType = typeof(Index<>).MakeGenericType(keyType);
+            var index = Activator.CreateInstance(indexType, indexStorage) as IIndex;
+            var database = new Database(index, dataStorage);
             return database;
         }
 
@@ -73,7 +82,8 @@ namespace JellyDb.Core.Client
         {
             Database database = null;
             if (!_databases.TryGetValue(record.EntityType, out database))
-                database = CreateNewDatabase(record.EntityType);
+                database = CreateNewDatabase<TKey>(record.EntityType);
+
             //database.Write()
         }        
 
