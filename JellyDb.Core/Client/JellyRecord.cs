@@ -5,10 +5,25 @@ using System.Text;
 
 namespace JellyDb.Core.Client
 {
-    public class JellyRecord
+    public class JellyRecord<TEntity> : IJellyRecord
     {
         public string Id { get; set; }
-        public string EntityType { get; set; }
-        public string Data { get; set; }
+        public TEntity Entity { get; set; }
+
+        public Type GetEntityType()
+        {
+            return typeof(TEntity);
+        }
+
+        public string GetSerializedData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GenerateKey(IKeyGenerator generator)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

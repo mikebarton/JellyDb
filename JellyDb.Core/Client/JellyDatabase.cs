@@ -46,26 +46,30 @@ namespace JellyDb.Core.Client
             return session;
         }
 
-        
+        private Dictionary<Type, object> _keyGenerators = new Dictionary<Type, object>();
         public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression)
         {
-            
+            var entityType = typeof(TSource);
+            if (_keyGenerators.ContainsKey(entityType))
+                throw new InvalidOperationException(string.Format("There is already an identity function registered for for type {0}", entityType.FullName));
+
+            _keyGenerators.Add(entityType, propertyExpression.Compile());
         }
 
-        private Database CreateNewDatabase<TKey>(string name)
+        private Database CreateNewDatabase(Type keyType, string name)
         {
             var indexId = Guid.NewGuid(); 
             var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(indexId);
             var databaseId = Guid.NewGuid();
             var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(databaseId);
-            var database = CreateDatabase(typeof(TKey), indexAgent, dataAgent);
+            var database = CreateDatabase(keyType, indexAgent, dataAgent);
             _databases[name] = database;
             _addressSpaceIndex.MetaData.Add(new DatabaseMetaData
             {
                 DatabaseName = name,
                 IndexId = indexId,
                 DataId = databaseId,
-                KeyType = typeof(TKey)
+                KeyType = keyType
             });
             return database;
         }
@@ -78,16 +82,20 @@ namespace JellyDb.Core.Client
             return database;
         }
 
-        internal void OnStoreRecord<TKey>(JellyRecord record)
+        internal void OnStoreRecord(IJellyRecord record)
         {
             Database database = null;
-            if (!_databases.TryGetValue(record.EntityType, out database))
-                database = CreateNewDatabase<TKey>(record.EntityType);
+            var entityType = record.GetEntityType();
+            
+            if (!_databases.TryGetValue(entityType.Name, out database))
+                database = CreateNewDatabase(entityType, entityType.Name);
 
+            var keyGenerator = _keyGenerators[entityType];
+            record.GenerateKey<
             //database.Write()
         }        
 
-        internal JellyRecord OnLoadRecord<TKey>(TKey id)
+        internal IJellyRecord OnLoadRecord<TKey>(TKey id)
         {
             throw new NotImplementedException();
         }

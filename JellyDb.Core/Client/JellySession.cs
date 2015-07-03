@@ -28,12 +28,10 @@ namespace JellyDb.Core.Client
             throw new NotImplementedException();
         }
 
-        public string Store<TKey>(TKey entity) 
+        public string Store<TEntity>(TEntity entity) 
         {
-            var entityTypeName = entity.GetType().FullName;
-            var text = JsonConvert.SerializeObject(entity);
-            var record = new JellyRecord { EntityType = entityTypeName, Data = text };
-            _jellyDatabase.OnStoreRecord<TKey>(record);
+            var record = new JellyRecord<TEntity> { Entity = entity };
+            _jellyDatabase.OnStoreRecord(record);
             return record.Id;
         }
 
