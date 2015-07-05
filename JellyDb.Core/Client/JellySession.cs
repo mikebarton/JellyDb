@@ -31,7 +31,7 @@ namespace JellyDb.Core.Client
         public string Store<TEntity>(TEntity entity) 
         {
             var record = new JellyRecord<TEntity> { Entity = entity };
-            _jellyDatabase.OnStoreRecord(record);
+            _jellyDatabase.OnStoreRecord<TEntity>(record);
             return record.Id;
         }
 

@@ -47,7 +47,7 @@ namespace JellyDb.Core.Client
         }
 
         private Dictionary<Type, object> _keyGenerators = new Dictionary<Type, object>();
-        public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression)
+        public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression, bool autoGenerateKey)
         {
             var entityType = typeof(TSource);
             if (_keyGenerators.ContainsKey(entityType))
@@ -82,7 +82,7 @@ namespace JellyDb.Core.Client
             return database;
         }
 
-        internal void OnStoreRecord(IJellyRecord record)
+        internal void OnStoreRecord<TEntity>(IJellyRecord record)
         {
             Database database = null;
             var entityType = record.GetEntityType();
@@ -91,7 +91,7 @@ namespace JellyDb.Core.Client
                 database = CreateNewDatabase(entityType, entityType.Name);
 
             var keyGenerator = _keyGenerators[entityType];
-            record.GenerateKey<
+            database.Write()
             //database.Write()
         }        
 

@@ -54,11 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\IJellyRecord.cs" />
-    <Compile Include="Client\IKeyGenerator.cs" />
+    <Compile Include="Engine\Fun\IKeyGenerator.cs" />
     <Compile Include="Client\JellyDatabase.cs" />
     <Compile Include="Client\JellyRecord.cs" />
     <Compile Include="Client\JellySession.cs" />
-    <Compile Include="Client\KeyGenerator.cs" />
+    <Compile Include="Engine\Fun\KeyGenerator.cs" />
     <Compile Include="Engine\Fun\DataKey.cs" />
     <Compile Include="Engine\Fun\DataWritableBase.cs" />
     <Compile Include="Engine\Fun\IDatabase.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataItem.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
+    <Compile Include="Engine\Fun\RecordIdentityService.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceIndex.cs" />
