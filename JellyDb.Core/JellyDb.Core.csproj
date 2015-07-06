@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engine\Fun\AutoGenIdentity.cs" />
     <Compile Include="Engine\Fun\IKeyGenerator.cs" />
     <Compile Include="Client\JellyDatabase.cs" />
     <Compile Include="Client\JellyRecord.cs" />

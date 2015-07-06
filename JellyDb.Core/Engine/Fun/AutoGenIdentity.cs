@@ -8,5 +8,6 @@ namespace JellyDb.Core.Engine.Fun
     public class AutoGenIdentity
     {
         public int NextId { get; set; }
+        public
     }
 }
