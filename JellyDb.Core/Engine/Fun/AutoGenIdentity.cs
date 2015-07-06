@@ -5,9 +5,8 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public interface IKeyGenerator
+    public class AutoGenIdentity
     {
-        Type GetEntityType();
-        DataKey GenerateKey(object entity);
+        public int NextId { get; set; }
     }
 }

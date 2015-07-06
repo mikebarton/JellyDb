@@ -53,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\IJellyRecord.cs" />
     <Compile Include="Engine\Fun\IKeyGenerator.cs" />
     <Compile Include="Client\JellyDatabase.cs" />
     <Compile Include="Client\JellyRecord.cs" />

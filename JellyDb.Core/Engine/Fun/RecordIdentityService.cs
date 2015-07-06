@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JellyDb.Core.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -21,9 +22,12 @@ namespace JellyDb.Core.Engine.Fun
             _keyGenerators.Add(entityType, generator);
         }
 
-        public void LoadIdentity<TEntity>(Type entityType, TEntity entity)
+        public DataKey LoadIdentity<TEntity>(JellyRecord<TEntity> record)
         {
-
+            var entityType = typeof(TEntity);
+            var generator = _keyGenerators[entityType];
+            var dataKey = generator.GenerateKey(record.Entity);
+            return dataKey;
         }
 
         private void ValidateKeyType<TKey>()
