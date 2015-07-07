@@ -16,6 +16,11 @@ namespace JellyDb.Core.VirtualAddressSpace
             _dataStorage = dataStorage;
         }
 
+        public void Flush()
+        {
+            _dataStorage.Flush();
+        }
+
         protected byte[] ReadFromDisk(long storageOffset, int numBytesToRead)
         {
             var retrievedPage = new byte[numBytesToRead];

@@ -39,7 +39,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public void Dispose()
         {
-            //Flush();
+            Flush();
         }
         
         public long EndOfFileIndex 
@@ -51,11 +51,11 @@ namespace JellyDb.Core.VirtualAddressSpace
         internal event WriteToAddressSpaceDelegate WriteToDisk;
         internal event GetEndOffsetDelegate GetEndOfAddressSpaceOffset;
         internal event ReadToEndDelegate ReadToEnd;
+        internal event FlushToDiskDelegate FlushToDisk;
 
         public void Flush()
         {
-            //TODO: implement flush properly
-            throw new NotImplementedException();
+            FlushToDisk(_addressSpaceId);
         }
     }
 
@@ -63,4 +63,5 @@ namespace JellyDb.Core.VirtualAddressSpace
     internal delegate byte[] ReadFromAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int numBytes);
     internal delegate long GetEndOffsetDelegate(Guid addressSpaceId);
     internal delegate byte[] ReadToEndDelegate(Guid addressSpceId,  long storageOffset);
+    internal delegate void FlushToDiskDelegate(Guid addressSpaceId);
 }

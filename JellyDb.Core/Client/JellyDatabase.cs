@@ -92,10 +92,11 @@ namespace JellyDb.Core.Client
                         var updated = (AutoGenIdentity) sender;
                         var databaseToUpdate = _databases[updated.EntityTypeName];
                         var dataText = JsonConvert.SerializeObject(updated);
-                        databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);
+                        databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);                        
                     };
             }
-
+            _addressSpaceManager.ResetAddressSpace(AddressSpaceIndex.IndexRootId);
+            _addressSpaceIndex.SaveToDisk();
             return database;
         }
 
@@ -136,6 +137,7 @@ namespace JellyDb.Core.Client
             var dataKey = _keyGenerators[entityType].GenerateKey(record.Entity);
 
             database.Write(dataKey, record.GetSerializedData());
+            database.Flush();
         }
 
         internal JellyRecord<TEntity> OnLoadRecord<TKey,TEntity>(TKey id)
@@ -153,7 +155,7 @@ namespace JellyDb.Core.Client
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

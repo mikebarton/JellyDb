@@ -30,6 +30,14 @@ namespace JellyDb.Core.VirtualAddressSpace
                 else MetaData = new List<DatabaseMetaData>();    
             }else MetaData = new List<DatabaseMetaData>();
         }
+
+        public void SaveToDisk()
+        {
+            var jsonText = JsonConvert.SerializeObject(MetaData);
+            var bytes = ConvertDataToBytes(jsonText);
+            _dataStorage.WriteData(ref bytes, 0, 0, bytes.Length);
+            _dataStorage.Flush();
+        }
     }
 
     public struct DatabaseMetaData

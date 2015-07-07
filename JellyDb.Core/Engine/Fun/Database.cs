@@ -56,6 +56,7 @@ namespace JellyDb.Core.Engine.Fun
         
         public void Dispose()
         {
+            this.Flush();
             _indexRoot.SaveIndexToDisk();
         }
     }    

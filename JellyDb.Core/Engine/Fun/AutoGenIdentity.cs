@@ -7,8 +7,6 @@ namespace JellyDb.Core.Engine.Fun
 {
     public class AutoGenIdentity
     {
-        private uint _nextId;
-
         public AutoGenIdentity()
         {
             
@@ -16,13 +14,13 @@ namespace JellyDb.Core.Engine.Fun
 
         public uint GetNextId()
         {
-            var result = _nextId;
-            _nextId++;
+            CurrentUsedId++; ;
+            var result = CurrentUsedId;
             NextIdentityRetrieved(this, EventArgs.Empty);
             return result;
         }
 
-        public uint CurrentUsedId { get { return _nextId--; } set { _nextId = value++; } }
+        public uint CurrentUsedId { get; set; }
 
         public event EventHandler NextIdentityRetrieved; 
 
