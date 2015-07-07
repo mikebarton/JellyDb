@@ -34,6 +34,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             result.ReadFromDisk += GetData;
             result.WriteToDisk += SetData;
             result.GetEndOfAddressSpaceOffset += pageIndex.GetEndOfUsedAddressSpaceOffset;
+            result.ReadToEnd += GetAllDataUntilEnd;
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
@@ -42,11 +43,21 @@ namespace JellyDb.Core.VirtualAddressSpace
             return result;
         }
 
-        private long SetData(byte[] dataBuffer)
+        private byte[] GetAllDataUntilEnd(Guid addressSpaceId, long startOffset)
         {
-            throw new NotImplementedException();
-        }   
-
+            var endOffset = pageIndex.GetEndOfUsedAddressSpaceOffset(addressSpaceId);
+            var numToRead = (endOffset - startOffset).TruncateToInt32();
+            IEnumerable<byte> result = new byte[0];
+            while (numToRead > 0)
+            {
+                var retrieved = GetData(addressSpaceId, startOffset, numToRead);
+                result = result.Concat(retrieved);
+                startOffset += Int32.MaxValue;
+                numToRead = (endOffset - startOffset).TruncateToInt32();
+            }
+            return result.ToArray();
+        }
+        
         public void ResetAddressSpace(Guid addressSpaceId)
         {
             foreach (var page in pageIndex[addressSpaceId])

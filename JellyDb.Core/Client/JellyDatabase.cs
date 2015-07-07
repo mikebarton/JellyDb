@@ -9,13 +9,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace JellyDb.Core.Client
 {
     public class JellyDatabase : IDisposable
     {
         private readonly Dictionary<string, Database> _databases = new Dictionary<string, Database>();
-        private RecordIdentityService _identityService = new RecordIdentityService();
         private IDataStorage _dataStorage;
         private AddressSpaceIndex _addressSpaceIndex;
         private AddressSpaceManager _addressSpaceManager;
@@ -29,9 +29,7 @@ namespace JellyDb.Core.Client
             _addressSpaceIndex = new AddressSpaceIndex(addressSpaceIndexAgent);
             foreach (var metaData in _addressSpaceIndex.MetaData)
             {
-                var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(metaData.IndexId);
-                var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(metaData.DataId);
-                var database = CreateDatabase(metaData.KeyType, indexAgent, dataAgent);
+                var database = IntialiseDatabase(metaData.KeyType, metaData.IndexId, metaData.DataId);
                 _databases[metaData.DatabaseName] = database;
             }
         }
@@ -47,19 +45,33 @@ namespace JellyDb.Core.Client
             return session;
         }
 
-        private Dictionary<Type, object> _keyGenerators = new Dictionary<Type, object>();
+        private Dictionary<Type, IKeyGenerator> _keyGenerators = new Dictionary<Type, IKeyGenerator>();
         public void RegisterIdentityProperty<TSource, TKey>(Expression<Func<TSource, TKey>> propertyExpression, bool autoGenerateKey) where TSource : class
         {
-            _identityService.RegisterTypeIdentity<TSource, TKey>(propertyExpression, autoGenerateKey);
+            var t = typeof(TKey);
+            if (t != typeof(int) &&
+                t != typeof(uint) &&
+                t != typeof(long) &&
+                t != typeof(ulong))
+                throw new InvalidOperationException(string.Format("Key type for id property of entity to be stored must be short, int, long,, string or datetime. Not {0}", t.Name));
+
+            var entityType = typeof(TSource);
+            if (_keyGenerators.ContainsKey(entityType))
+                throw new InvalidOperationException(string.Format("There is already an identity function registered for for type {0}", entityType.FullName));
+            
+            var generator = new KeyGenerator<TKey, TSource>(propertyExpression, autoGenerateKey);
+            _keyGenerators.Add(entityType, generator);
+
+            if (!DatabaseExists<TSource>()) CreateNewDatabase<TKey, TSource>(autoGenerateKey);
         }
 
-        private Database CreateNewDatabase(Type keyType, string name)
+        private Database CreateNewDatabase<TKey, TEntity>(bool autoGenerateKey)
         {
+            var keyType = typeof (TKey);
+            var name = GetEntityName<TEntity>();
             var indexId = Guid.NewGuid(); 
-            var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(indexId);
             var databaseId = Guid.NewGuid();
-            var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(databaseId);
-            var database = CreateDatabase(keyType, indexAgent, dataAgent);
+            var database = IntialiseDatabase(keyType, indexId, databaseId);
             _databases[name] = database;
             _addressSpaceIndex.MetaData.Add(new DatabaseMetaData
             {
@@ -68,33 +80,75 @@ namespace JellyDb.Core.Client
                 DataId = databaseId,
                 KeyType = keyType
             });
+            
+            if(autoGenerateKey)
+            {
+                var autoGen = new AutoGenIdentity() {CurrentUsedId = 0, EntityTypeName = name};
+                _keyGenerators[typeof(TEntity)].RegisterAutoGenIdentity(autoGen);
+                var typeComparer = TypeComparer<TKey>.GetTypeComparer();
+                var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
+                autoGen.NextIdentityRetrieved += (sender, args) =>
+                    {
+                        var updated = (AutoGenIdentity) sender;
+                        var databaseToUpdate = _databases[updated.EntityTypeName];
+                        var dataText = JsonConvert.SerializeObject(updated);
+                        databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);
+                    };
+            }
+
             return database;
         }
 
-        private Database CreateDatabase(Type keyType, IDataStorage indexStorage, IDataStorage dataStorage)
+        private Database IntialiseDatabase(Type keyType, Guid indexId, Guid databaseId)
         {
+            var dataAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(databaseId);
+            var indexAgent = _addressSpaceManager.CreateVirtualAddressSpaceAgent(indexId);
             var indexType = typeof(Index<>).MakeGenericType(keyType);
-            var index = Activator.CreateInstance(indexType, indexStorage) as IIndex;
-            var database = new Database(index, dataStorage);
+            var index = Activator.CreateInstance(indexType, indexAgent) as IIndex;
+            var database = new Database(index, dataAgent);
             return database;
         }
 
-        internal void OnStoreRecord<TEntity>(JellyRecord<TEntity> record)
+        private string GetEntityName<TEntity>()
+        {
+            var entityType = typeof (TEntity);
+            return entityType.Name;
+        }
+
+        private bool DatabaseExists<TSource>()
+        {
+            var entityName = GetEntityName<TSource>();
+            return _databases.ContainsKey(entityName);
+        }
+
+        internal void OnStoreRecord<TEntity>(JellyRecord<TEntity> record) where TEntity : class
         {
             Database database = null;
-            var entityType = typeof(TEntity);
-            
-            if (!_databases.TryGetValue(entityType.Name, out database))
-                database = CreateNewDatabase(entityType, entityType.Name);
+            var entityType = typeof (TEntity);
+            var entityName = GetEntityName<TEntity>();
 
-            var dataKey = _identityService.LoadIdentity<TEntity>(record);
+            if (!_databases.TryGetValue(entityName, out database))
+            {
+                database = CreateNewDatabase<long, TEntity>(true);
+                RegisterIdentityProperty<TEntity, long>(null, true);
+            }
+
+            var dataKey = _keyGenerators[entityType].GenerateKey(record.Entity);
 
             database.Write(dataKey, record.GetSerializedData());
-        }        
+        }
 
         internal JellyRecord<TEntity> OnLoadRecord<TKey,TEntity>(TKey id)
         {
-            throw new NotImplementedException();
+            var dataKey = DataKey.CreateKey(id);
+            var entityName = GetEntityName<TEntity>();
+            Database database = null;
+            if(_databases.TryGetValue(entityName,out database))
+            {
+                var retrieved = database.Read(dataKey);
+                return new JellyRecord<TEntity>(retrieved);
+            }
+            return null;
         }
 
         public void Dispose()

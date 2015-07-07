@@ -28,7 +28,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
                 if (!string.IsNullOrEmpty(jsonText)) MetaData = JsonConvert.DeserializeObject<List<DatabaseMetaData>>(jsonText);
                 else MetaData = new List<DatabaseMetaData>();    
-            }
+            }else MetaData = new List<DatabaseMetaData>();
         }
     }
 
@@ -38,5 +38,6 @@ namespace JellyDb.Core.VirtualAddressSpace
         public Guid IndexId { get; set; }
         public Guid DataId { get; set; }
         public Type KeyType { get; set; }
+        public bool AutoGenerateId { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace JellyDb.Core.Client
 
         public TEntity Load<TKey, TEntity>(TKey id)
         {
-            var record = _jellyDatabase.OnLoadRecord<TKey>(id);
-            var entity = JsonConvert.DeserializeObject<TEntity>(record.Data);
+            var record = _jellyDatabase.OnLoadRecord<TKey,TEntity>(id);
+            var entity = JsonConvert.DeserializeObject<TEntity>(record.GetSerializedData());
             return entity;
         }
 
@@ -28,11 +28,10 @@ namespace JellyDb.Core.Client
             throw new NotImplementedException();
         }
 
-        public string Store<TEntity>(TEntity entity) 
+        public void Store<TEntity>(TEntity entity) where TEntity : class
         {
-            var record = new JellyRecord<TEntity> { Entity = entity };
+            var record = new JellyRecord<TEntity>(entity);
             _jellyDatabase.OnStoreRecord<TEntity>(record);
-            return record.Id;
         }
 
         public void Dispose()

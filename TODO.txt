@@ -1,6 +1,8 @@
 Have started creating HostingInstance and HostingConfiguration
 load config into HostingConfig at load, and verify all data
 implement flush() properly in AddressSpaceAgent
+Implement transactions
+Implement full scan querying
 Save each DataItem with more meta data
 	-ID
 	-VersionId

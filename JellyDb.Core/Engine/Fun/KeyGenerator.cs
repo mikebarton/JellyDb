@@ -11,30 +11,39 @@ namespace JellyDb.Core.Engine.Fun
         private Action<TSource, TKey> _propertySetter;
         private Func<TSource, TKey> _propertyGetter;
         private bool _autoGenerateKey;
+        private AutoGenIdentity _autoGenerator;
         
 
         public KeyGenerator(Expression<Func<TSource,TKey>> propertyExpression, bool autoGenerate)
         {
             _autoGenerateKey = autoGenerate;
-            _propertyGetter = propertyExpression.Compile();
-            _propertySetter = MakeSetter<TSource, TKey>(propertyExpression).Compile();
+            if(propertyExpression == null && !autoGenerate) throw new InvalidOperationException("Cannot create a KeyGenerator that is not auto-generate, but that has not property express");
+            
+            if(propertyExpression != null)
+            {
+                _propertyGetter = propertyExpression.Compile();
+                _propertySetter = MakeSetter<TSource, TKey>(propertyExpression).Compile();
+            }
         }
 
         public void RegisterAutoGenIdentity(AutoGenIdentity autoGenerator)
         {
-            throw new NotImplementedException();
+            _autoGenerator = autoGenerator;
         }
 
-        public DataKey GenerateKey(TSource entity)
+        public DataKey GenerateKey(object entity)
         {   
             if (_autoGenerateKey) 
             {
                 //TODO retrieve auto generated key, store on entity, and return
-                return DataKey.CreateKey<int>(0);
+                var key = _autoGenerator.GetNextId();
+                var dataKey = DataKey.CreateKey<uint>(key);
+                if(_propertySetter != null) _propertySetter((TSource) entity, dataKey.GetKey<TKey>());
+                return dataKey;
             }
             else
             {
-                var key = _propertyGetter(entity);
+                var key = _propertyGetter((TSource)entity);
                 //TODO ensure value is initialised
                 return DataKey.CreateKey<TKey>(key);
             }

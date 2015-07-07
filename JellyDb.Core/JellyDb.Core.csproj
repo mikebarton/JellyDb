@@ -67,7 +67,6 @@
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataItem.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
-    <Compile Include="Engine\Fun\RecordIdentityService.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceIndex.cs" />

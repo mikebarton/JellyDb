@@ -63,7 +63,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 ExpandAddressSpace(addressSpaceId);
                 return GetEndOfUsedAddressSpaceOffset(addressSpaceId);
             }
-            return lastPage.Offset + lastPage.Used + 1;
+            return lastPage.Offset + lastPage.Used;
         }
 
         public bool HasAddressSpace(Guid addressSpaceId)

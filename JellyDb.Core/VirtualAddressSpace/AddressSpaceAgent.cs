@@ -32,7 +32,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public byte[] ReadToEndOfAddressSpace(long storageOffset)
         {
-            return ReadToEnd(storageOffset);
+            return ReadToEnd(_addressSpaceId, storageOffset);
         }
 
         public void Initialise() { }
@@ -62,5 +62,5 @@ namespace JellyDb.Core.VirtualAddressSpace
     internal delegate void WriteToAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer);
     internal delegate byte[] ReadFromAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int numBytes);
     internal delegate long GetEndOffsetDelegate(Guid addressSpaceId);
-    internal delegate byte[] ReadToEndDelegate(long storageOffset);
+    internal delegate byte[] ReadToEndDelegate(Guid addressSpceId,  long storageOffset);
 }

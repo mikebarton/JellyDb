@@ -61,6 +61,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integration\Client\JellyDatabaseTest.cs" />
     <Compile Include="Integration\VirtualAddressSpace\PageIndexTest.cs" />
     <Compile Include="Performance\BPTreeNodeTest.cs" />
     <Compile Include="Performance\BranchingFactorGroup.cs" />
