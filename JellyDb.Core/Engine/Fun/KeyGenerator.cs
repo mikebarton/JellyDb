@@ -11,7 +11,7 @@ namespace JellyDb.Core.Engine.Fun
         private Action<TSource, TKey> _propertySetter;
         private Func<TSource, TKey> _propertyGetter;
         private bool _autoGenerateKey;
-        private AutoGenIdentity _autoGenerator;
+        private AutoGenIdentity<TKey> _autoGenerator;
         
 
         public KeyGenerator(Expression<Func<TSource,TKey>> propertyExpression, bool autoGenerate)
@@ -26,9 +26,9 @@ namespace JellyDb.Core.Engine.Fun
             }
         }
 
-        public void RegisterAutoGenIdentity(AutoGenIdentity autoGenerator)
+        public void RegisterAutoGenIdentity(object autoGenerator)
         {
-            _autoGenerator = autoGenerator;
+            _autoGenerator = (AutoGenIdentity<TKey>)autoGenerator;
         }
 
         public DataKey GenerateKey(object entity)
@@ -37,7 +37,7 @@ namespace JellyDb.Core.Engine.Fun
             {
                 //TODO retrieve auto generated key, store on entity, and return
                 var key = _autoGenerator.GetNextId();
-                var dataKey = DataKey.CreateKey<uint>(key);
+                var dataKey = DataKey.CreateKey<TKey>(key);
                 if(_propertySetter != null) _propertySetter((TSource) entity, dataKey.GetKey<TKey>());
                 return dataKey;
             }
@@ -63,5 +63,7 @@ namespace JellyDb.Core.Engine.Fun
                 Expression.Assign(Expression.MakeMemberAccess(@this, memberExpr.Member), value),
                 @this, value);
         }
+
+
     }
 }

@@ -8,6 +8,6 @@ namespace JellyDb.Core.Engine.Fun
     public interface IKeyGenerator
     {
         DataKey GenerateKey(object entity);
-        void RegisterAutoGenIdentity(AutoGenIdentity autoGenerator);
+        void RegisterAutoGenIdentity(object autoGenerator);
     }
 }

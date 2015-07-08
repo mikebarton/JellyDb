@@ -126,6 +126,12 @@ namespace JellyDb.Core.VirtualAddressSpace
                     (numProcessed + bufferIndex),
                     (summary.Offset + localOffset),
                     amountToProcess);
+
+                if(amountToProcess + localOffset > summary.Used)
+                {
+                    summary.Used = amountToProcess;
+                    pageIndex.AddOrUpdateEntry(summary);
+                }
                 numProcessed += amountToProcess;
                 localOffset = 0;
                 if (numProcessed == numBytes) break;

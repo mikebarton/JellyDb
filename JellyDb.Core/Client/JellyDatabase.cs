@@ -63,6 +63,14 @@ namespace JellyDb.Core.Client
             _keyGenerators.Add(entityType, generator);
 
             if (!DatabaseExists<TSource>()) CreateNewDatabase<TKey, TSource>(autoGenerateKey);
+            else
+            {
+                var database = _databases[GetEntityName<TSource>()];
+                var typeComparer = TypeComparer<TKey>.GetTypeComparer();
+                var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
+                var autoGen = OnLoadRecord<TKey,TSource>(autoGenIndexKey);
+                generator.RegisterAutoGenIdentity(autoGen);
+            }
         }
 
         private Database CreateNewDatabase<TKey, TEntity>(bool autoGenerateKey)
@@ -83,13 +91,14 @@ namespace JellyDb.Core.Client
             
             if(autoGenerateKey)
             {
-                var autoGen = new AutoGenIdentity() {CurrentUsedId = 0, EntityTypeName = name};
-                _keyGenerators[typeof(TEntity)].RegisterAutoGenIdentity(autoGen);
                 var typeComparer = TypeComparer<TKey>.GetTypeComparer();
                 var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
+
+                var autoGen = new AutoGenIdentity<TKey>() {CurrentUsedId = autoGenIndexKey, EntityTypeName = name};
+                _keyGenerators[typeof(TEntity)].RegisterAutoGenIdentity(autoGen);
                 autoGen.NextIdentityRetrieved += (sender, args) =>
                     {
-                        var updated = (AutoGenIdentity) sender;
+                        var updated = (AutoGenIdentity<TKey>) sender;
                         var databaseToUpdate = _databases[updated.EntityTypeName];
                         var dataText = JsonConvert.SerializeObject(updated);
                         databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);                        

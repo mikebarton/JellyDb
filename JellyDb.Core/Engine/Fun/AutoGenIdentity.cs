@@ -5,22 +5,23 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class AutoGenIdentity
+    public class AutoGenIdentity<TKey>
     {
+        private readonly ITypeComparer<TKey> _typeComparer;
         public AutoGenIdentity()
         {
-            
+            _typeComparer = TypeComparer<TKey>.GetTypeComparer();
         }
 
-        public uint GetNextId()
+        public TKey GetNextId()
         {
-            CurrentUsedId++; ;
+            CurrentUsedId = _typeComparer.Increment(CurrentUsedId);
             var result = CurrentUsedId;
             NextIdentityRetrieved(this, EventArgs.Empty);
             return result;
         }
 
-        public uint CurrentUsedId { get; set; }
+        public TKey CurrentUsedId { get; set; }
 
         public event EventHandler NextIdentityRetrieved; 
 
