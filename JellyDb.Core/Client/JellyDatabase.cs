@@ -164,7 +164,10 @@ namespace JellyDb.Core.Client
 
         public void Dispose()
         {
-            
+            foreach (var database in _databases.Values)
+            {
+                database.Dispose();
+            }
         }
     }
 }

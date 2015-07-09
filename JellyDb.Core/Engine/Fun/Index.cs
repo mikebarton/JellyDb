@@ -15,7 +15,8 @@ namespace JellyDb.Core.Engine.Fun
 
         public Index(IDataStorage dataStorage) : base(dataStorage)
         {
-            _indexTree = new BPTreeNode<TKey, DataItem>(15);
+            Load();
+            if(_indexTree == null)_indexTree = new BPTreeNode<TKey, DataItem>(15);
         }
 
         public void Insert(DataKey key, DataItem value)
@@ -30,16 +31,21 @@ namespace JellyDb.Core.Engine.Fun
         
         public void SaveIndexToDisk()
         {
-            var json = JsonConvert.SerializeObject(this);
+            var json = JsonConvert.SerializeObject(_indexTree);
             var bytes = ConvertDataToBytes(json);
+            _dataStorage.ResetAddressSpace();
             WriteToDisk(bytes);
         }
 
-        public static Index<TKey> Load(byte[] dataBuffer)
+        private void Load()
         {
-            var json = ConvertBytesToData(dataBuffer);
-            var index = JsonConvert.DeserializeObject<Index<TKey>>(json);
-            return index;             
+            var dataBuffer = _dataStorage.ReadToEndOfAddressSpace(0);
+            if(dataBuffer != null && dataBuffer.Length > 0)
+            {
+                var json = ConvertBytesToData(dataBuffer);
+                var index = JsonConvert.DeserializeObject<BPTreeNode<TKey, DataItem>>(json);
+                _indexTree = index;    
+            }
         }
 
         public BPTreeNode<TKey,DataItem> IndexData

@@ -50,5 +50,12 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Stream.Close();
             Stream.Dispose();
         }
+
+
+        public void ResetAddressSpace()
+        {
+            Stream.SetLength(0);
+            Stream.Flush();
+        }
     }
 }

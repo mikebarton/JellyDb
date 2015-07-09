@@ -36,6 +36,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             result.GetEndOfAddressSpaceOffset += pageIndex.GetEndOfUsedAddressSpaceOffset;
             result.ReadToEnd += GetAllDataUntilEnd;
             result.FlushToDisk += id=> Flush();
+            result.ResetAddressSpaceOnDisk += ResetAddressSpace;
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {

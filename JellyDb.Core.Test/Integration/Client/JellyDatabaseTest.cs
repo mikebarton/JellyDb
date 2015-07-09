@@ -29,7 +29,7 @@ namespace JellyDb.Core.Test.Integration.Client
         [TestMethod]
         public void CreateDatabaseClient()
         {
-            JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db");
+            using(JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
             using(var session = db.CreateSession())
             {
                 db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);

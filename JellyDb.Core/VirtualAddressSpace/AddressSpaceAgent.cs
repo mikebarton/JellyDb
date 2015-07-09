@@ -52,10 +52,17 @@ namespace JellyDb.Core.VirtualAddressSpace
         internal event GetEndOffsetDelegate GetEndOfAddressSpaceOffset;
         internal event ReadToEndDelegate ReadToEnd;
         internal event FlushToDiskDelegate FlushToDisk;
+        internal event ResetAddressSpaceDelegate ResetAddressSpaceOnDisk;
 
         public void Flush()
         {
             FlushToDisk(_addressSpaceId);
+        }
+
+
+        public void ResetAddressSpace()
+        {
+            ResetAddressSpaceOnDisk(_addressSpaceId);
         }
     }
 
@@ -64,4 +71,5 @@ namespace JellyDb.Core.VirtualAddressSpace
     internal delegate long GetEndOffsetDelegate(Guid addressSpaceId);
     internal delegate byte[] ReadToEndDelegate(Guid addressSpceId,  long storageOffset);
     internal delegate void FlushToDiskDelegate(Guid addressSpaceId);
+    internal delegate void ResetAddressSpaceDelegate(Guid addressspaceId);
 }
