@@ -55,7 +55,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         {
             var addressSpace = indices[addressSpaceId];
             if (addressSpace == null) throw new InvalidDataException("AddressSpace does not exist in page index");
-            var ordered = addressSpace.OrderBy(p => p.Offset);
+            var ordered = addressSpace.OrderBy(p => p.PageFileIndex);
             var lastPage = ordered.LastOrDefault();
             if (lastPage == null) throw new InvalidDataException("AddressSpace exists, but has no pages in it");
             if (lastPage.Used == lastPage.Size)
@@ -125,6 +125,12 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
 
             summary.WriteToStream(writer);
+            stream.Flush();
+        }
+
+        public void Flush()
+        {
+            writer.Flush();
             stream.Flush();
         }
 

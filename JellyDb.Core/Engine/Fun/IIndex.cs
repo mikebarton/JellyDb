@@ -10,5 +10,6 @@ namespace JellyDb.Core.Engine.Fun
         void Insert(DataKey key, DataItem value);
         DataItem Query(DataKey key);
         void SaveIndexToDisk();
+        void Flush();
     }
 }

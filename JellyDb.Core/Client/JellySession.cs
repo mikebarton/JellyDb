@@ -36,7 +36,7 @@ namespace JellyDb.Core.Client
 
         public void Dispose()
         {
-            
+            _jellyDatabase.Flush();
         }
     }
 }

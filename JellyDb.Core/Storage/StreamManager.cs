@@ -6,13 +6,15 @@ using System.Text;
 
 namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
+
     public abstract class StreamManager : IDataStorage
     {
         protected abstract Stream Stream { get; }
 
+        
         public abstract void Initialise();
 
-        public void Flush()
+        public virtual void Flush()
         {
             Stream.Flush();
         }

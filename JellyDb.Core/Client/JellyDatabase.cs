@@ -181,12 +181,22 @@ namespace JellyDb.Core.Client
             return null;
         }
 
+        public void Flush()
+        {
+            foreach (var db in _databases.Values)
+            {
+                db.Flush();
+            }
+            _addressSpaceManager.Flush();
+        }
+
         public void Dispose()
         {
             foreach (var database in _databases.Values)
             {
                 database.Dispose();
             }
+            _addressSpaceManager.Dispose();
         }
     }
 }

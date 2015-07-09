@@ -52,12 +52,21 @@ namespace JellyDb.Core.Engine.Fun
             dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
             dataItem.DataFileOffset = dataFileOffset;
             _indexRoot.Insert(key, dataItem);
-        }        
+        }
+
+        public override void Flush()
+        {
+            base.Flush();
+            _indexRoot.SaveIndexToDisk();
+            _indexRoot.Flush();
+            _dataStorage.Flush();
+        }
         
         public void Dispose()
         {
             this.Flush();
             _indexRoot.SaveIndexToDisk();
+            _indexRoot.Dispose();
             _dataStorage.Dispose();
         }
     }    

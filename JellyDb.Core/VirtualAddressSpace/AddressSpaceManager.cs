@@ -70,6 +70,11 @@ namespace JellyDb.Core.VirtualAddressSpace
                 page.Used = 0;
                 pageIndex.AddOrUpdateEntry(page);
             }
+
+            //foreach (var page in pageIndex[addressSpaceId].Skip(4))
+            //{
+            //    page.AddressSpaceId = Guid.Empty;
+            //}
         }
 
         public void Dispose()
@@ -119,18 +124,18 @@ namespace JellyDb.Core.VirtualAddressSpace
                     localOffset -= summary.Size;
                     continue;
                 }
-
-                int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                var localOffsetAsInt = localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                int dataAvailableOnPage = summary.Size - localOffsetAsInt;
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 dataStorage.WriteData(ref dataBuffer,
                     (numProcessed + bufferIndex),
                     (summary.Offset + localOffset),
                     amountToProcess);
-
+                
                 if(amountToProcess + localOffset > summary.Used)
                 {
-                    summary.Used = amountToProcess;
+                    summary.Used = amountToProcess + localOffsetAsInt;
                     pageIndex.AddOrUpdateEntry(summary);
                 }
                 numProcessed += amountToProcess;
@@ -146,6 +151,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         public void Flush()
         {
             dataStorage.Flush();
+            pageIndex.Flush();
         }
         
     }

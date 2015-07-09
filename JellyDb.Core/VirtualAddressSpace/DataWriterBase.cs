@@ -16,7 +16,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             _dataStorage = dataStorage;
         }
 
-        public void Flush()
+        public virtual void Flush()
         {
             _dataStorage.Flush();
         }

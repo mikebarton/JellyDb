@@ -14,41 +14,45 @@ namespace JellyDb.Core.Test.Integration.Client
     [TestClass]
     public class JellyDatabaseTest
     {
-        public class TestEntity
+        private const string _connectionString = @"c:\temp\jelly\jelly.db";
+        private JellyDatabase _db;
+        [TestInitialize]
+        public void TestInit()
         {
-            public TestEntity()
-            {
-                TextList = new List<string>();
-            }
-            public uint Id { get; set; }
-            public int Number { get; set; }
-            public string Text { get; set; }
-            public List<String> TextList { get; set; }
+
         }
 
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            _db.Dispose();
+        }
+
+        [TestMethod]
+        public void CreateDataBase()
+        {
+            var db = new JellyDatabase(_connectionString);            
+        }
+
+        [TestMethod]
+        public void CreateDataBaseAndRegisterIdentityGenerator()
+        {
+            var db = new JellyDatabase(_connectionString);            
+            db.RegisterIdentityProperty<TestEntity, uint>(e => e.Id, true);            
+        }        
 
         [TestMethod]
         public void CreateDatabaseClientSaveAndRetrieve()
         {
             uint key;
-            using(JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
-            using(var session = db.CreateSession())
+            _db = new JellyDatabase(_connectionString);
+            using(var session = _db.CreateSession())
             {
-                db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
-                var created = new TestEntity()
-                    {
-                        Number = 4,
-                        Text = "hello",
-                        TextList = new List<string>()
-                            {
-                                "one",
-                                "two"
-                            }
-                    };
+                _db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
+                var created = TestEntity.CreateTestEntity(2);
                 session.Store(created);
                 key = created.Id;
-            }
-            Thread.Sleep(3000);
+            }            
 
             using (JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
             using (var session = db.CreateSession())
@@ -58,15 +62,58 @@ namespace JellyDb.Core.Test.Integration.Client
             }
         }
 
-        //[TestMethod]
-        //public void CreateDatabaseClientRetrieve()
-        //{
-        //    using (JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
-        //    using (var session = db.CreateSession())
-        //    {
-        //        db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
-        //        var retrieved = session.Load<uint, TestEntity>(2);
-        //    }
-        //}
+        [TestMethod]
+        public void CreateManyRecordsAndRetrieveWithAutoGen()
+        {
+            var keys = new List<uint>();
+            _db = new JellyDatabase(_connectionString);
+            _db.RegisterIdentityProperty<TestEntity, uint>(e => e.Id, true);
+            for (int i = 0; i < 10000; i++)
+            {
+                using (var session = _db.CreateSession())
+                {
+                    var entity = TestEntity.CreateTestEntity(i);
+                    session.Store<TestEntity>(entity);
+                    keys.Add(entity.Id);
+                }    
+            }
+            _db.Dispose();
+
+            _db = new JellyDatabase(_connectionString);
+            _db.RegisterIdentityProperty<TestEntity, uint>(e => e.Id, true);
+            foreach (var key in keys)
+            {
+                using (var session = _db.CreateSession())
+                {
+                    var retrieved = session.Load<uint, TestEntity>(key);
+                    Assert.AreEqual(key, retrieved.Id);
+                }
+            }
+        }
+    }
+
+    public class TestEntity
+    {
+        public TestEntity()
+        {
+            TextList = new List<string>();
+        }
+        public uint Id { get; set; }
+        public int Number { get; set; }
+        public string Text { get; set; }
+        public List<String> TextList { get; set; }
+
+        public static TestEntity CreateTestEntity(int num)
+        {
+            var result = new TestEntity()
+            {
+                Number = num,
+                Text = Guid.NewGuid().ToString(),
+                TextList = new List<string>{
+                    Guid.NewGuid().ToString()
+                }
+            };
+            return result;
+        }
     }
 }
