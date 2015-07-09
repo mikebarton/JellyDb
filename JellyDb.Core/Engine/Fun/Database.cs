@@ -58,6 +58,7 @@ namespace JellyDb.Core.Engine.Fun
         {
             this.Flush();
             _indexRoot.SaveIndexToDisk();
+            _dataStorage.Dispose();
         }
     }    
 }

@@ -65,13 +65,29 @@ namespace JellyDb.Core.Client
             if (!DatabaseExists<TSource>()) CreateNewDatabase<TKey, TSource>(autoGenerateKey);
             else
             {
-                var database = _databases[GetEntityName<TSource>()];
-                var typeComparer = TypeComparer<TKey>.GetTypeComparer();
-                var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
-                var autoGen = OnLoadRecord<TKey,TSource>(autoGenIndexKey);
+                var autoGen = RetrieveAutoKeyState<TKey, TSource>();
                 generator.RegisterAutoGenIdentity(autoGen);
             }
         }
+
+        private AutoGenIdentity<TKey> RetrieveAutoKeyState<TKey, TEntity>()
+        {
+            AutoGenIdentity<TKey> result;
+            var database = _databases[GetEntityName<TEntity>()];
+            var typeComparer = TypeComparer<TKey>.GetTypeComparer();
+            var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
+            var text = database.Read(DataKey.CreateKey(autoGenIndexKey));
+            if(!string.IsNullOrEmpty(text))
+            {
+                var record = new JellyRecord<AutoGenIdentity<TKey>>(text);
+                result =  record.Entity;
+                result.NextRetrieved += OnAutoGenIdentityRetrievedNextValue;
+                return result;
+            }
+            result = new AutoGenIdentity<TKey>() {CurrentUsedId = autoGenIndexKey, EntityTypeName = GetEntityName<TEntity>()};
+            result.NextRetrieved += OnAutoGenIdentityRetrievedNextValue;
+            return result;
+        } 
 
         private Database CreateNewDatabase<TKey, TEntity>(bool autoGenerateKey)
         {
@@ -96,17 +112,20 @@ namespace JellyDb.Core.Client
 
                 var autoGen = new AutoGenIdentity<TKey>() {CurrentUsedId = autoGenIndexKey, EntityTypeName = name};
                 _keyGenerators[typeof(TEntity)].RegisterAutoGenIdentity(autoGen);
-                autoGen.NextIdentityRetrieved += (sender, args) =>
-                    {
-                        var updated = (AutoGenIdentity<TKey>) sender;
-                        var databaseToUpdate = _databases[updated.EntityTypeName];
-                        var dataText = JsonConvert.SerializeObject(updated);
-                        databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);                        
-                    };
+                autoGen.NextRetrieved += OnAutoGenIdentityRetrievedNextValue;
             }
             _addressSpaceManager.ResetAddressSpace(AddressSpaceIndex.IndexRootId);
             _addressSpaceIndex.SaveToDisk();
             return database;
+        }
+
+        void OnAutoGenIdentityRetrievedNextValue<TKey>(AutoGenIdentity<TKey> sender)
+        {
+            var typeComparer = TypeComparer<TKey>.GetTypeComparer();
+            var autoGenIndexKey = typeComparer.Increment(typeComparer.MinKey);
+            var databaseToUpdate = _databases[sender.EntityTypeName];
+            var dataText = JsonConvert.SerializeObject(sender);
+            databaseToUpdate.Write(DataKey.CreateKey<TKey>(autoGenIndexKey), dataText);                    
         }
 
         private Database IntialiseDatabase(Type keyType, Guid indexId, Guid databaseId)

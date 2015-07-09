@@ -7,7 +7,7 @@ using System.Text;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
-    public class DataWriterBase
+    public class DataWriterBase : IDisposable
     {
         protected IDataStorage _dataStorage;
 
@@ -33,6 +33,11 @@ namespace JellyDb.Core.VirtualAddressSpace
             var endOfFile = _dataStorage.EndOfFileIndex;
             _dataStorage.WriteData(ref dataBuffer, 0, endOfFile, dataBuffer.Length);
             return endOfFile;
+        }
+
+        public void Dispose()
+        {
+            _dataStorage.Dispose();
         }
     }
 

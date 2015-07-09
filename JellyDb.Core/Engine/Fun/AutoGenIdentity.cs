@@ -17,13 +17,14 @@ namespace JellyDb.Core.Engine.Fun
         {
             CurrentUsedId = _typeComparer.Increment(CurrentUsedId);
             var result = CurrentUsedId;
-            NextIdentityRetrieved(this, EventArgs.Empty);
+            NextRetrieved(this);
             return result;
         }
 
         public TKey CurrentUsedId { get; set; }
 
-        public event EventHandler NextIdentityRetrieved; 
+        public event GetNextIdentity<TKey> NextRetrieved;
+        public delegate void GetNextIdentity<TK>(AutoGenIdentity<TK> sender);
 
         public string EntityTypeName { get; set; }
     }

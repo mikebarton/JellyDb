@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public interface IIndex
+    public interface IIndex : IDisposable
     {
         void Insert(DataKey key, DataItem value);
         DataItem Query(DataKey key);

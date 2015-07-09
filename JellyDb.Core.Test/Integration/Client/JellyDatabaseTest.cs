@@ -2,6 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JellyDb.Core.Client;
 
@@ -27,13 +28,14 @@ namespace JellyDb.Core.Test.Integration.Client
 
 
         [TestMethod]
-        public void CreateDatabaseClient()
+        public void CreateDatabaseClientSaveAndRetrieve()
         {
+            uint key;
             using(JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
             using(var session = db.CreateSession())
             {
                 db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
-                session.Store(new TestEntity()
+                var created = new TestEntity()
                     {
                         Number = 4,
                         Text = "hello",
@@ -42,8 +44,29 @@ namespace JellyDb.Core.Test.Integration.Client
                                 "one",
                                 "two"
                             }
-                    });
+                    };
+                session.Store(created);
+                key = created.Id;
+            }
+            Thread.Sleep(3000);
+
+            using (JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
+            using (var session = db.CreateSession())
+            {
+                db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
+                var retrieved = session.Load<uint, TestEntity>(key);
             }
         }
+
+        //[TestMethod]
+        //public void CreateDatabaseClientRetrieve()
+        //{
+        //    using (JellyDatabase db = new JellyDatabase(@"c:\temp\jelly\jelly.db"))
+        //    using (var session = db.CreateSession())
+        //    {
+        //        db.RegisterIdentityProperty<TestEntity, uint>(entity => entity.Id, true);
+        //        var retrieved = session.Load<uint, TestEntity>(2);
+        //    }
+        //}
     }
 }

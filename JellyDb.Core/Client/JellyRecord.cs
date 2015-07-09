@@ -14,6 +14,7 @@ namespace JellyDb.Core.Client
         public JellyRecord(string jsonData)
         {
             _jsonData = jsonData;
+            _entity = JsonConvert.DeserializeObject<TEntity>(_jsonData);
         }
 
         public JellyRecord(TEntity entity)
