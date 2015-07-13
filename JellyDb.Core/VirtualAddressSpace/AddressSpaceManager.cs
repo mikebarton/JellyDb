@@ -40,7 +40,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
-                pageIndex.ExpandAddressSpace(addressSpaceId);
+                pageIndex.ExpandAddressSpace(addressSpaceId, 0);
             }
             return result;
         }
@@ -65,16 +65,20 @@ namespace JellyDb.Core.VirtualAddressSpace
             foreach (var page in pageIndex[addressSpaceId])
             {
                 byte[] buffer = new byte[page.Size];
-                SetData(addressSpaceId, page.Offset, 0, buffer.Length, buffer);
+                SetData(addressSpaceId, page.DataFileOffset, 0, buffer.Length, buffer);
                 page.Allocated = false;
                 page.Used = 0;
+                page.LocalAddressSpaceOffset = 0;
                 pageIndex.AddOrUpdateEntry(page);
             }
 
-            //foreach (var page in pageIndex[addressSpaceId].Skip(4))
-            //{
-            //    page.AddressSpaceId = Guid.Empty;
-            //}
+            foreach (var page in pageIndex[addressSpaceId].ToArray().Skip(1))
+            {
+                page.AddressSpaceId = Guid.Empty;
+                pageIndex[addressSpaceId].Remove(page);
+                pageIndex.EmptyPages.Add(page);
+                pageIndex.AddOrUpdateEntry(page);
+            }
         }
 
         public void Dispose()
@@ -89,20 +93,20 @@ namespace JellyDb.Core.VirtualAddressSpace
             long localOffset = storageOffset;
             int numProcessed = 0;
 
-            foreach (var summary in pageIndex[addressSpaceId])
+            foreach (var summary in pageIndex[addressSpaceId].OrderBy(p => p.LocalAddressSpaceOffset))
             {
                 if (summary.Size <= localOffset)
                 {
                     localOffset -= summary.Size;
                     continue;
                 }
-                
+
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 dataStorage.ReadData(ref result,
                     numProcessed,
-                    (summary.Offset + localOffset),
+                    (summary.DataFileOffset + localOffset),
                     amountToProcess);
                 numProcessed += amountToProcess;
                 localOffset = 0;
@@ -118,7 +122,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
             for (int i = 0; i < pageIndex[addressSpaceId].Count; i++)
             {
-                var summary = pageIndex[addressSpaceId][i];
+                var summary = pageIndex[addressSpaceId].OrderBy(p=>p.LocalAddressSpaceOffset).ToArray()[i];
                 if (summary.Size <= localOffset)
                 {
                     localOffset -= summary.Size;
@@ -130,7 +134,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 dataStorage.WriteData(ref dataBuffer,
                     (numProcessed + bufferIndex),
-                    (summary.Offset + localOffset),
+                    (summary.DataFileOffset + localOffset),
                     amountToProcess);
                 
                 if(amountToProcess + localOffset > summary.Used)
@@ -143,7 +147,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 if (numProcessed == numBytes) break;
                 else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
-                    pageIndex.ExpandAddressSpace(addressSpaceId);
+                    pageIndex.ExpandAddressSpace(addressSpaceId, summary.LocalAddressSpaceOffset + summary.Size);
                 }
             }
         }

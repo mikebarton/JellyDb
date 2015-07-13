@@ -1,3 +1,5 @@
+enable update of entities when autogenerating key
+Minimise flushing to file system
 Have started creating HostingInstance and HostingConfiguration
 load config into HostingConfig at load, and verify all data
 implement flush() properly in AddressSpaceAgent
@@ -9,5 +11,4 @@ Save each DataItem with more meta data
 	-DateSaved	
 	-Data
 
-Flush Disk and Data to disk more often
 Fix page caching to only store recently accessed pages

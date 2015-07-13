@@ -58,6 +58,7 @@
     <Compile Include="Client\JellyDatabase.cs" />
     <Compile Include="Client\JellyRecord.cs" />
     <Compile Include="Client\JellySession.cs" />
+    <Compile Include="Engine\Fun\UIntComparer.cs" />
     <Compile Include="Engine\Fun\KeyGenerator.cs" />
     <Compile Include="Engine\Fun\DataKey.cs" />
     <Compile Include="Engine\Fun\DataWritableBase.cs" />

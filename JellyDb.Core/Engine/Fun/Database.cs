@@ -13,7 +13,7 @@ namespace JellyDb.Core.Engine.Fun
     {
         private IIndex _indexRoot;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
-        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024;
+        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
 
         public Database(IIndex index, IDataStorage dataStorage)
             : base(dataStorage)
@@ -65,7 +65,6 @@ namespace JellyDb.Core.Engine.Fun
         public void Dispose()
         {
             this.Flush();
-            _indexRoot.SaveIndexToDisk();
             _indexRoot.Dispose();
             _dataStorage.Dispose();
         }

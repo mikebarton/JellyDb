@@ -5,31 +5,31 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class IntComparer : ITypeComparer<uint>
+    public class IntComparer : ITypeComparer<int>
     {
-        public uint MinKey 
+        public int MinKey 
         {
-            get { return uint.MinValue; }            
+            get { return int.MinValue; }            
         }
 
-        public uint MaxKey
+        public int MaxKey
         {
-            get { return uint.MaxValue; }            
+            get { return int.MaxValue; }            
         }
 
-        public int Compare(uint one, uint two)
+        public int Compare(int one, int two)
         {
             return one == two ? 0 
                 : one < two ? -1 
                 : 1;
         }
 
-        public uint Decrement(uint input)
+        public int Decrement(int input)
         {
             return input - 1; ;
         }
 
-        public uint Increment(uint input)
+        public int Increment(int input)
         {
             return input + 1;
         }

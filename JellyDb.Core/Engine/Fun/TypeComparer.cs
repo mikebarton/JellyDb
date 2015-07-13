@@ -40,7 +40,8 @@ namespace JellyDb.Core.Engine.Fun
 
         public static ITypeComparer<TKey> GetTypeComparer()
         {
-            if (typeof(TKey) == typeof(int) || typeof(TKey) == typeof(uint)) return (ITypeComparer<TKey>)new IntComparer();
+            if (typeof(TKey) == typeof(int)) return (ITypeComparer<TKey>)new IntComparer();
+            else if (typeof(TKey) == typeof(uint)) return (ITypeComparer<TKey>)new UIntComparer();
             else if (typeof(TKey) == typeof(ulong) || typeof(TKey) == typeof(ulong)) return (ITypeComparer<TKey>)new LongComparer();
             else throw new NotSupportedException("type not supported: " + typeof(TKey).FullName);
         }

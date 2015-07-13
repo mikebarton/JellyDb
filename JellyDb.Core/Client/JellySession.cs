@@ -10,6 +10,7 @@ namespace JellyDb.Core.Client
     public class JellySession : IDisposable
     {
         private JellyDatabase _jellyDatabase;
+        private bool _flushRequired;
 
         internal JellySession(JellyDatabase jellyDatabase)
         {
@@ -32,11 +33,16 @@ namespace JellyDb.Core.Client
         {
             var record = new JellyRecord<TEntity>(entity);
             _jellyDatabase.OnStoreRecord<TEntity>(record);
+            _flushRequired = true;
         }
 
         public void Dispose()
         {
-            _jellyDatabase.Flush();
+            if (_flushRequired)
+            {
+                _jellyDatabase.Flush();
+                _flushRequired = false;
+            }
         }
     }
 }

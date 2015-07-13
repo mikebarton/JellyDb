@@ -44,6 +44,7 @@ namespace JellyDb.Core.Engine.Fun
             {
                 var json = ConvertBytesToData(dataBuffer);
                 var index = JsonConvert.DeserializeObject<BPTreeNode<TKey, DataItem>>(json);
+                index.InitialParentsOnNodes();
                 _indexTree = index;    
             }
         }

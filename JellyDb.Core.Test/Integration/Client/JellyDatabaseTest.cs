@@ -68,7 +68,7 @@ namespace JellyDb.Core.Test.Integration.Client
             var keys = new List<uint>();
             _db = new JellyDatabase(_connectionString);
             _db.RegisterIdentityProperty<TestEntity, uint>(e => e.Id, true);
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 50; i++)
             {
                 using (var session = _db.CreateSession())
                 {
@@ -108,7 +108,7 @@ namespace JellyDb.Core.Test.Integration.Client
             var result = new TestEntity()
             {
                 Number = num,
-                Text = Guid.NewGuid().ToString(),
+                Text = Guid.NewGuid().ToString() + "-hi",
                 TextList = new List<string>{
                     Guid.NewGuid().ToString()
                 }

@@ -43,7 +43,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         public void CreateTreeAndOverWriteSomeAndReadAgain()
         {
             var node = new BPTreeNode<int, TestObject>(15);
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 node = node.Insert(i, new TestObject() {Num = i.ToString()});
             }
@@ -53,7 +53,10 @@ namespace JellyDb.Core.Test.Unit.Storage
             {
                 node = node.Insert(i, new TestObject() { Num = i.ToString() + "b" });
             }
-
+            for (int i = 0; i < 50; i++)
+            {
+                var retrieved = node.Query(i);
+            }
         }
 
         public class TestObject
