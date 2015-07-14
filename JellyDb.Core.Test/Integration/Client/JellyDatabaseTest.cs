@@ -68,14 +68,14 @@ namespace JellyDb.Core.Test.Integration.Client
             var keys = new List<uint>();
             _db = new JellyDatabase(_connectionString);
             _db.RegisterIdentityProperty<TestEntity, uint>(e => e.Id, true);
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 500; i++)
             {
                 using (var session = _db.CreateSession())
                 {
                     var entity = TestEntity.CreateTestEntity(i);
                     session.Store<TestEntity>(entity);
                     keys.Add(entity.Id);
-                }    
+                }
             }
             _db.Dispose();
 

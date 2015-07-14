@@ -145,7 +145,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 numProcessed += amountToProcess;
                 localOffset = 0;
                 if (numProcessed == numBytes) break;
-                else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
+                else if ((pageIndex[addressSpaceId].OrderBy(s=>s.LocalAddressSpaceOffset).ToList().IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
                     pageIndex.ExpandAddressSpace(addressSpaceId, summary.LocalAddressSpaceOffset + summary.Size);
                 }
