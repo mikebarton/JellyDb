@@ -131,7 +131,6 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
 
             summary.WriteToStream(writer);
-            stream.Flush();
         }
 
         public void Flush()

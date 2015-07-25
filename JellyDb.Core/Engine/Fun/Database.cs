@@ -14,6 +14,7 @@ namespace JellyDb.Core.Engine.Fun
         private IIndex _indexRoot;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
         private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
+        private bool _flushRequired;
 
         public Database(IIndex index, IDataStorage dataStorage)
             : base(dataStorage)
@@ -52,14 +53,19 @@ namespace JellyDb.Core.Engine.Fun
             dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
             dataItem.DataFileOffset = dataFileOffset;
             _indexRoot.Insert(key, dataItem);
+            _flushRequired = true;
         }
 
         public override void Flush()
         {
-            base.Flush();
-            _indexRoot.SaveIndexToDisk();
-            _indexRoot.Flush();
-            _dataStorage.Flush();
+            if (_flushRequired)
+            {
+                base.Flush();
+                _indexRoot.SaveIndexToDisk();
+                _indexRoot.Flush();
+                _dataStorage.Flush();
+                _flushRequired = false;
+            }            
         }
         
         public void Dispose()

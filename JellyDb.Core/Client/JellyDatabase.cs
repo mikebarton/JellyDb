@@ -19,6 +19,7 @@ namespace JellyDb.Core.Client
         private IDataStorage _dataStorage;
         private AddressSpaceIndex _addressSpaceIndex;
         private AddressSpaceManager _addressSpaceManager;
+        private bool _flushRequired;
 
         public JellyDatabase(string connectionString)
         {

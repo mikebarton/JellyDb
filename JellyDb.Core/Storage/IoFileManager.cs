@@ -29,16 +29,19 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
 
         public override void Flush()
         {
-            var fileStream = Stream as FileStream;
-            fileStream.Flush();
-#pragma warning disable 618,612 // disable stream.Handle deprecation warning.
-            if (!FlushFileBuffers(fileStream.Handle))   // Flush OS file cache to disk.
-#pragma warning restore 618,612
+            if (_flushRequired)
             {
-                Int32 err = Marshal.GetLastWin32Error();
-                throw new Win32Exception(err, "Win32 FlushFileBuffers returned error for " + fileStream.Name);
+                var fileStream = Stream as FileStream;
+                fileStream.Flush();
+#pragma warning disable 618,612 // disable stream.Handle deprecation warning.
+                if (!FlushFileBuffers(fileStream.Handle))   // Flush OS file cache to disk.
+#pragma warning restore 618,612
+                {
+                    Int32 err = Marshal.GetLastWin32Error();
+                    throw new Win32Exception(err, "Win32 FlushFileBuffers returned error for " + fileStream.Name);
+                }
+                _flushRequired = false;
             }
-
         }
 
 

@@ -10,6 +10,7 @@ namespace JellyDb.Core.VirtualAddressSpace
     {
         private Guid _addressSpaceId;
         private static object _syncObject = new object();
+        private bool _flushRequired;
 
         internal AddressSpaceAgent(Guid addressSpaceId)
         {
@@ -22,6 +23,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             {
                 WriteToDisk(_addressSpaceId, storageOffset, bufferIndex, numBytesToWrite, dataBuffer);
             }
+            _flushRequired = true;
         }
 
         public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
@@ -56,7 +58,11 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public void Flush()
         {
-            FlushToDisk(_addressSpaceId);
+            if (_flushRequired)
+            {
+                FlushToDisk(_addressSpaceId);
+                _flushRequired = false;                
+            }
         }
 
 
