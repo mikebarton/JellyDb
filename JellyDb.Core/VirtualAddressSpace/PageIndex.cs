@@ -36,7 +36,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                         indices.Add(summary.AddressSpaceId, new List<PageSummary>());
                     }
                     indices[summary.AddressSpaceId].Add(summary);
-                    endOfIndex = summary.Offset + summary.Size;
+                    endOfIndex = summary.DataFileOffset + summary.Size;
                 }
             } while (summary != null);
         }
@@ -55,15 +55,16 @@ namespace JellyDb.Core.VirtualAddressSpace
         {
             var addressSpace = indices[addressSpaceId];
             if (addressSpace == null) throw new InvalidDataException("AddressSpace does not exist in page index");
-            var ordered = addressSpace.OrderBy(p => p.Offset);
-            var lastPage = ordered.LastOrDefault();
-            if (lastPage == null) throw new InvalidDataException("AddressSpace exists, but has no pages in it");
-            if (lastPage.Used == lastPage.Size)
-            {
-                ExpandAddressSpace(addressSpaceId);
-                return GetEndOfUsedAddressSpaceOffset(addressSpaceId);
-            }
-            return lastPage.Offset + lastPage.Used + 1;
+            //var ordered = addressSpace.OrderBy(p => p.LocalAddressSpaceOffset);
+            //var lastPage = ordered.LastOrDefault();
+            //if (lastPage == null) throw new InvalidDataException("AddressSpace exists, but has no pages in it");
+            //if (lastPage.Used == lastPage.Size)
+            //{
+            //    ExpandAddressSpace(addressSpaceId, lastPage.LocalAddressSpaceOffset + lastPage.Size);
+            //    return GetEndOfUsedAddressSpaceOffset(addressSpaceId);
+            //}
+            //return ((ordered.Count() -1) * lastPage.Size) + lastPage.Used;
+            return addressSpace.Sum(u => u.Used);
         }
 
         public bool HasAddressSpace(Guid addressSpaceId)
@@ -75,7 +76,7 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public long EndOfPageIndex { get { return endOfIndex; } }
 
-        public void ExpandAddressSpace(Guid addressSpaceId)
+        public void ExpandAddressSpace(Guid addressSpaceId, long localOffset)
         {
             if (!EmptyPages.Any())
             {
@@ -83,6 +84,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
             PageSummary summary = EmptyPages[0];
             summary.AddressSpaceId = addressSpaceId;
+            summary.LocalAddressSpaceOffset = localOffset;
             AddOrUpdateEntry(summary);
         }   
 
@@ -93,7 +95,7 @@ namespace JellyDb.Core.VirtualAddressSpace
                 PageSummary newSummary = new PageSummary();
                 newSummary.AddressSpaceId = Guid.Empty;
                 newSummary.Allocated = false;
-                newSummary.Offset = EndOfPageIndex;
+                newSummary.DataFileOffset = EndOfPageIndex;
                 newSummary.Size = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
                 newSummary.Used = 0;
                 AddOrUpdateEntry(newSummary);
@@ -111,13 +113,17 @@ namespace JellyDb.Core.VirtualAddressSpace
             {                
                 stream.Position = stream.Length;
                 indices[summary.AddressSpaceId].Add(summary);
-                endOfIndex = Math.Max((summary.Offset + summary.Size), endOfIndex);
+                endOfIndex = Math.Max((summary.DataFileOffset + summary.Size), endOfIndex);
             }
             else
             {
                 stream.Position = summary.PageFileIndex.Value;
                 if (!indices[summary.AddressSpaceId].Contains(summary))
                 {
+                    //foreach (var space in indices.Values)
+                    //{
+                    //    if (space.Contains(summary)) space.Remove(summary);
+                    //}
                     EmptyPages.Remove(summary);
                     indices[summary.AddressSpaceId].Add(summary);
                     summary.Allocated = true;
@@ -125,6 +131,11 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
 
             summary.WriteToStream(writer);
+        }
+
+        public void Flush()
+        {
+            writer.Flush();
             stream.Flush();
         }
 

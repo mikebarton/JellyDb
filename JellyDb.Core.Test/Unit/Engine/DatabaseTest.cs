@@ -47,7 +47,7 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateDatabase()
         {
-            var index = new Index(_indexStorage);
+            var index = new Index<int>(_indexStorage);
                 
             using (_target = new Database(index, _dataStorage))
             {
@@ -58,30 +58,30 @@ namespace JellyDb.Core.Test.Unit.Engine
         [TestMethod]
         public void Database_CreateAndSaveDatabase()
         {
-            var index = new Index(_indexStorage);                
+            var index = new Index<int>(_indexStorage);
 
             using (_target = new Database(index, _dataStorage))
             {
-                _target.Write(123, "hello monkey");
-                _target.Write(456, "how are you?");
-                Assert.AreEqual("hello monkey", _target.Read(123));
-                Assert.AreEqual("how are you?", _target.Read(456));
+                _target.Write(DataKey.CreateKey(123), "hello monkey");
+                _target.Write(DataKey.CreateKey(456), "how are you?");
+                Assert.AreEqual("hello monkey", _target.Read(DataKey.CreateKey(123)));
+                Assert.AreEqual("how are you?", _target.Read(DataKey.CreateKey(456)));
             }                        
         }
 
         [TestMethod]
         public void Database_CreateAndSaveLOTSInDatabase()
         {
-            var index = new Index(_indexStorage);
+            var index = new Index<int>(_indexStorage);
             using (_target = new Database(index, _dataStorage))
             {                    
                 for (int i = 1; i < 1000; i++)
                 {
-                    _target.Write(i, string.Format("hello {0}", i));
+                    _target.Write(DataKey.CreateKey(i), string.Format("hello {0}", i));
                 }
                 for (int i = 1; i < 1000; i++)
                 {
-                    Assert.AreEqual(string.Format("hello {0}", i), _target.Read(i));
+                    Assert.AreEqual(string.Format("hello {0}", i), _target.Read(DataKey.CreateKey(i)));
                 }
             }            
         }

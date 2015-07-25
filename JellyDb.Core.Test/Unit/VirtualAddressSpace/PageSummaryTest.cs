@@ -25,14 +25,14 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
             writer = new BinaryWriter(stream);
             demo = new PageSummary();
             demo.Size = 1;
-            demo.Offset = 2;
+            demo.DataFileOffset = 2;
             demo.Allocated = true;
             demo.AddressSpaceId = Guid.NewGuid();
             demo.Used = 200;
             writer.Write(demo.AddressSpaceId.ToByteArray());
             writer.Write(demo.Size);
             writer.Write(demo.Used);
-            writer.Write(demo.Offset);
+            writer.Write(demo.DataFileOffset);
             writer.Write(demo.Allocated);
             stream.Position = 0;
         }
@@ -57,7 +57,7 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
             Assert.AreEqual(demo.AddressSpaceId, target.AddressSpaceId);
             Assert.AreEqual(demo.Size, target.Size);
             Assert.AreEqual(demo.Used, target.Used);
-            Assert.AreEqual(demo.Offset, target.Offset);
+            Assert.AreEqual(demo.DataFileOffset, target.DataFileOffset);
             Assert.AreEqual(demo.Allocated, target.Allocated);
             Assert.AreEqual(demo.PageFileIndex, target.PageFileIndex);
         }
@@ -71,7 +71,7 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
             Assert.AreEqual(demo.AddressSpaceId, target.AddressSpaceId);
             Assert.AreEqual(demo.Size, target.Size);
             Assert.AreEqual(demo.Used, target.Used);
-            Assert.AreEqual(demo.Offset, target.Offset);
+            Assert.AreEqual(demo.DataFileOffset, target.DataFileOffset);
             Assert.AreEqual(demo.Allocated, target.Allocated);
             Assert.AreEqual(pos, target.PageFileIndex);
             PageSummary expectedToBeNull = PageSummary.ReadFromStream(reader);

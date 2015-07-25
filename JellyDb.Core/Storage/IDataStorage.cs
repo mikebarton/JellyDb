@@ -13,6 +13,7 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
         void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
         void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
         byte[] ReadToEndOfAddressSpace(long storageOffset);
+        void ResetAddressSpace();
         void Initialise();
     }
 }

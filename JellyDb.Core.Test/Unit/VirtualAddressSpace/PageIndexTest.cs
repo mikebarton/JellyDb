@@ -22,10 +22,10 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
         {
             stream = new MemoryStream();
             BinaryWriter writer = new BinaryWriter(stream);
-            PageSummary summary1 = new PageSummary() { AddressSpaceId = id1, Allocated = true, Offset = 0, Size = 1024, Used = 1024 };
-            PageSummary summary2 = new PageSummary() { AddressSpaceId = id2, Allocated = true, Offset = 1024, Size = 1024, Used = 100 };
-            PageSummary summary3 = new PageSummary() { AddressSpaceId = id1, Allocated = true, Offset = 2048, Size = 1024, Used = 200 };
-            PageSummary summary4 = new PageSummary() { AddressSpaceId = Guid.Empty, Allocated = false, Offset = 3072, Size = 1024, Used = 0 };
+            PageSummary summary1 = new PageSummary() { AddressSpaceId = id1, Allocated = true, DataFileOffset = 0, Size = 1024, Used = 1024 };
+            PageSummary summary2 = new PageSummary() { AddressSpaceId = id2, Allocated = true, DataFileOffset = 1024, Size = 1024, Used = 100 };
+            PageSummary summary3 = new PageSummary() { AddressSpaceId = id1, Allocated = true, DataFileOffset = 2048, Size = 1024, Used = 200 };
+            PageSummary summary4 = new PageSummary() { AddressSpaceId = Guid.Empty, Allocated = false, DataFileOffset = 3072, Size = 1024, Used = 0 };
             summary1.WriteToStream(writer);
             summary2.WriteToStream(writer);
             summary3.WriteToStream(writer);
@@ -58,28 +58,28 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
                 Assert.AreEqual(1, target[id2].Count());
                 Assert.AreEqual(1, target[Guid.Empty].Count());
 
-                Assert.AreEqual(0, target[id1][0].Offset);
+                Assert.AreEqual(0, target[id1][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][0].Size);
                 Assert.AreEqual(1024, target[id1][0].Used);
                 Assert.IsTrue(target[id1][0].Allocated);
                 Assert.AreEqual(0, target[id1][0].PageFileIndex);
                 Assert.AreEqual(id1, target[id1][0].AddressSpaceId);
 
-                Assert.AreEqual(2048, target[id1][1].Offset);
+                Assert.AreEqual(2048, target[id1][1].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][1].Size);
                 Assert.AreEqual(200, target[id1][1].Used);
                 Assert.IsTrue(target[id1][1].Allocated);
                 Assert.AreEqual(66, target[id1][1].PageFileIndex);
                 Assert.AreEqual(id1, target[id1][1].AddressSpaceId);
 
-                Assert.AreEqual(1024, target[id2][0].Offset);
+                Assert.AreEqual(1024, target[id2][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id2][0].Size);
                 Assert.AreEqual(100, target[id2][0].Used);
                 Assert.IsTrue(target[id2][0].Allocated);
                 Assert.AreEqual(33, target[id2][0].PageFileIndex);
                 Assert.AreEqual(id2, target[id2][0].AddressSpaceId);
 
-                Assert.AreEqual(3072, target[Guid.Empty][0].Offset);
+                Assert.AreEqual(3072, target[Guid.Empty][0].DataFileOffset);
                 Assert.AreEqual(1024, target[Guid.Empty][0].Size);
                 Assert.AreEqual(0, target[Guid.Empty][0].Used);
                 Assert.IsFalse(target[Guid.Empty][0].Allocated);
@@ -111,28 +111,28 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
                 Assert.AreEqual(1, target[id2].Count());
                 Assert.AreEqual(1, target[Guid.Empty].Count());
 
-                Assert.AreEqual(0, target[id1][0].Offset);
+                Assert.AreEqual(0, target[id1][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][0].Size);
                 Assert.AreEqual(1024, target[id1][0].Used);
                 Assert.IsTrue(target[id1][0].Allocated);
                 Assert.AreEqual(0, target[id1][0].PageFileIndex);
                 Assert.AreEqual(id1, target[id1][0].AddressSpaceId);
 
-                Assert.AreEqual(2048, target[id1][1].Offset);
+                Assert.AreEqual(2048, target[id1][1].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][1].Size);
                 Assert.AreEqual(200, target[id1][1].Used);
                 Assert.IsTrue(target[id1][1].Allocated);
                 Assert.AreEqual(66, target[id1][1].PageFileIndex);
                 Assert.AreEqual(id1, target[id1][1].AddressSpaceId);
 
-                Assert.AreEqual(1024, target[id2][0].Offset);
+                Assert.AreEqual(1024, target[id2][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id2][0].Size);
                 Assert.AreEqual(100, target[id2][0].Used);
                 Assert.IsTrue(target[id2][0].Allocated);
                 Assert.AreEqual(33, target[id2][0].PageFileIndex);
                 Assert.AreEqual(id2, target[id2][0].AddressSpaceId);
 
-                Assert.AreEqual(3072, target[Guid.Empty][0].Offset);
+                Assert.AreEqual(3072, target[Guid.Empty][0].DataFileOffset);
                 Assert.AreEqual(1024, target[Guid.Empty][0].Size);
                 Assert.AreEqual(0, target[Guid.Empty][0].Used);
                 Assert.IsFalse(target[Guid.Empty][0].Allocated);
@@ -149,9 +149,9 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
             stream = new MemoryStream();
             using (target = new PageIndex(stream))
             {
-                PageSummary summary1 = new PageSummary() { AddressSpaceId = id1, Allocated = true, Offset = 0, Size = 1024, Used = 1024 };
+                PageSummary summary1 = new PageSummary() { AddressSpaceId = id1, Allocated = true, DataFileOffset = 0, Size = 1024, Used = 1024 };
                 target.AddOrUpdateEntry(summary1);
-                Assert.AreEqual(0, target[id1][0].Offset);
+                Assert.AreEqual(0, target[id1][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][0].Size);
                 Assert.AreEqual(1024, target[id1][0].Used);
                 Assert.IsTrue(target[id1][0].Allocated);
@@ -166,10 +166,10 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
         {
             using (target = new PageIndex(stream))
             {
-                PageSummary summary1 = new PageSummary() { Allocated = true, Offset = 4096, Size = 1024, AddressSpaceId=id1, Used = 300 };
+                PageSummary summary1 = new PageSummary() { Allocated = true, DataFileOffset = 4096, Size = 1024, AddressSpaceId=id1, Used = 300 };
                 target.AddOrUpdateEntry(summary1);
                 Assert.AreEqual(3, target[id1].Count());
-                Assert.AreEqual(4096, target[id1][2].Offset);
+                Assert.AreEqual(4096, target[id1][2].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][2].Size);
                 Assert.IsTrue(target[id1][2].Allocated);
                 Assert.AreEqual(132, target[id1][2].PageFileIndex);
@@ -188,26 +188,26 @@ namespace JellyDb.Core.Test.Unit.VirtualAddressSpace
                 target.AddOrUpdateEntry(summary);
             
                 Assert.AreEqual(2, target[id1].Count);
-                Assert.AreEqual(0, target[id1][0].Offset);
+                Assert.AreEqual(0, target[id1][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][0].Size);
                 Assert.AreEqual(1024, target[id1][0].Used);
                 Assert.IsTrue(target[id1][0].Allocated);
                 Assert.AreEqual(0, target[id1][0].PageFileIndex);
 
                 Assert.AreEqual(1, target[id2].Count);
-                Assert.AreEqual(1024, target[id2][0].Offset);
+                Assert.AreEqual(1024, target[id2][0].DataFileOffset);
                 Assert.AreEqual(1024, target[id2][0].Size);
                 Assert.AreEqual(100, target[id2][0].Used);
                 Assert.IsTrue(target[id2][0].Allocated);
                 Assert.AreEqual(33, target[id2][0].PageFileIndex);
 
-                Assert.AreEqual(2048, target[id1][1].Offset);
+                Assert.AreEqual(2048, target[id1][1].DataFileOffset);
                 Assert.AreEqual(1024, target[id1][1].Size);
                 Assert.AreEqual(400, target[id1][1].Used);
                 Assert.IsTrue(target[id1][1].Allocated);
                 Assert.AreEqual(66, target[id1][1].PageFileIndex);
 
-                Assert.AreEqual(3072, target[Guid.Empty][0].Offset);
+                Assert.AreEqual(3072, target[Guid.Empty][0].DataFileOffset);
                 Assert.AreEqual(1024, target[Guid.Empty][0].Size);
                 Assert.AreEqual(0, target[Guid.Empty][0].Used);
                 Assert.IsFalse(target[Guid.Empty][0].Allocated);

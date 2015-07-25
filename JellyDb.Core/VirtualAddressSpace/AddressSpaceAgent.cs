@@ -10,6 +10,7 @@ namespace JellyDb.Core.VirtualAddressSpace
     {
         private Guid _addressSpaceId;
         private static object _syncObject = new object();
+        private bool _flushRequired;
 
         internal AddressSpaceAgent(Guid addressSpaceId)
         {
@@ -22,6 +23,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             {
                 WriteToDisk(_addressSpaceId, storageOffset, bufferIndex, numBytesToWrite, dataBuffer);
             }
+            _flushRequired = true;
         }
 
         public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
@@ -32,14 +34,14 @@ namespace JellyDb.Core.VirtualAddressSpace
 
         public byte[] ReadToEndOfAddressSpace(long storageOffset)
         {
-            return ReadToEnd(storageOffset);
+            return ReadToEnd(_addressSpaceId, storageOffset);
         }
 
         public void Initialise() { }
 
         public void Dispose()
         {
-            //Flush();
+            Flush();
         }
         
         public long EndOfFileIndex 
@@ -51,20 +53,29 @@ namespace JellyDb.Core.VirtualAddressSpace
         internal event WriteToAddressSpaceDelegate WriteToDisk;
         internal event GetEndOffsetDelegate GetEndOfAddressSpaceOffset;
         internal event ReadToEndDelegate ReadToEnd;
+        internal event FlushToDiskDelegate FlushToDisk;
+        internal event ResetAddressSpaceDelegate ResetAddressSpaceOnDisk;
 
         public void Flush()
         {
-            //TODO: implement flush properly
-            throw new NotImplementedException();
+            if (_flushRequired)
+            {
+                FlushToDisk(_addressSpaceId);
+                _flushRequired = false;                
+            }
         }
 
 
-
-
+        public void ResetAddressSpace()
+        {
+            ResetAddressSpaceOnDisk(_addressSpaceId);
+        }
     }
 
     internal delegate void WriteToAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int bufferIndex, int numBytes, byte[] dataBuffer);
     internal delegate byte[] ReadFromAddressSpaceDelegate(Guid addressSpaceId, long storageOffset, int numBytes);
     internal delegate long GetEndOffsetDelegate(Guid addressSpaceId);
-    internal delegate byte[] ReadToEndDelegate(long storageOffset);
+    internal delegate byte[] ReadToEndDelegate(Guid addressSpceId,  long storageOffset);
+    internal delegate void FlushToDiskDelegate(Guid addressSpaceId);
+    internal delegate void ResetAddressSpaceDelegate(Guid addressspaceId);
 }

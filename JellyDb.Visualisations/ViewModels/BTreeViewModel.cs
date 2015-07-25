@@ -10,7 +10,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
+
 
 namespace JellyDb.Visualisations.ViewModels
 {

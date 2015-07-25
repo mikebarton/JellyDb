@@ -7,13 +7,23 @@ using System.Text;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
-    public class DataWriterBase
+    public class DataWriterBase : IDisposable
     {
         protected IDataStorage _dataStorage;
+        private bool _flushRequired;
 
         public DataWriterBase(IDataStorage dataStorage)
         {
             _dataStorage = dataStorage;
+        }
+
+        public virtual void Flush()
+        {
+            if (_flushRequired)
+            {
+                _dataStorage.Flush();
+                _flushRequired = false;
+            }
         }
 
         protected byte[] ReadFromDisk(long storageOffset, int numBytesToRead)
@@ -27,7 +37,13 @@ namespace JellyDb.Core.VirtualAddressSpace
         {
             var endOfFile = _dataStorage.EndOfFileIndex;
             _dataStorage.WriteData(ref dataBuffer, 0, endOfFile, dataBuffer.Length);
+            _flushRequired = true;
             return endOfFile;
+        }
+
+        public void Dispose()
+        {
+            _dataStorage.Dispose();
         }
     }
 

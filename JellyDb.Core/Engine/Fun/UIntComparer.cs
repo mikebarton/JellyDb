@@ -5,31 +5,31 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class LongComparer : ITypeComparer<ulong>
+    public class UIntComparer : ITypeComparer<uint>
     {
-        public ulong MinKey 
+        public uint MinKey 
         {
-            get { return ulong.MinValue; }            
+            get { return uint.MinValue; }            
         }
 
-        public ulong MaxKey
+        public uint MaxKey
         {
-            get { return ulong.MaxValue; }            
+            get { return uint.MaxValue; }            
         }
 
-        public int Compare(ulong one, ulong two)
+        public int Compare(uint one, uint two)
         {
             return one == two ? 0 
                 : one < two ? -1 
                 : 1;
         }
 
-        public ulong Decrement(ulong input)
+        public uint Decrement(uint input)
         {
             return input - 1; ;
         }
 
-        public ulong Increment(ulong input)
+        public uint Increment(uint input)
         {
             return input + 1;
         }

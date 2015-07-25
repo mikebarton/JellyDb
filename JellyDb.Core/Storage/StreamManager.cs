@@ -6,21 +6,29 @@ using System.Text;
 
 namespace JellyDb.Core.VirtualAddressSpace.Storage
 {
+
     public abstract class StreamManager : IDataStorage
     {
+        protected bool _flushRequired;
         protected abstract Stream Stream { get; }
 
+        
         public abstract void Initialise();
 
-        public void Flush()
+        public virtual void Flush()
         {
-            Stream.Flush();
+            if (_flushRequired)
+            {
+                Stream.Flush();
+                _flushRequired = false;
+            }
         }
 
         public void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
         {
             Stream.Position = storageOffset;
             Stream.Write(dataBuffer, bufferIndex, numBytesToWrite);
+            _flushRequired = true;
         }
 
         public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
@@ -49,6 +57,13 @@ namespace JellyDb.Core.VirtualAddressSpace.Storage
             Flush();
             Stream.Close();
             Stream.Dispose();
+        }
+
+
+        public void ResetAddressSpace()
+        {
+            Stream.SetLength(0);
+            Stream.Flush();
         }
     }
 }

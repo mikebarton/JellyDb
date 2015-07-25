@@ -21,7 +21,7 @@ namespace JellyDb.Core.Engine.Fun
         protected static string ConvertBytesToData(byte[] dataBuffer)
         {
             if (!dataBuffer.Take(_startBytes.Length).SequenceEqual(_startBytes)) throw new InvalidDataException("Data File is Corrupt. When reading data item. data boundary start markers did not align.");
-            if (!dataBuffer.Skip(dataBuffer.Length - _endBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException("Data File is Corrupt. When reading data item {0}, data boundary end markers did not align.");
+            if (!dataBuffer.Skip(dataBuffer.Length - _endBytes.Length).Take(_endBytes.Length).SequenceEqual(_endBytes)) throw new InvalidDataException("Data File is Corrupt. When reading data item, data boundary end markers did not align.");
 
             var strippedData = dataBuffer.Skip(_startBytes.Length).Take(dataBuffer.Length - _startBytes.Length - _endBytes.Length);
             var data = Encoding.Unicode.GetString(strippedData.ToArray());

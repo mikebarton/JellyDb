@@ -9,40 +9,47 @@ using System.Text;
 
 namespace JellyDb.Core.Engine.Fun
 {
-    public class Index : DataWritableBase
+    public class Index<TKey> : DataWritableBase, IIndex
     {
-        private BPTreeNode<long, DataItem> _indexTree;
+        private BPTreeNode<TKey, DataItem> _indexTree;
 
         public Index(IDataStorage dataStorage) : base(dataStorage)
         {
-            _indexTree = new BPTreeNode<long, DataItem>(15);
+            Load();
+            if(_indexTree == null)_indexTree = new BPTreeNode<TKey, DataItem>(15);
         }
 
-        public void Insert(long key, DataItem value)
+        public void Insert(DataKey key, DataItem value)
         {
-            _indexTree = _indexTree.Insert(key, value);
+            _indexTree = _indexTree.Insert(key.GetKey<TKey>(), value);
         }
 
-        public DataItem Query(long key)
+        public DataItem Query(DataKey key)
         {
-            return _indexTree.Query(key);
+            return _indexTree.Query(key.GetKey<TKey>());
         }
         
         public void SaveIndexToDisk()
         {
-            var json = JsonConvert.SerializeObject(this);
+            var json = JsonConvert.SerializeObject(_indexTree);
             var bytes = ConvertDataToBytes(json);
+            _dataStorage.ResetAddressSpace();
             WriteToDisk(bytes);
         }
 
-        public static Index Load(byte[] dataBuffer)
+        private void Load()
         {
-            var json = ConvertBytesToData(dataBuffer);
-            var index = JsonConvert.DeserializeObject<Index>(json);
-            return index;             
+            var dataBuffer = _dataStorage.ReadToEndOfAddressSpace(0);
+            if(dataBuffer != null && dataBuffer.Length > 0)
+            {
+                var json = ConvertBytesToData(dataBuffer);
+                var index = JsonConvert.DeserializeObject<BPTreeNode<TKey, DataItem>>(json);
+                index.InitialParentsOnNodes();
+                _indexTree = index;    
+            }
         }
 
-        public BPTreeNode<long,DataItem> IndexData
+        public BPTreeNode<TKey,DataItem> IndexData
         {
             get { return _indexTree; }
             set { _indexTree = value; }

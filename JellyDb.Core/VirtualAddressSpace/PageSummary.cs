@@ -12,6 +12,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         private int size;
         private int used;
         private long offset;
+        private long localOffset;
         private bool allocated;
         private long? pageFileIndex;
         
@@ -29,10 +30,16 @@ namespace JellyDb.Core.VirtualAddressSpace
         }
 
         //the offset of this page in the data file
-        public long Offset
+        public long DataFileOffset
         {
             get { return offset; }
             set { offset = value; }
+        }
+
+        public long LocalAddressSpaceOffset
+        {
+            get { return localOffset; }
+            set { localOffset = value; }
         }
 
         //size of this page in the data file 
@@ -56,6 +63,7 @@ namespace JellyDb.Core.VirtualAddressSpace
             set { allocated = value; }
         }
 
+
         public static PageSummary ReadFromStream(BinaryReader reader)
         {
             if (reader.BaseStream.Position == reader.BaseStream.Length)
@@ -68,17 +76,20 @@ namespace JellyDb.Core.VirtualAddressSpace
             summary.size = reader.ReadInt32();
             summary.used = reader.ReadInt32();
             summary.offset = reader.ReadInt64();
+            summary.localOffset = reader.ReadInt64();
             summary.allocated = reader.ReadBoolean();
             return summary;
         }
 
         public void WriteToStream(BinaryWriter writer)
         {
-            this.pageFileIndex = writer.BaseStream.Position;
+            if (pageFileIndex.HasValue) writer.BaseStream.Position = pageFileIndex.Value;
+            else this.pageFileIndex = writer.BaseStream.Position = writer.BaseStream.Length;
             writer.Write(addressSpaceId.ToByteArray());
             writer.Write(this.size);
             writer.Write(this.used);
             writer.Write(this.offset);
+            writer.Write(this.localOffset);
             writer.Write(this.allocated);
         }
         

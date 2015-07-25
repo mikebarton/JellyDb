@@ -34,27 +34,49 @@ namespace JellyDb.Core.VirtualAddressSpace
             result.ReadFromDisk += GetData;
             result.WriteToDisk += SetData;
             result.GetEndOfAddressSpaceOffset += pageIndex.GetEndOfUsedAddressSpaceOffset;
+            result.ReadToEnd += GetAllDataUntilEnd;
+            result.FlushToDisk += id=> Flush();
+            result.ResetAddressSpaceOnDisk += ResetAddressSpace;
 
             if (!pageIndex.HasAddressSpace(addressSpaceId))
             {
-                pageIndex.ExpandAddressSpace(addressSpaceId);
+                pageIndex.ExpandAddressSpace(addressSpaceId, 0);
             }
             return result;
         }
 
-        private long SetData(byte[] dataBuffer)
+        private byte[] GetAllDataUntilEnd(Guid addressSpaceId, long startOffset)
         {
-            throw new NotImplementedException();
-        }   
-
+            var endOffset = pageIndex.GetEndOfUsedAddressSpaceOffset(addressSpaceId);
+            var numToRead = (endOffset - startOffset).TruncateToInt32();
+            IEnumerable<byte> result = new byte[0];
+            while (numToRead > 0)
+            {
+                var retrieved = GetData(addressSpaceId, startOffset, numToRead);
+                result = result.Concat(retrieved);
+                startOffset += Int32.MaxValue;
+                numToRead = (endOffset - startOffset).TruncateToInt32();
+            }
+            return result.ToArray();
+        }
+        
         public void ResetAddressSpace(Guid addressSpaceId)
         {
             foreach (var page in pageIndex[addressSpaceId])
             {
                 byte[] buffer = new byte[page.Size];
-                SetData(addressSpaceId, page.Offset, 0, buffer.Length, buffer);
+                SetData(addressSpaceId, page.DataFileOffset, 0, buffer.Length, buffer);
                 page.Allocated = false;
                 page.Used = 0;
+                page.LocalAddressSpaceOffset = 0;
+                pageIndex.AddOrUpdateEntry(page);
+            }
+
+            foreach (var page in pageIndex[addressSpaceId].ToArray().Skip(1))
+            {
+                page.AddressSpaceId = Guid.Empty;
+                pageIndex[addressSpaceId].Remove(page);
+                pageIndex.EmptyPages.Add(page);
                 pageIndex.AddOrUpdateEntry(page);
             }
         }
@@ -71,20 +93,20 @@ namespace JellyDb.Core.VirtualAddressSpace
             long localOffset = storageOffset;
             int numProcessed = 0;
 
-            foreach (var summary in pageIndex[addressSpaceId])
+            foreach (var summary in pageIndex[addressSpaceId].OrderBy(p => p.LocalAddressSpaceOffset))
             {
                 if (summary.Size <= localOffset)
                 {
                     localOffset -= summary.Size;
                     continue;
                 }
-                
+
                 int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 dataStorage.ReadData(ref result,
                     numProcessed,
-                    (summary.Offset + localOffset),
+                    (summary.DataFileOffset + localOffset),
                     amountToProcess);
                 numProcessed += amountToProcess;
                 localOffset = 0;
@@ -100,26 +122,32 @@ namespace JellyDb.Core.VirtualAddressSpace
 
             for (int i = 0; i < pageIndex[addressSpaceId].Count; i++)
             {
-                var summary = pageIndex[addressSpaceId][i];
+                var summary = pageIndex[addressSpaceId].OrderBy(p=>p.LocalAddressSpaceOffset).ToArray()[i];
                 if (summary.Size <= localOffset)
                 {
                     localOffset -= summary.Size;
                     continue;
                 }
-
-                int dataAvailableOnPage = summary.Size - localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                var localOffsetAsInt = localOffset.TruncateToInt32();//can cast to int since localOffset is iteratively shaved off until it is smaller than page size
+                int dataAvailableOnPage = summary.Size - localOffsetAsInt;
                 int bytesLeftToProcess = numBytes - numProcessed;
                 int amountToProcess = Math.Min(dataAvailableOnPage, bytesLeftToProcess);
                 dataStorage.WriteData(ref dataBuffer,
                     (numProcessed + bufferIndex),
-                    (summary.Offset + localOffset),
+                    (summary.DataFileOffset + localOffset),
                     amountToProcess);
+                
+                if(amountToProcess + localOffset > summary.Used)
+                {
+                    summary.Used = amountToProcess + localOffsetAsInt;
+                    pageIndex.AddOrUpdateEntry(summary);
+                }
                 numProcessed += amountToProcess;
                 localOffset = 0;
                 if (numProcessed == numBytes) break;
-                else if ((pageIndex[addressSpaceId].IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
+                else if ((pageIndex[addressSpaceId].OrderBy(s=>s.LocalAddressSpaceOffset).ToList().IndexOf(summary) + 1) == pageIndex[addressSpaceId].Count)
                 {
-                    pageIndex.ExpandAddressSpace(addressSpaceId);
+                    pageIndex.ExpandAddressSpace(addressSpaceId, summary.LocalAddressSpaceOffset + summary.Size);
                 }
             }
         }
@@ -127,6 +155,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         public void Flush()
         {
             dataStorage.Flush();
+            pageIndex.Flush();
         }
         
     }

@@ -28,7 +28,15 @@ namespace JellyDb.Core.VirtualAddressSpace
 
                 if (!string.IsNullOrEmpty(jsonText)) MetaData = JsonConvert.DeserializeObject<List<DatabaseMetaData>>(jsonText);
                 else MetaData = new List<DatabaseMetaData>();    
-            }
+            }else MetaData = new List<DatabaseMetaData>();
+        }
+
+        public void SaveToDisk()
+        {
+            var jsonText = JsonConvert.SerializeObject(MetaData);
+            var bytes = ConvertDataToBytes(jsonText);
+            _dataStorage.WriteData(ref bytes, 0, 0, bytes.Length);
+            _dataStorage.Flush();
         }
     }
 
@@ -37,5 +45,7 @@ namespace JellyDb.Core.VirtualAddressSpace
         public string DatabaseName { get; set; }
         public Guid IndexId { get; set; }
         public Guid DataId { get; set; }
+        public Type KeyType { get; set; }
+        public bool AutoGenerateId { get; set; }
     }
 }

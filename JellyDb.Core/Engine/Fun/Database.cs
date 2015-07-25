@@ -11,16 +11,18 @@ namespace JellyDb.Core.Engine.Fun
 {
     public class Database : DataWritableBase, IDisposable
     {
-        private Index _indexRoot;
+        private IIndex _indexRoot;
         private Dictionary<long, byte[]> _pageCache = new Dictionary<long, byte[]>();
-        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb * 1024; 
+        private static int _pageSizeInBytes = DbEngineConfigurationSection.ConfigSection.VfsConfig.PageSizeInKb;
+        private bool _flushRequired;
 
-        public Database(Index index, IDataStorage dataStorage) : base(dataStorage)
+        public Database(IIndex index, IDataStorage dataStorage)
+            : base(dataStorage)
         {
             _indexRoot = index;
         }
 
-        public string Read(long key)
+        public string Read(DataKey key)
         {
             var dataItem = _indexRoot.Query(key);
             var totalData = RetrieveItemData(new List<byte>(), dataItem.DataFileOffset, dataItem.PageOffset, dataItem.ItemLength).ToArray();
@@ -40,9 +42,9 @@ namespace JellyDb.Core.Engine.Fun
             var totalData = itemData.Concat(pageData.Skip(isContinuance ? 0 : pageOffset).Take(itemLength)).ToList();
             if (totalData.Count < itemLength) totalData = RetrieveItemData(totalData, dataFileOffset + _pageSizeInBytes, pageOffset, itemLength - (totalData.Count - itemData.Count), true);
             return totalData;            
-        }                
+        }
 
-        public void Write(long key, string data)
+        public void Write(DataKey key, string data)
         {
             var dataItem = new DataItem() { VersionId = Guid.NewGuid() };
             var dataBuffer = ConvertDataToBytes(data);
@@ -51,11 +53,26 @@ namespace JellyDb.Core.Engine.Fun
             dataItem.PageOffset = (dataFileOffset % _pageSizeInBytes).TruncateToInt32();
             dataItem.DataFileOffset = dataFileOffset;
             _indexRoot.Insert(key, dataItem);
-        }        
+            _flushRequired = true;
+        }
+
+        public override void Flush()
+        {
+            if (_flushRequired)
+            {
+                base.Flush();
+                _indexRoot.SaveIndexToDisk();
+                _indexRoot.Flush();
+                _dataStorage.Flush();
+                _flushRequired = false;
+            }            
+        }
         
         public void Dispose()
         {
-            _indexRoot.SaveIndexToDisk();
+            this.Flush();
+            _indexRoot.Dispose();
+            _dataStorage.Dispose();
         }
     }    
 }

@@ -20,6 +20,15 @@ namespace JellyDb.Core.Engine.Fun
             _branchingFactor = branchingFactor;
             _comparer = new TypeComparer<TKey>();
         }
+
+        public void InitialParentsOnNodes()
+        {
+            foreach (var child in _children)
+            {
+                child.Parent = this;
+                child.InitialParentsOnNodes();
+            }
+        }
                 
         public int BranchingFactor
         {
