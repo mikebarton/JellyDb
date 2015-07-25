@@ -6,7 +6,7 @@ using System.Text;
 namespace JellyDb.Core.Engine.Spicy
 {
     [Serializable]
-    public class DataItem<TKey>
+    public class DataItem
     {        
         public long DataFileOffset { get; set; }
         public bool IsLeafNode { get; set; }
