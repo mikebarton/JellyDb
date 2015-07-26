@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JellyDb.Core.VirtualAddressSpace.Storage;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,25 @@ namespace JellyDb.Core.Engine.Spicy
         private TKey _maxKey;        
         private SortedList<TKey, long> _data = new SortedList<TKey, long>();
         private SortedList<TKey, long> _children = new SortedList<TKey, long>();
-        
+        private IDataStorage _dataStorage;
 
-        public DatabaseNode(int branchingFactor)
+        public DatabaseNode(int branchingFactor, IDataStorage dataStorage)
         {
-            
+            _dataStorage = dataStorage;
             _branchingFactor = branchingFactor;
         }
 
-        public bool IsLeafNode
+        public DatabaseNode<TKey> ReadNode(long address)
         {
-            get { return !_children.Any(); }
+            var result = new DatabaseNode<TKey>(_branchingFactor, _dataStorage);
+            var branchFactorBytes = BitConverter.GetBytes(_branchingFactor);
+
+            return result;
+        }
+
+        public void WriteNode()
+        {
+
         }
     }
 }
