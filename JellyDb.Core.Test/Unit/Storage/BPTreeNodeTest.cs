@@ -22,7 +22,7 @@ namespace JellyDb.Core.Test.Unit.Storage
         [TestMethod]
         public void CreateNodeAndInsertSequentially()
         {
-            var node = new BPTreeNode<int, int>(10);
+            var node = new BPTreeNode<int, int>(5);
 
             // insert arbitrary calc based on i to spice things up and know that it isn't just returning the key
             Func<int,int> calcData = num => ((int)(((num + 3) * 5) / 4));
