@@ -1,4 +1,4 @@
-﻿using JellyDb.Core.VirtualAddressSpace.Storage;
+﻿using JellyDb.Core.Storage;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,24 +16,33 @@ namespace JellyDb.Core.Engine.Spicy
         private SortedList<TKey, long> _data = new SortedList<TKey, long>();
         private SortedList<TKey, long> _children = new SortedList<TKey, long>();
         private IDataStorage _dataStorage;
+        private ITypeWorker<TKey> _typeWorker;
+        private BinaryReaderWriter _readerWriter;
 
         public DatabaseNode(int branchingFactor, IDataStorage dataStorage)
         {
             _dataStorage = dataStorage;
+            _readerWriter = new BinaryReaderWriter(_dataStorage);
             _branchingFactor = branchingFactor;
+            _typeWorker = TypeWorkerFactory.GetTypeWorker<TKey>();
         }
 
         public DatabaseNode<TKey> ReadNode(long address)
         {
             var result = new DatabaseNode<TKey>(_branchingFactor, _dataStorage);
-            var branchFactorBytes = BitConverter.GetBytes(_branchingFactor);
-
+            _readerWriter.SetPosition(address);
+            result._branchingFactor = _readerWriter.ReadInt32();
+            result._minKey = _typeWorker.ReadTypeFromDataSource(_readerWriter);
+            result._maxKey = _typeWorker.ReadTypeFromDataSource(_readerWriter);
+            
             return result;
         }
 
         public void WriteNode()
         {
-
+            var branchFactorBytes = BitConverter.GetBytes(_branchingFactor);
+            var minKeyBytes = _typeWorker.GetBytes(_minKey);
+            var maxKeyBytes = _typeWorker.GetBytes(_maxKey);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using JellyDb.Core.VirtualAddressSpace.Storage;
+using JellyDb.Core.Storage;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JellyDb.Core.VirtualAddressSpace;
 using JellyDb.Core.Configuration;

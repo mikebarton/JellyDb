@@ -6,7 +6,7 @@ using System.IO.MemoryMappedFiles;
 using JellyDb.Core.Configuration;
 using System.IO;
 using JellyDb.Core.Extensions;
-using JellyDb.Core.VirtualAddressSpace.Storage;
+using JellyDb.Core.Storage;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {

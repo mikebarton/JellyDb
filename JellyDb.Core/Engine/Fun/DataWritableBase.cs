@@ -1,6 +1,6 @@
 ﻿using JellyDb.Core.Configuration;
 using JellyDb.Core.VirtualAddressSpace;
-using JellyDb.Core.VirtualAddressSpace.Storage;
+using JellyDb.Core.Storage;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

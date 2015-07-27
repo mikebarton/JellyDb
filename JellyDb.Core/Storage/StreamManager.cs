@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace JellyDb.Core.VirtualAddressSpace.Storage
+namespace JellyDb.Core.Storage
 {
 
     public abstract class StreamManager : IDataStorage

@@ -71,8 +71,11 @@
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Engine\Spicy\DatabaseNode.cs" />
     <Compile Include="Engine\Spicy\DataItem.cs" />
+    <Compile Include="Engine\Spicy\IntWorker.cs" />
+    <Compile Include="Engine\Spicy\ITypeWorker.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="Storage\BinaryReaderWriter.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceIndex.cs" />
     <Compile Include="Hosting\HostingConfiguration.cs" />
     <Compile Include="Hosting\HostingInstance.cs" />

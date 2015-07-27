@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 
 
-namespace JellyDb.Core.VirtualAddressSpace.Storage
+namespace JellyDb.Core.Storage
 {
     public class IoFileManager : StreamManager
     {
