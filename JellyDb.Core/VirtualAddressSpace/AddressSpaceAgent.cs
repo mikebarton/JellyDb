@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace JellyDb.Core.VirtualAddressSpace
 {
@@ -65,10 +66,17 @@ namespace JellyDb.Core.VirtualAddressSpace
             }
         }
 
-
         public void ResetAddressSpace()
         {
             ResetAddressSpaceOnDisk(_addressSpaceId);
+        }
+
+        public StorageWriteLock LockForWriting()
+        {
+            Monitor.Enter(_syncObject);
+            var locker = new StorageWriteLock();
+            locker.UnlockRequested += (sender, args) => Monitor.Exit(_syncObject);
+            return locker;
         }
     }
 

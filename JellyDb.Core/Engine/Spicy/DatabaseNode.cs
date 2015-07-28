@@ -32,11 +32,14 @@ namespace JellyDb.Core.Engine.Spicy
         {
             if (_children.Any())
             {
-                //var selectedNode = _children.Single(c => c.IsKeyInNodeRange(key));
-                //selectedNode.Insert(key, data);
+                var indexOfChild = _data.IndexOfKey( _data.Keys.Last(d => _typeWorker.Compare(key, d) < 0));
+                var selectedNodeAddress = _children.Values[indexOfChild];
+                var selectedNode = ReadNodeFromDataSource(selectedNodeAddress);
+                selectedNode.Insert(key, data);                
             }
             else
             {
+                //TODO write DataItem to storage
                 //_data[key] = data;
                 //if (IsFull) SplitNode();
             }

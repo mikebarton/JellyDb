@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyDb.Core", "JellyDb.Core\JellyDb.Core.csproj", "{AA81ED50-222D-4637-BA83-BE5BCD867106}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JellyDb.Core.Test", "JellyDb.Core.Test\JellyDb.Core.Test.csproj", "{B4D8320C-9B28-4FD7-83EF-6E2A9D239F52}"
@@ -10,6 +12,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83E1FE8D-6E0F-4C1C-BB46-68F29B7C8F57}"
 	ProjectSection(SolutionItems) = preProject
 		TODO.txt = TODO.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E4C5F67A-0053-463E-92E2-FE697DBE6D3B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global

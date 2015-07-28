@@ -12,8 +12,9 @@ namespace JellyDb.Core.Storage
         long EndOfFileIndex { get;}
         void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite);
         void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead);
-        byte[] ReadToEndOfAddressSpace(long storageOffset);
+        byte[] ReadToEndOfAddressSpace(long storageOffset);        
         void ResetAddressSpace();
         void Initialise();
+        StorageWriteLock LockForWriting();
     }
 }

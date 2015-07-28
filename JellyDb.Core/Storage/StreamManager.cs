@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace JellyDb.Core.Storage
 {
 
     public abstract class StreamManager : IDataStorage
     {
+        private object _syncObject = new object();
         protected bool _flushRequired;
         protected abstract Stream Stream { get; }
-
         
         public abstract void Initialise();
 
@@ -26,9 +27,12 @@ namespace JellyDb.Core.Storage
 
         public void WriteData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToWrite)
         {
-            Stream.Position = storageOffset;
-            Stream.Write(dataBuffer, bufferIndex, numBytesToWrite);
-            _flushRequired = true;
+            lock (_syncObject)
+            {
+                Stream.Position = storageOffset;
+                Stream.Write(dataBuffer, bufferIndex, numBytesToWrite);
+                _flushRequired = true;
+            }
         }
 
         public void ReadData(ref byte[] dataBuffer, int bufferIndex, long storageOffset, int numBytesToRead)
@@ -59,11 +63,18 @@ namespace JellyDb.Core.Storage
             Stream.Dispose();
         }
 
-
         public void ResetAddressSpace()
         {
             Stream.SetLength(0);
             Stream.Flush();
+        }
+
+        public StorageWriteLock LockForWriting()
+        {
+            Monitor.Enter(_syncObject);
+            var locker = new StorageWriteLock();
+            locker.UnlockRequested += (sender, args) => Monitor.Exit(_syncObject);
+            return locker;
         }
     }
 }

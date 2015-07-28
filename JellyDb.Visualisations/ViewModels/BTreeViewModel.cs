@@ -19,17 +19,18 @@ namespace JellyDb.Visualisations.ViewModels
         private List<int> _history = new List<int>();
         public BTreeViewModel()
         {
-            BPTreeNode<int, int> node = new BPTreeNode<int, int>(20);
+            var branchingFactor = 8;
+            BPTreeNode<int, int> node = new BPTreeNode<int, int>(branchingFactor);
             TreeNode = node;
             Stopwatch stop = new Stopwatch();
             stop.Start();
 
-            for (int i = 1; i <= 999; i++)
+            for (int i = 1; i <= 20; i++)
             {
-                //var num = i;
+                var num = i;
 
                 //stop.Stop();
-                var num = GenerateRandomNumber();
+                //var num = GenerateRandomNumber();
                 //stop.Start();
 
                 node = node.Insert(num, num);
@@ -69,7 +70,7 @@ namespace JellyDb.Visualisations.ViewModels
             });
             ResetCommand = new DelegateCommand(o => true, o =>
             {
-                TreeNode = new BPTreeNode<int, int>(100);
+                TreeNode = new BPTreeNode<int, int>(branchingFactor);
                 PropertyChanged(this, new PropertyChangedEventArgs("Root"));
                 _history = new List<int>();
                 PropertyChanged(this, new PropertyChangedEventArgs("History"));

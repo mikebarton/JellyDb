@@ -17,8 +17,8 @@ namespace JellyDb.Core.Storage
         public void SetPosition(long position)
         {
             _storageOffset = position;
-        }        
-
+        }
+                
         public int ReadInt32()
         {
             var buffer = new byte[4];

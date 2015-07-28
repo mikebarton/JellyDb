@@ -14,6 +14,8 @@ namespace JellyDb.Core.Engine.Spicy
         TKey ReadTypeFromDataSource(BinaryReaderWriter readerWriter);
         void WriteTypeToDataSource(BinaryReaderWriter readerWriter, TKey input);
         void WriteEmptyObjectToDataSource(BinaryReaderWriter readerWriter);
+
+        int Compare(TKey first, TKey second);
     }
 
     public class TypeWorkerFactory

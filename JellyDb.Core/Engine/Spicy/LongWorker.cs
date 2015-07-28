@@ -39,5 +39,10 @@ namespace JellyDb.Core.Engine.Spicy
         {
             readerWriter.Write(0);
         }
+
+        public long Compare(long first, long second)
+        {
+            return first - second;
+        }
     }
 }

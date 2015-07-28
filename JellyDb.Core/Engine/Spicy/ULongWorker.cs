@@ -37,5 +37,11 @@ namespace JellyDb.Core.Engine.Spicy
         {
             readerWriter.Write(0);
         }
+
+        public ulong Compare(ulong first, ulong second)
+        {
+            return first - second;
+        }
+
     }
 }
