@@ -28,7 +28,21 @@ namespace JellyDb.Core.Engine.Spicy
             _typeWorker = TypeWorkerFactory.GetTypeWorker<TKey>();
         }
 
-        public DatabaseNode<TKey> ReadNode(long address)
+        public void Insert(TKey key, DataItem data)
+        {
+            if (_children.Any())
+            {
+                //var selectedNode = _children.Single(c => c.IsKeyInNodeRange(key));
+                //selectedNode.Insert(key, data);
+            }
+            else
+            {
+                //_data[key] = data;
+                //if (IsFull) SplitNode();
+            }
+        }
+
+        public DatabaseNode<TKey> ReadNodeFromDataSource(long address)
         {
             var result = new DatabaseNode<TKey>(_branchingFactor, _dataStorage);
             result._storageOffset = address;
@@ -36,29 +50,48 @@ namespace JellyDb.Core.Engine.Spicy
             result._branchingFactor = _readerWriter.ReadInt32();
             result._minKey = _typeWorker.ReadTypeFromDataSource(_readerWriter);
             result._maxKey = _typeWorker.ReadTypeFromDataSource(_readerWriter);
+            var numData = _readerWriter.ReadInt32();
             for (int i = 0; i < _branchingFactor; i++)
             {
-                var key = _typeWorker.ReadTypeFromDataSource(_readerWriter);
-                var dataAddress = _readerWriter.ReadInt64();
-                result._data.Add(key, dataAddress);
+                if (i < numData)
+                {
+                    var key = _typeWorker.ReadTypeFromDataSource(_readerWriter);
+                    var dataAddress = _readerWriter.ReadInt64();
+                    result._data.Add(key, dataAddress);
+                }
+                else
+                {
+                    _typeWorker.ReadTypeFromDataSource(_readerWriter);
+                    _readerWriter.ReadInt64();
+                }
             }
 
+            var numChildren = _readerWriter.ReadInt32();
             for (int i = 0; i < _branchingFactor; i++)
             {
-                var key = _typeWorker.ReadTypeFromDataSource(_readerWriter);
-                var childAddress = _readerWriter.ReadInt64();
-                result._children.Add(key, childAddress);
+                if (i < numChildren)
+                {
+                    var key = _typeWorker.ReadTypeFromDataSource(_readerWriter);
+                    var childAddress = _readerWriter.ReadInt64();
+                    result._children.Add(key, childAddress);
+                }
+                else
+                {
+                    _typeWorker.ReadTypeFromDataSource(_readerWriter);
+                    _readerWriter.ReadInt64();
+                }
             }
             
             return result;
         }
 
-        public void WriteNode()
+        public void WriteNodeToDataSource()
         {
             _readerWriter.SetPosition(_storageOffset);
             _readerWriter.Write(_branchingFactor);
             _typeWorker.WriteTypeToDataSource(_readerWriter, _minKey);
             _typeWorker.WriteTypeToDataSource(_readerWriter, _maxKey);
+            _readerWriter.Write(_data.Count);
             for (int i = 0; i < _branchingFactor; i++)
             {
                 if (i < _data.Count)
@@ -68,7 +101,23 @@ namespace JellyDb.Core.Engine.Spicy
                 }
                 else
                 {
-                    _typeWorker.WriteTypeToDataSource(_readerWriter, 0);
+                    _typeWorker.WriteEmptyObjectToDataSource(_readerWriter);
+                    _readerWriter.Write((long)0);
+                }
+            }
+
+            _readerWriter.Write(_children.Count);
+            for (int i = 0; i < _branchingFactor; i++)
+            {
+                if (i < _children.Count)
+                {
+                    _typeWorker.WriteTypeToDataSource(_readerWriter, _children.Keys[i]);
+                    _readerWriter.Write(_children.Values[i]);
+                }
+                else
+                {
+                    _typeWorker.WriteEmptyObjectToDataSource(_readerWriter);
+                    _readerWriter.Write((long)0);
                 }
             }
         }

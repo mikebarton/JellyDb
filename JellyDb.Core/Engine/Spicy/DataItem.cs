@@ -8,9 +8,9 @@ namespace JellyDb.Core.Engine.Spicy
     [Serializable]
     public class DataItem
     {        
-        public long DataFileOffset { get; set; }
-        public bool IsLeafNode { get; set; }
+        public long DataFileOffset { get; set; }        
         public long DataLength { get; set; }
+        public Guid VersionId { get; set; }
         
     }
 }

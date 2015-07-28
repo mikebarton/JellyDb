@@ -29,10 +29,10 @@ namespace JellyDb.Core.Engine.Spicy
             readerWriter.Write(input);
         }
 
-        public bool ReadTypeFromDataSource(BinaryReaderWriter readerWriter, out long output)
+        public long ReadTypeFromDataSource(BinaryReaderWriter readerWriter)
         {
-            output = readerWriter.ReadInt64();
-            return output != 0;
+            var output = readerWriter.ReadInt64();
+            return output;
         }
 
         public void WriteEmptyObjectToDataSource(BinaryReaderWriter readerWriter)
