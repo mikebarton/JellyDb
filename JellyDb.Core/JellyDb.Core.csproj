@@ -79,7 +79,7 @@
     <Compile Include="Engine\Spicy\ITypeWorker.cs" />
     <Compile Include="Engine\Spicy\LongWorker.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
-    <Compile Include="Extensions\LongExtensions.cs" />
+    <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="Storage\BinaryReaderWriter.cs" />
     <Compile Include="Storage\StorageWriteLock.cs" />
     <Compile Include="VirtualAddressSpace\AddressSpaceIndex.cs" />

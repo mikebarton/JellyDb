@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JellyDb.Core.Storage;
+using JellyDb.Core.Extensions;
 
 namespace JellyDb.Core.Engine.Spicy
 {
@@ -40,9 +41,11 @@ namespace JellyDb.Core.Engine.Spicy
             readerWriter.Write(0);
         }
 
-        public uint Compare(uint first, uint second)
+        public int Compare(uint first, uint second)
         {
-            return first - second;
+            if (first < second) return -1;
+            if (first > second) return 1;
+            return 0;
         }
     }
 }

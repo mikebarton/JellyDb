@@ -42,7 +42,9 @@ namespace JellyDb.Core.Engine.Spicy
 
         public int Compare(int first, int second)
         {
-            return first - second;
+            if (first < second) return -1;
+            if (first > second) return 1;
+            return 0;
         }
     }
 }

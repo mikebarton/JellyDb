@@ -1,4 +1,5 @@
-﻿using JellyDb.Core.Storage;
+﻿using JellyDb.Core.Extensions;
+using JellyDb.Core.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,9 +41,13 @@ namespace JellyDb.Core.Engine.Spicy
             readerWriter.Write(0);
         }
 
-        public long Compare(long first, long second)
+        public int Compare(long first, long second)
         {
-            return first - second;
+            if (first < second) return -1;
+            if (first > second) return 1;
+            return 0;
         }
+
+        
     }
 }
