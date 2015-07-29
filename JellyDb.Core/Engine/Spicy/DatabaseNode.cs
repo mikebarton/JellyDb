@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -39,10 +40,31 @@ namespace JellyDb.Core.Engine.Spicy
             }
             else
             {
-                //TODO write DataItem to storage
-                //_data[key] = data;
+                if (_data.ContainsKey(key))
+                {
+                    var address = _data[key];
+                    if (address <= 0) throw new InvalidDataException("DataItem in the index points to address of 0. This should not have happened");
+                    
+                    WriteDataItem(data, address);
+                }
+                else
+                {
+                    var lockItem = _dataStorage.LockForWriting();
+                    var address = _dataStorage.EndOfFileIndex;
+                    WriteDataItem(data,address);
+                    lockItem.Dispose();
+                }
+                if(_data.Count >= _branchingFactor)
+                {
+
+                }
                 //if (IsFull) SplitNode();
             }
+        }
+
+        private void WriteDataItem(DataItem item, long offset)
+        {
+
         }
 
         public DatabaseNode<TKey> ReadNodeFromDataSource(long address)
