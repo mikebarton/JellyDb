@@ -47,5 +47,16 @@ namespace JellyDb.Core.Engine.Spicy
             if (first > second) return 1;
             return 0;
         }
+
+
+        public uint Decrement(uint input)
+        {
+            return input - 1;
+        }
+
+        public uint Increment(uint input)
+        {
+            return input + 1;
+        }
     }
 }

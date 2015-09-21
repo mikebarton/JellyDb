@@ -46,5 +46,16 @@ namespace JellyDb.Core.Engine.Spicy
             return 0;
         }
 
+
+
+        public ulong Decrement(ulong input)
+        {
+            return input - 1;
+        }
+
+        public ulong Increment(ulong input)
+        {
+            return input + 1;
+        }
     }
 }

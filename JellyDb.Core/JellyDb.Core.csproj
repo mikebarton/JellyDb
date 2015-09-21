@@ -73,6 +73,7 @@
     <Compile Include="Engine\Fun\Index.cs" />
     <Compile Include="Engine\Spicy\DatabaseNode.cs" />
     <Compile Include="Engine\Spicy\DataItem.cs" />
+    <Compile Include="Engine\Spicy\NodeSummary.cs" />
     <Compile Include="Engine\Spicy\ULongWorker.cs" />
     <Compile Include="Engine\Spicy\UIntWorker.cs" />
     <Compile Include="Engine\Spicy\IntWorker.cs" />

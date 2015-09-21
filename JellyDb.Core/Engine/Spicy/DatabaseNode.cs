@@ -56,15 +56,52 @@ namespace JellyDb.Core.Engine.Spicy
                 }
                 if(_data.Count >= _branchingFactor)
                 {
-
+                    SplitNode();
                 }
-                //if (IsFull) SplitNode();
             }
+        }
+
+        private void SplitNode()
+        {
+            var splitIndex = (_branchingFactor - 1) / 2;
+            var left = this;
+            var right = new DatabaseNode<TKey>(_branchingFactor, _dataStorage);
+
+            var splitElem = _data.ElementAt(splitIndex);
+            left._maxKey = _typeWorker.Decrement(splitElem.Key);
+
+            for (int i = _data.Count - 1; i > splitIndex; i--)
+            {
+                var elemPair = _data.ElementAt(i);
+                var elem = ReadDataItem(elemPair.Value);
+                right.Insert(elemPair.Key, elem);
+                _data.RemoveAt(i);
+            }
+            _data.RemoveAt(splitIndex);
+
+            foreach (var child in _children.Where(c => _typeWorker.Compare(c._minKey, splitElem.Key) >=0).ToList())
+            {
+                right.Children.Add(child);
+                child.Parent = right;
+                _children.Remove(child);
+            }
+
+            if (this.Parent == null)
+            {
+                this.Parent = new BPTreeNode<TKey, TData>(BranchingFactor);
+                this.Parent.InsertChildNode(left, splitElem.Key, splitElem.Value);
+            }
+            Parent.InsertChildNode(right, splitElem.Key, splitElem.Value);
         }
 
         private void WriteDataItem(DataItem item, long offset)
         {
+            throw new NotImplementedException();
+        }
 
+        private DataItem ReadDataItem(long offset)
+        {
+            throw new NotImplementedException();
         }
 
         public DatabaseNode<TKey> ReadNodeFromDataSource(long address)

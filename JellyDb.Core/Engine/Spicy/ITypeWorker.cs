@@ -16,6 +16,8 @@ namespace JellyDb.Core.Engine.Spicy
         void WriteEmptyObjectToDataSource(BinaryReaderWriter readerWriter);
 
         int Compare(TKey first, TKey second);
+        TKey Decrement(TKey input);
+        TKey Increment(TKey input);
     }
 
     public class TypeWorkerFactory

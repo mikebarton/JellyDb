@@ -48,6 +48,17 @@ namespace JellyDb.Core.Engine.Spicy
             return 0;
         }
 
-        
+
+
+
+        public long Decrement(long input)
+        {
+            return input - 1;
+        }
+
+        public long Increment(long input)
+        {
+            return input + 1;
+        }
     }
 }
