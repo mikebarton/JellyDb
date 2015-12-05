@@ -71,6 +71,8 @@
     <Compile Include="Engine\Fun\Database.cs" />
     <Compile Include="Engine\Fun\DataItem.cs" />
     <Compile Include="Engine\Fun\Index.cs" />
+    <Compile Include="Engine\Spicy\BPTreeNode.cs" />
+    <Compile Include="Engine\Spicy\BPTreeNodeWriter.cs" />
     <Compile Include="Engine\Spicy\DatabaseNode.cs" />
     <Compile Include="Engine\Spicy\DataItem.cs" />
     <Compile Include="Engine\Spicy\NodeSummary.cs" />

@@ -174,11 +174,7 @@ namespace JellyDb.Core.Engine.Fun
         {
             get { return _data; }
         }
-        [JsonIgnore]
-        public List<TKey> SerializableData
-        {
-            get { return Data.Keys.ToList(); }
-        }
+        
 
         public bool IsLeafNode 
         {
