@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JellyDb.Core.Engine.Fun;
+using JellyDb.Core.Engine.Spicy;
 using System.ComponentModel;
 using System.Diagnostics;
 using JellyDb.Visualisations.Commands;

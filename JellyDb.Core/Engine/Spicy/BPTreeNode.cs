@@ -10,8 +10,8 @@ namespace JellyDb.Core.Engine.Spicy
         private int _branchingFactor = -1;
         private TKey _minKey;
         private TKey _maxKey;
-        private SortedList<TKey, long> _data = new SortedList<TKey, long>();
-        private SortedList<TKey, long> _children = new SortedList<TKey, long>();
+        private SortedList<TKey, TData> _data = new SortedList<TKey, TData>();
+        private SortedList<TKey, BPTreeNode<TKey, TData>> _children = new SortedList<TKey, BPTreeNode<TKey, TData>>();
         private ITypeWorker<TKey> _typeWorker;
 
         public BPTreeNode(int branchingFactor = 15)
@@ -61,7 +61,7 @@ namespace JellyDb.Core.Engine.Spicy
             }
             else
             {
-                var selectedNode = _children.Single(c => c.IsKeyInNodeRange(key));
+                var selectedNode = _children.Values.Single(c => c.IsKeyInNodeRange(key));
                 selectedNode.Insert(key, data);
             }
             return GetRoot();
@@ -69,12 +69,13 @@ namespace JellyDb.Core.Engine.Spicy
 
         public TData Query(TKey key)
         {
-            if (_data.ContainsKey(key)) return _data[key];
-            else
-            {
-                var childNode = _children.SingleOrDefault(c => c.IsKeyInNodeRange(key));
-                return childNode == null ? default(TData) : childNode.Query(key);
-            }
+            throw new NotImplementedException();
+            //if (_data.ContainsKey(key)) return _data[key];
+            //else
+            //{
+            //    var childNode = _children.SingleOrDefault(c => c.IsKeyInNodeRange(key));
+            //    return childNode == null ? default(TData) : childNode.Query(key);
+            //}
         }
 
         private BPTreeNode<TKey, TData> GetRoot()
@@ -85,12 +86,29 @@ namespace JellyDb.Core.Engine.Spicy
 
         private void SplitNode()
         {
+            var splitIndex = _children.Count / 2;
+            splitIndex = _children.Count % 2 == 0 ? splitIndex : splitIndex++;
+            var splitKey = _data.Keys[splitIndex];
+            var splitData = _data.Values[splitIndex];
+
+            
+        }
+
+        private void SendToParentNode(int index)
+        {
             throw new NotImplementedException();
         }
 
-        private void SendToParentNode(TKey key)
-        {
+        
 
+        private bool IsKeyInNodeRange(TKey key)
+        {
+            throw new NotImplementedException();
+            //if (_comparer.Compare(MaxKey, MinKey) == 0 && MinKey == null) return false;
+            //if (MaxKey == null && MinKey != null && _comparer.Compare(MinKey, key) <= 0) return true;
+            //if (MinKey == null && MaxKey != null && _comparer.Compare(MaxKey, key) > 0) return true;
+            //if (MaxKey != null && MinKey != null && _comparer.Compare(MinKey, key) <= 0 && _comparer.Compare(MaxKey, key) >= 0) return true;
+            //return false;
         }
 
 

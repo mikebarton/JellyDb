@@ -77,7 +77,8 @@
     <Compile Include="Unit\Configuration\DbEngineConfigurationSectionTest.cs" />
     <Compile Include="Integration\VirtualAddressSpace\FileDataPersistenceTest.cs" />
     <Compile Include="Unit\Engine\DatabaseTest.cs" />
-    <Compile Include="Unit\Storage\BPTreeNodeTest.cs" />
+    <Compile Include="Unit\Storage\Fun\BPTreeNodeTest.cs" />
+    <Compile Include="Unit\Storage\Spicy\BPTreeNodeTest.cs" />
     <Compile Include="Unit\VirtualAddressSpace\PageIndexTest.cs" />
     <Compile Include="Unit\VirtualAddressSpace\PageSummaryTest.cs" />
   </ItemGroup>
