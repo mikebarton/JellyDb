@@ -68,7 +68,7 @@ namespace JellyDb.Core.Test.Unit.Storage.Spicy
         private bool TestNode(BPTreeNode<int,int> node, long key, long data)
         {
             if (node == null) return false;
-            return node.Data.Any(n => n.Key == key && n.Value == data);
+            return node.Items.Any(n => n.Key == key && n.Value.Data == data);
         }
 
     }
