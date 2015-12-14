@@ -99,10 +99,16 @@ namespace JellyDb.Core.Engine.Spicy
         private void SplitNode()
         {
             var splitIndex = _items.Count / 2;
-            splitIndex = _items.Count % 2 == 0 ? splitIndex : splitIndex++;
             var splitNode = _items.Values[splitIndex];
+
             _items.Remove(splitNode.Key);
             if (Parent == null) Parent = new BPTreeNode<TKey, TData>(BranchingFactor);
+            var parentMinKey = Parent.GetMinKey();
+            if (parentMinKey != null && _typeWorker.Compare(splitNode.Key, parentMinKey) < 0)
+            {
+                splitNode.IsMinimumKey = true;
+                //TODO change this. what do i do when splitting here
+            }
 
             var largerSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitNode.Key) > 0).ToArray();
             var newChildNode = new BPTreeNode<TKey, TData>(BranchingFactor);
@@ -162,6 +168,7 @@ namespace JellyDb.Core.Engine.Spicy
         internal class NodeItem<TKey, TData>
         {
             internal TKey Key { get; set; }
+            internal bool IsMinimumKey { get; set; }
             internal TData Data { get; set; }
             internal BPTreeNode<TKey, TData> Child { get; set; }
         }
