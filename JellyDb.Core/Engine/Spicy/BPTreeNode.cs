@@ -90,6 +90,7 @@ namespace JellyDb.Core.Engine.Spicy
             splitIndex = _items.Count % 2 == 0 ? splitIndex-1 : splitIndex;
             var splitItem = _items.Values[splitIndex];
             _items.Remove(splitItem.Key);
+
             if (Parent == null) Parent = new BPTreeNode<TKey, TData>(BranchingFactor);
 
             var largerSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitItem.Key) > 0).ToArray();
@@ -149,6 +150,7 @@ namespace JellyDb.Core.Engine.Spicy
         internal class NodeItem<TKey, TData>
         {
             internal TKey Key { get; set; }
+            internal bool IsMinimumKey { get; set; }
             internal TData Data { get; set; }
             internal BPTreeNode<TKey, TData> Child { get; set; }
         }
