@@ -13,12 +13,12 @@
                 <ResourceDictionary Source="../Resources/Styles/TreeGraphStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <HierarchicalDataTemplate x:Key="template" ItemsSource="{Binding Children}">
+            <HierarchicalDataTemplate x:Key="template" ItemsSource="{Binding Children, Mode=OneWay}">
                 <Border Name="bdr" CornerRadius="360" BorderThickness="3" 
 						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
                     <DockPanel>
-                        <TextBlock Text="{Binding MinKey}" FontSize="8" VerticalAlignment="Bottom" Foreground="Green"/>
-                        <ItemsControl ItemsSource="{Binding Data}" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding MinKey, Mode=OneWay}" FontSize="8" VerticalAlignment="Bottom" Foreground="Green"/>
+                        <ItemsControl ItemsSource="{Binding Data, Mode=OneWay}" HorizontalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
@@ -27,14 +27,14 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Key, StringFormat='{}{0}, '}"
+                                        <TextBlock Text="{Binding ., Mode=OneWay, StringFormat='{}{0}, '}"
 							               HorizontalAlignment="Center" 
 							               VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock Text="{Binding MaxKey}" FontSize="8"  VerticalAlignment="Bottom" Foreground="Green"/>
+                        <TextBlock Text="{Binding MaxKey, Mode=OneWay}" FontSize="8"  VerticalAlignment="Bottom" Foreground="Green"/>
                     </DockPanel>
                 </Border>
             </HierarchicalDataTemplate>
@@ -59,7 +59,7 @@
             <Button Content="Insert" Command="{Binding InsertCommand}"/>
             <Button Content="Reset" Command="{Binding ResetCommand}"/>
             <Button Content="Save Index" Command="{Binding SaveCommand}"/>
-        </StackPanel>        
+        </StackPanel>
         <TreeView Grid.Row="1" ItemContainerStyle="{StaticResource GraphStyle}" ItemTemplate="{StaticResource template}" ItemsSource="{Binding Root}" />
         <DockPanel Grid.Row="2">
             <TextBlock Text="History:" HorizontalAlignment="Left"/>

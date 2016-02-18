@@ -9,10 +9,6 @@ namespace JellyDb.Core.Engine.Spicy
     public class BPTreeNode<TKey,TData>
     {
         private int _branchingFactor = -1;
-        private TKey _minKey;
-        private TKey _maxKey;
-        //private SortedList<TKey, TData> _data = new SortedList<TKey, TData>();
-        //private SortedList<TKey, BPTreeNode<TKey, TData>> _children = new SortedList<TKey, BPTreeNode<TKey, TData>>();
         private SortedList<TKey, NodeItem<TKey, TData>> _items = new SortedList<TKey, NodeItem<TKey, TData>>();
         private ITypeWorker<TKey> _typeWorker;
 
@@ -21,14 +17,12 @@ namespace JellyDb.Core.Engine.Spicy
             _branchingFactor = branchingFactor;
             _typeWorker = TypeWorkerFactory.GetTypeWorker<TKey>();
         }
-
-        #region Properties
+        
         public int BranchingFactor
         {
             get { return _branchingFactor; }
             set
             {
-                //if (_branchingFactor != -1) throw new InvalidOperationException("once branching factor is defined for a node it cannot be redefined");
                 _branchingFactor = value;
             }
         }
@@ -36,10 +30,6 @@ namespace JellyDb.Core.Engine.Spicy
         public BPTreeNode<TKey, TData> Parent { get; set; }
 
 
-        //public TKey MaxKey { get; set; }
-
-
-        //public TKey MinKey { get; set; }
         internal SortedList<TKey, NodeItem<TKey, TData>> Items { get { return _items; } }
        
         public bool IsFull
@@ -51,10 +41,7 @@ namespace JellyDb.Core.Engine.Spicy
         {
             get { return !_items.Any(i=>i.Value.Child != null); }
         }
-        #endregion
-
-
-        #region Methods
+        
         public BPTreeNode<TKey, TData> Insert(TKey key, TData data)
         {
             if (IsLeafNode)
@@ -65,7 +52,6 @@ namespace JellyDb.Core.Engine.Spicy
             else
             {
                 var selectedNode = FindRelevantNodeItem(key);
-                //var selectedNode = _children.Values.Single(c => c.IsKeyInNodeRange(key));
                 selectedNode.Child.Insert(key, data);
             }
             return GetRoot();
@@ -77,15 +63,17 @@ namespace JellyDb.Core.Engine.Spicy
             else
             {
                 var childNode = FindRelevantNodeItem(key);
-                //var childNode = _children.SingleOrDefault(c => c.IsKeyInNodeRange(key));
                 return childNode.Child == null ? default(TData) : childNode.Child.Query(key);
             }
         }
         //TODO: when storing key less than current node key need to create child node with minkey int.minvalue///
         private NodeItem<TKey, TData> FindRelevantNodeItem(TKey key)
         {
+            var first = _items.FirstOrDefault();
+            if (first.Value == null) return null;
+
             var selectedNode = _typeWorker.Compare(key, _items.First().Key) < 0 ?
-                    _items.First() :
+                    _items.FirstOrDefault() :
                     _items.LastOrDefault(i => _typeWorker.Compare(key, i.Value.Key) > 0);
             return selectedNode.Value;
         }
@@ -99,66 +87,65 @@ namespace JellyDb.Core.Engine.Spicy
         private void SplitNode()
         {
             var splitIndex = _items.Count / 2;
-            splitIndex = _items.Count % 2 == 0 ? splitIndex : splitIndex++;
-            var splitNode = _items.Values[splitIndex];
-            _items.Remove(splitNode.Key);
+            splitIndex = _items.Count % 2 == 0 ? splitIndex-1 : splitIndex;
+            var splitItem = _items.Values[splitIndex];
+            _items.Remove(splitItem.Key);
             if (Parent == null) Parent = new BPTreeNode<TKey, TData>(BranchingFactor);
 
-            var largerSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitNode.Key) > 0).ToArray();
-            var newChildNode = new BPTreeNode<TKey, TData>(BranchingFactor);
-
-            if (this.IsLeafNode)
+            var largerSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitItem.Key) > 0).ToArray();
+            var lesserSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitItem.Key) < 0).ToArray();
+            splitItem.Child = new BPTreeNode<TKey, TData>(BranchingFactor);
+           
+            largerSiblings.ForEach(s =>
+            {                    
+                splitItem.Child._items.Add(s.Key, s);
+                _items.Remove(s.Key);
+            });
+            lesserSiblings.ForEach(x =>
             {
-                newChildNode._items.Add(splitNode.Key, splitNode);
-                largerSiblings.ForEach(x =>
-                {
-                    newChildNode._items.Add(x.Key, x);
-                    _items.Remove(x.Key);
-                });
-            }
-            else
-            {
-                largerSiblings.ForEach(x =>
-                {
-                    newChildNode._items.Add(x.Key, x);
-                    _items.Remove(x.Key);
-                });
-                if (splitNode.Child != null)
-                {
-                    var splitChild = splitNode.Child;
-                    splitNode.Child = null;
-                    var parentMaxKey = Parent.GetMaxKey();
-                    if(parentMaxKey == null) parentMaxKey = splitNode.Key;
-                    newChildNode._items.Add(parentMaxKey, new NodeItem<TKey, TData> { Key = parentMaxKey, Child = splitChild });
-                }
-            }
-            splitNode.Child = newChildNode;
+                Parent.Insert(x);
+            });              
+            
 
-            Parent.SendToParentNode(splitNode);            
+            Parent.Insert(splitItem);            
         }
 
-        private void SendToParentNode(NodeItem<TKey, TData> nodeItem)
+        private void Insert(NodeItem<TKey, TData> nodeItem)
         {
-            if (_items.ContainsKey(nodeItem.Key)) throw new InvalidOperationException("Attempt to split node. When sending node to parent, the key already existed in the parent");
+            var relevantItem = FindRelevantNodeItem(nodeItem.Key);
+            if(relevantItem != null && relevantItem.Child != null)
+                relevantItem.Child.Insert(nodeItem);
+
+            //if (_items.ContainsKey(nodeItem.Key)) throw new InvalidOperationException("Attempt to split node. When sending node to parent, the key already existed in the parent");
             _items[nodeItem.Key] = nodeItem;
             if (IsFull) SplitNode();
         }
 
-        private TKey GetMinKey()
+        #region VisualizationData
+
+        public List<BPTreeNode<TKey, TData>> Children
         {
-            return _items.Keys.FirstOrDefault();
+            get { return _items.Values.Select(x => x.Child).Where(x => x != null).ToList(); }
         }
 
-        private TKey GetMaxKey()
+        public TKey MinKey
         {
-            return _items.Keys.LastOrDefault();
+            get { return _items.Keys.FirstOrDefault(); }
         }
-        
+
+        public TKey MaxKey
+        {
+            get { return _items.Keys.LastOrDefault(); }
+        }
+
+        public List<TData> Data
+        {
+            get { return _items.Values.Select(x => x.Data).ToList(); }
+        }
+
+
         #endregion
-
-        public delegate void NodeUpdatedDelgate(BPTreeNode<TKey, TData> nodeUpdated);
-        public static event NodeUpdatedDelgate NodeUpdated;
-
+        
         internal class NodeItem<TKey, TData>
         {
             internal TKey Key { get; set; }

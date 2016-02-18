@@ -19,13 +19,13 @@ namespace JellyDb.Visualisations.ViewModels
         private List<int> _history = new List<int>();
         public BTreeViewModel()
         {
-            var branchingFactor = 8;
+            var branchingFactor = 3;
             BPTreeNode<int, int> node = new BPTreeNode<int, int>(branchingFactor);
             TreeNode = node;
             Stopwatch stop = new Stopwatch();
             stop.Start();
 
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= 3; i++)
             {
                 var num = i;
 
@@ -145,7 +145,7 @@ namespace JellyDb.Visualisations.ViewModels
 
         public List<BPTreeNode<int, int>> Root
         {
-            get { return new List<BPTreeNode<int, int>>() { _node }; }
+            get { return new List<BPTreeNode<int, int>>() { TreeNode }; }
         }
 
         public DelegateCommand InsertCommand { get; set; }
