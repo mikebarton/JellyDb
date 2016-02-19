@@ -18,6 +18,7 @@ namespace JellyDb.Core.Engine.Spicy
         int Compare(TKey first, TKey second);
         TKey Decrement(TKey input);
         TKey Increment(TKey input);
+        TKey MinKey { get; }
     }
 
     public class TypeWorkerFactory

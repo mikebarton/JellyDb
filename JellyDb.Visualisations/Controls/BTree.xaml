@@ -18,7 +18,7 @@
 						BorderBrush="Blue" Width="Auto" Height="Auto" MinWidth="50" Padding="5">
                     <DockPanel>
                         <TextBlock Text="{Binding MinKey, Mode=OneWay}" FontSize="8" VerticalAlignment="Bottom" Foreground="Green"/>
-                        <ItemsControl ItemsSource="{Binding Data, Mode=OneWay}" HorizontalAlignment="Center">
+                        <ItemsControl ItemsSource="{Binding Key, Mode=OneWay}" HorizontalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>

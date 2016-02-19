@@ -56,5 +56,11 @@ namespace JellyDb.Core.Engine.Spicy
         {
             return input + 1;
         }
+
+
+        public int MinKey
+        {
+            get { return -1; }
+        }
     }
 }

@@ -57,5 +57,10 @@ namespace JellyDb.Core.Engine.Spicy
         {
             return input + 1;
         }
+
+        public ulong MinKey
+        {
+            get { return UInt64.MinValue; }
+        }
     }
 }

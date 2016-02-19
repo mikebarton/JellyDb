@@ -60,5 +60,10 @@ namespace JellyDb.Core.Engine.Spicy
         {
             return input + 1;
         }
+
+        public long MinKey
+        {
+            get { return Int64.MinValue; }
+        }
     }
 }

@@ -19,13 +19,13 @@ namespace JellyDb.Visualisations.ViewModels
         private List<int> _history = new List<int>();
         public BTreeViewModel()
         {
-            var branchingFactor = 3;
+            var branchingFactor = 7;
             BPTreeNode<int, int> node = new BPTreeNode<int, int>(branchingFactor);
             TreeNode = node;
             Stopwatch stop = new Stopwatch();
             stop.Start();
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 77; i++)
             {
                 var num = i;
 

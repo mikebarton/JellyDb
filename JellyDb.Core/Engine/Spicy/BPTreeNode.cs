@@ -93,32 +93,33 @@ namespace JellyDb.Core.Engine.Spicy
 
             if (Parent == null) Parent = new BPTreeNode<TKey, TData>(BranchingFactor);
 
-            var largerSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitItem.Key) > 0).ToArray();
-            var lesserSiblings = _items.Values.Where(i => _typeWorker.Compare(i.Key, splitItem.Key) < 0).ToArray();
+            var largerSiblings = _items.Values.Skip(splitIndex).ToList();
             splitItem.Child = new BPTreeNode<TKey, TData>(BranchingFactor);
            
             largerSiblings.ForEach(s =>
-            {                    
-                splitItem.Child._items.Add(s.Key, s);
+            {
+                splitItem.Child.Insert(s);
                 _items.Remove(s.Key);
             });
-            lesserSiblings.ForEach(x =>
-            {
-                Parent.Insert(x);
-            });              
-            
+            Parent.Insert(splitItem);
 
-            Parent.Insert(splitItem);            
+            if (Parent.GetRelatedNodeItem(this) == null)
+            {
+                var newItem = new NodeItem<TKey, TData> { Key = _typeWorker.MinKey, Child = this };
+                Parent.Insert(newItem);
+            }
+        }
+
+        private NodeItem<TKey,TData> GetRelatedNodeItem(BPTreeNode<TKey, TData> node)
+        {
+            return _items.Values.SingleOrDefault(x => x.Child == node);
         }
 
         private void Insert(NodeItem<TKey, TData> nodeItem)
         {
-            var relevantItem = FindRelevantNodeItem(nodeItem.Key);
-            if(relevantItem != null && relevantItem.Child != null)
-                relevantItem.Child.Insert(nodeItem);
-
-            //if (_items.ContainsKey(nodeItem.Key)) throw new InvalidOperationException("Attempt to split node. When sending node to parent, the key already existed in the parent");
+            if (_items.ContainsKey(nodeItem.Key)) throw new InvalidOperationException("Attempt to split node. When sending node to parent, the key already existed in the parent");
             _items[nodeItem.Key] = nodeItem;
+            if (nodeItem.Child != null) nodeItem.Child.Parent = this;
             if (IsFull) SplitNode();
         }
 
@@ -144,13 +145,17 @@ namespace JellyDb.Core.Engine.Spicy
             get { return _items.Values.Select(x => x.Data).ToList(); }
         }
 
+        public List<TKey> Key
+        {
+            get { return _items.Keys.ToList(); }
+        }
+
 
         #endregion
         
         internal class NodeItem<TKey, TData>
         {
             internal TKey Key { get; set; }
-            internal bool IsMinimumKey { get; set; }
             internal TData Data { get; set; }
             internal BPTreeNode<TKey, TData> Child { get; set; }
         }
